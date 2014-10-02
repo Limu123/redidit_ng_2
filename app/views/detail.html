@@ -1,0 +1,22 @@
+
+<a ng-click="showOverview()">back</a><br>
+
+{{post.type}}<br>
+
+{{post.id}} | {{post.title}} - Upvotes: {{post.upvotes}}
+
+<br><br>
+
+<div ng-repeat="comment in post.comments">
+	{{comment.commentupvotes}} | {{comment.text}} -
+	<a ng-click="voteUpComment(comment,$index)">UP</a> - 
+	<a ng-click="voteDownComment(comment,$index)">DOWN</a> - 
+	<span ng-click="deleteComment(comment)">remove</span>
+</div>
+
+<br>
+<form ng-submit="createComment()" >
+  <h5>add a comment</h5>
+	<input type="text" placeholder="Title" ng-model="text"></input>
+  	<button type="submit">Post</button>
+</form>

@@ -1,0 +1,34 @@
+
+
+  <input type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
+  <label for="radio-link">Link</label>
+  <input checked type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
+  <label for="radio-video">Video</label>
+  <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
+  <label for="radio-audio">Audio</label>
+  <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
+  <label for="radio-text">Text</label>
+  <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
+  <label for="radio-image">Image</label>
+
+
+<form ng-submit="createPost()" >
+  <h3>Add new post</h3>
+  <div ng-switch="postType">
+  	<div ng-switch-when="link">
+  		<input type="text" placeholder="URL or Link" ng-model="link"></input>
+  	</div>
+  	<div ng-switch-when="video">
+<!-- 
+  		<input type="text" placeholder="Youtube" ng-model="video"></input>
+       -->
+  	</div>
+  </div><!-- ng-switch end -->
+
+	<input type="text" placeholder="Youtube" ng-model="videourl"></input>
+	<input type="text" placeholder="Title" ng-model="title"></input>
+	<input type="text" placeholder="name" ng-model="author"></input>
+  	<button type="submit">Post</button>
+</form>
+
+

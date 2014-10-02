@@ -1,0 +1,74 @@
+<!-- 
+    <span ng-bind="post.type">type</span>
+    <a ng-click="showDetail(post)">{{post.title}}</a> - 
+    <span ng-bind="post.link"></span> - 
+    {{post.author}} - {{post.upvotes}} - 
+    <a ng-click="voteUp(post)">UP</a> - 
+    <a ng-click="voteDown(post,$index)">DOWN</a> - 
+    <span ng-click="deletePost(post)">remove</span>
+ -->
+
+
+<!--  | orderBy: '-upvotes' -->
+
+
+
+<!--       <div youtube code="code"></div> -->
+
+
+<!-- 
+      <iframe width="100%" height="300" ng-src="{{post.video}}" frameborder="0"></iframe>
+ -->
+
+<!-- 
+<iframe width="100%" height="250" src="//{{video}}" frameborder="0"></iframe>
+www.youtube.com/embed/bgwGEG10WIY
+
+ -->
+
+
+
+
+<div class="masonry">
+
+<div ng-repeat="post in posts" class="post {{post.type}}">
+
+  <div class="post-header">
+    <div class="post-img">
+      <youtube code="code" videourl="{{post.videourl}}"/>
+    </div>
+    <div class="post-type {{post.type}}"></div>
+  </div>
+
+  <div class="post-body">
+    <ul class="post-categories">
+      <li><a>Stories</a></li>
+      <li><a>Stories</a></li>
+    </ul>
+    <h2><a ng-click="showDetail(post)">{{post.title}}</a></h2>
+    <ul class="post-meta">
+      <li class="author" ng-bind="post.author">{{post.author}}</li>
+      <li class="views">{{post.views}} Views</li>
+      <li class="comments">{{post.comments.length}} Comments</li>
+      <li class="time">{{post.time}}</li>
+    </ul>
+  </div>
+
+  <div class="post-footer">
+    <div class="post-rating">
+      <ul>
+        <li><div class="rating">{{post.upvotes}}</div></li>
+        <li><a class="th-up btn" ng-click="voteUp(post)"></a></li>
+        <li><a class="th-down btn" ng-click="voteDown(post)"></a></li>
+      </ul>
+    </div>
+    <div class="post-more">
+      <a class="plus btn" ng-click="deletePost(post)"></a>
+    </div> 
+  </div>
+
+</div> <!--ng-repeat end-->
+
+
+</div><!--masonry-->
+
