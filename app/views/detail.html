@@ -1,9 +1,67 @@
 
 <a ng-click="showOverview()">back</a><br>
 
-{{post.type}}<br>
 
-{{post.id}} | {{post.title}} - Upvotes: {{post.upvotes}}
+<!---->
+
+
+
+<div class="post {{post.type}}">
+
+
+  <div class="post-header" ng-switch="post.type">
+    <div class="post-img" ng-switch-when="video">
+      <!--video--><embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+    </div>
+    <div class="post-img" ng-switch-when="audio">
+      <!--audio--><embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+    </div>
+    <div ng-switch-when="link">
+      <!--link-->{{post.link}}
+    </div>
+    <div class="post-img" ng-switch-when="image">
+      <!--image--><picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
+    </div>
+    <div ng-switch-when="text">
+      <!--text-->{{post.text}}
+    </div>
+
+    <div class="post-type {{post.type}}"></div><!--icon-->
+  </div><!--post-header-->
+
+  <div class="post-body">
+    <ul class="post-categories">
+      <li><a>Stories</a></li>
+      <li><a>Stories</a></li>
+    </ul>
+    <h2>{{post.title}}</h2>
+    <ul class="post-meta">
+      <li class="author" ng-bind="post.author">{{post.author}}</li>
+      <li class="views">{{post.views}} Views</li>
+      <li class="comments">{{post.comments.length}} Comments</li>
+      <li class="time">{{post.time}}</li>
+    </ul>
+  </div>
+
+  <div class="post-footer">
+    <div class="post-rating">
+      <ul>
+        <li><div class="rating">{{post.upvotes}}</div></li>
+        <li><a class="th-up btn" ng-click="voteUp(post)" ng-controller="MainCtrl"></a></li>
+        <li><a class="th-down btn" ng-click="voteDown(post)" ng-controller="MainCtrl"></a></li>
+      </ul>
+    </div>
+    <div class="post-more">
+      <a class="plus btn"></a>
+    </div> 
+  </div>
+
+</div> <!--post end-->
+
+
+
+<!---->
+
 
 <br><br>
 
@@ -20,3 +78,10 @@
 	<input type="text" placeholder="Title" ng-model="text"></input>
   	<button type="submit">Post</button>
 </form>
+
+
+
+
+
+
+

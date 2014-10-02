@@ -1,57 +1,27 @@
-<!-- 
-    <span ng-bind="post.type">type</span>
-    <a ng-click="showDetail(post)">{{post.title}}</a> - 
-    <span ng-bind="post.link"></span> - 
-    {{post.author}} - {{post.upvotes}} - 
-    <a ng-click="voteUp(post)">UP</a> - 
-    <a ng-click="voteDown(post,$index)">DOWN</a> - 
-    <span ng-click="deletePost(post)">remove</span>
- -->
 
 
 <!--  | orderBy: '-upvotes' -->
-
-
-
-<!--       <div youtube code="code"></div> -->
-
-
-<!-- 
-      <iframe width="100%" height="300" ng-src="{{post.video}}" frameborder="0"></iframe>
- -->
-
-<!-- 
-<iframe width="100%" height="250" src="//{{video}}" frameborder="0"></iframe>
-www.youtube.com/embed/bgwGEG10WIY
-
- -->
-
-
 
 
 <div class="masonry">
 
 <div ng-repeat="post in posts" class="post {{post.type}}">
 
-
-
-
-
   <div class="post-header" ng-switch="post.type">
     <div class="post-img" ng-switch-when="video">
-      <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+      <!--video--><embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
     </div>
     <div class="post-img" ng-switch-when="audio">
-      <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+      <!--audio--><embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
     </div>
     <div ng-switch-when="link">
-      <!--link-->
+      <!--link-->{{post.link}}
     </div>
     <div class="post-img" ng-switch-when="image">
-      <img src="http://lorempixel.com/400/200/"/>
+      <!--image--><picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
     </div>
     <div ng-switch-when="text">
-      <!--text-->
+      <!--text-->{{post.text}}
     </div>
 
     <div class="post-type {{post.type}}"></div><!--icon-->

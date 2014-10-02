@@ -15,9 +15,7 @@ angular.module('rediditApp')
 
     $scope.posts = Postdata.all;
     $scope.postType = 'video';     // initial postType
-    $scope.field = {audiourl: '170045438', videourl: 'wAXJmUqlnUw'};
-
-
+    $scope.field = {audiourl: '170045438', videourl: 'wAXJmUqlnUw', image: 'http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg' };
 
 
     $scope.setPosttype = function($event){
@@ -31,9 +29,13 @@ angular.module('rediditApp')
         type: $scope.postType || 'link',
         title: $scope.title || 'demotitle',
         author: $scope.author || 'demoauthor',
-        link: $scope.link || 'demolink',
+
+        link: $scope.field.link || 'demolink',
         videourl: $scope.field.videourl || 'wAXJmUqlnUw', // oHg5SJYRHA0, wAXJmUqlnUw, sumn6flhNtg, 156900304, 170045438
         audiourl: $scope.field.audiourl || '170045438',
+        text: $scope.field.text || 'demotext',
+        image: $scope.field.image || 'http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg',
+
         views: 0,
         upvotes:0,
         time: Datefactory.getDate(),

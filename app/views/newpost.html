@@ -14,9 +14,11 @@
   <label for="radio-image">Image</label>
 
   <div data-ng-switch="postType">
-    <input data-ng-switch-when="link" type="text" placeholder="URL or Link" data-ng-model="field.link"></input>
+    <input data-ng-switch-when="link" type="text" placeholder="Add a link" data-ng-model="field.link"></input>
     <input data-ng-switch-when="audio" type="text" placeholder="Soundcloud" data-ng-model="field.audiourl"></input>
     <input data-ng-switch-when="video" type="text" placeholder="Youtube" data-ng-model="field.videourl"></input>
+    <input data-ng-switch-when="text" type="text" placeholder="Type text here" data-ng-model="field.text"></input>
+    <input data-ng-switch-when="image" type="text" placeholder="Image-url" data-ng-model="field.image"></input>
     <input type="text" placeholder="Title" ng-model="title"></input>
     <input type="text" placeholder="name" ng-model="author"></input>
     <button type="submit">Post</button>

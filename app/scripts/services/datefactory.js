@@ -15,7 +15,11 @@ angular.module('rediditApp')
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
-
+    var hh = today.getHours();
+    var min = today.getMinutes();
+    if(min<10){
+      min = '0'+min;
+    }
     if(dd<10) {
         dd='0'+dd
     } 
@@ -24,7 +28,7 @@ angular.module('rediditApp')
         mm='0'+mm
     } 
 
-    today = dd+'/'+mm+'/'+yyyy;
+    today = dd+'/'+mm+'-'+hh+':'+min;
 
 
 

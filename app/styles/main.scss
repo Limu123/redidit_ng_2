@@ -80,12 +80,15 @@ ul {
   @include clearfix;
 }
 
-.post {
-  background: $white;
+.masonry .post {
   margin-bottom: 1rem;
   max-width: 250px;
   margin-right: 1rem;
   float: left;
+}
+
+.post {
+  background: $white;
   border: thin solid $light-grey;
   ul { @include inline-ul; }
 }
@@ -107,7 +110,8 @@ ul {
 
 .post-img {
   background: $dark-grey;
-  height: 150px;
+  max-height: 150px;
+  overflow: hidden;
 }
 
 .post-type {
