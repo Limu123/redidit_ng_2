@@ -12,6 +12,7 @@ angular.module('rediditApp')
 
 
     $scope.posts = Postdata.all;
+    $scope.postType = 'video';     // initial postType
 
 
 

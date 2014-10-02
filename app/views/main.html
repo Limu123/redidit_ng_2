@@ -33,12 +33,29 @@ www.youtube.com/embed/bgwGEG10WIY
 
 <div ng-repeat="post in posts" class="post {{post.type}}">
 
-  <div class="post-header">
-    <div class="post-img">
-      <youtube code="code" videourl="{{post.videourl}}"/>
+
+
+
+
+  <div class="post-header" ng-switch="post.type">
+    <div class="post-img" ng-switch-when="video">
+      <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
     </div>
-    <div class="post-type {{post.type}}"></div>
-  </div>
+    <div class="post-img" ng-switch-when="audio">
+      <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+    </div>
+    <div ng-switch-when="link">
+      <!--link-->
+    </div>
+    <div class="post-img" ng-switch-when="image">
+      <img src="http://lorempixel.com/400/200/"/>
+    </div>
+    <div ng-switch-when="text">
+      <!--text-->
+    </div>
+
+    <div class="post-type {{post.type}}"></div><!--icon-->
+  </div><!--post-header-->
 
   <div class="post-body">
     <ul class="post-categories">
