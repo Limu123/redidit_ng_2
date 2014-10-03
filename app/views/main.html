@@ -15,7 +15,12 @@
       <!--audio--><embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
     </div>
     <div ng-switch-when="link">
-      <!--link-->{{post.link}}
+      <!--link-->
+      <a href="{{ post.link }}">
+        {{ post.link }}
+        <span class="url small">({{post.link | hostnameFromUrl }})</span>
+      </a>
+      <!-- TODO -->
     </div>
     <div class="post-img" ng-switch-when="image">
       <!--image--><picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>

@@ -25,14 +25,7 @@
 
       <div class="small-10 large-8 small-centered large-centered columns">
         <div class="container">
-          <div class="header padding">
-            <ul>
-              <li ><a ng-href="#">Home</a></li>
-              <li><a ng-href="#/newpost">New Post</a></li>
-              <li><a ng-href="#/settings">Settings</a></li>
-              <li><a ng-href="#/user">User</a></li>
-            </ul>
-          </div><!--header-->
+          <div ng-include="'views/nav.html'"></div>
           <div ng-view="" class="padding"></div>
         </div><!--container-->
       </div><!-- small-6 -->
@@ -92,6 +85,8 @@
         <script src="scripts/services/datefactory.js"></script>
         <script src="scripts/directives/embed.js"></script>
         <script src="scripts/directives/picture.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
+        <script src="scripts/filters/hostnamefromurl.js"></script>
         <!-- endbuild -->
 </body>
 </html>
