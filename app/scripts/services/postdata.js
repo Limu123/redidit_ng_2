@@ -17,14 +17,17 @@ angular.module('rediditApp')
     // ];
 
 
-    var ref = new Firebase(FIREBASE_URL + undefined);
+    var ref = new Firebase(FIREBASE_URL + 'posts');
     var postdata = $firebase(ref).$asArray();    // all posts as an array
 
 
 
     // Public API here
-    return {
+    var Post = {
       all: postdata,
+      comments: function (postId) {
+        return $firebase(new Firebase(FIREBASE_URL + 'comments/' + postId));
+      },
       find: function (postId) {     // backup
         return $firebase(ref.child(postId)).$asObject();
       },
@@ -42,27 +45,29 @@ angular.module('rediditApp')
         return tempPost.$update({ upvotes : upvote });
       },
       createComment: function(comment, postId){
-        var tempComment = $firebase(ref.child(postId).child("comments")).$asArray();
-        return tempComment.$add(comment);
-        // TODO
+        return Post.comments(postId).$push(comment);
       },
       deleteComment: function(comment, postId){
-        var tempComment = $firebase(ref.child(postId).child("comments")).$asArray();
-        return tempComment.$remove(comment);
-        // TODO
+        var commentId = comment.$id;
+        return Post.comments(postId).$remove(commentId);
       },
-      updateCommentUpvotes: function(postId,commentindex, commentupvotes){ 
-        var tempComment = $firebase(ref.child(postId).child("comments").child(commentindex));
-        return tempComment.$update({ commentupvotes: commentupvotes });
+      updateCommentUpvotes: function(comment,postId,upvote){
+        var commentId = comment.$id; 
+        var tempComment = $firebase(ref.child(postId).child(commentId));  
+        //console.log(tempComment.$asObject());
+        return tempComment.$update({ commentupvotes: upvote });
         // TODO
+        
       },
       updateViews: function(postId,views){
         var tempPost = $firebase(ref.child(postId));
         return tempPost.$update({ views : views });
 
       }
+    };
 
-    }; // end public
+    return Post;
+
 
 
 

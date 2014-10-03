@@ -2,8 +2,6 @@
 <a ng-click="showOverview()">back</a><br>
 
 
-<!---->
-
 
 
 <div class="post {{post.type}}">
@@ -38,7 +36,7 @@
     <ul class="post-meta">
       <li class="author" ng-bind="post.author">{{post.author}}</li>
       <li class="views">{{post.views}} Views</li>
-      <li class="comments">{{post.comments.length}} Comments</li>
+      <li class="comments">{{comments.length}} Comments</li>
       <li class="time">{{post.time}}</li>
     </ul>
   </div>
@@ -60,22 +58,21 @@
 
 
 
-<!---->
-
-
 <br><br>
 
-<div ng-repeat="comment in post.comments">
-	{{comment.commentupvotes}} | {{comment.text}} -
-	<a ng-click="voteUpComment(comment,$index)">UP</a> - 
-	<a ng-click="voteDownComment(comment,$index)">DOWN</a> - 
-	<span ng-click="deleteComment(comment)">remove</span>
+<div ng-repeat="comment in comments | orderBy: '-commentupvotes'">
+  {{comment.commentupvotes}} | {{comment.text}} -
+  <a ng-click="voteUpComment(comment)">UP</a> - 
+  <a ng-click="voteDownComment(comment)">DOWN</a> - 
+  <span ng-click="deleteComment(comment)">remove</span>
 </div>
+
+
 
 <br>
 <form ng-submit="createComment()" >
   <h5>add a comment</h5>
-	<input type="text" placeholder="Title" ng-model="text"></input>
+	<input type="text" placeholder="Title" ng-model="comment.text"></input>
   	<button type="submit">Post</button>
 </form>
 
