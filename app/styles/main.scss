@@ -159,6 +159,7 @@ ul {
   .author {
     border-right: thin solid $dark-grey;
     margin-right: 0.5rem;
+    width: 100px;
   }
   .author:before {
     background-image: url(../images/author-icon-2.png);
@@ -167,6 +168,11 @@ ul {
   .views:before {
     background-image: url(../images/views-icon.png);
     background-size: 100% auto;
+  }
+  .comments {
+    border-right: thin solid $dark-grey;
+    margin-right: 0.5rem;
+    width: 100px;
   }
   .comments:before {
     background-image: url(../images/discussion-icon.png);

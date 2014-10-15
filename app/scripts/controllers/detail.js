@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('DetailCtrl', function ($scope, $location, $log, $routeParams, Postdata) {
+  .controller('DetailCtrl', ['$scope','$location','$log','$routeParams', 'Postdata', function ($scope, $location, $log, $routeParams, Postdata) {
 
     $scope.post = Postdata.getPost($routeParams.postId);
     $scope.comments = Postdata.comments($routeParams.postId).$asArray();
@@ -40,7 +40,4 @@ angular.module('rediditApp')
       Postdata.updateCommentUpvotes(comment, $routeParams.postId, comment.commentupvotes);
     };
 
-
-
-    
-  });
+  }]);

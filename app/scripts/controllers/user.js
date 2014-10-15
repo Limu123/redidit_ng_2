@@ -8,10 +8,10 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('UserCtrl', function ($scope) {
+  .controller('UserCtrl', ['$scope', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+  }]);

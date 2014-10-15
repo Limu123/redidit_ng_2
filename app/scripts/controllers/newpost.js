@@ -11,7 +11,7 @@ angular.module('rediditApp')
   .controller('FormCtrl',function($scope){
 
   })
-  .controller('NewpostCtrl', function ($scope, $log, $location, Postdata, Datefactory) {
+  .controller('NewpostCtrl', ['$scope','$log','$location','Postdata','Datefactory', function ($scope, $log, $location, Postdata, Datefactory) {
 
     $scope.posts = Postdata.all;
     $scope.postType = 'video';     // initial postType
@@ -50,9 +50,4 @@ angular.module('rediditApp')
 
     };
 
-
-
-
-
-
-  });
+  }]);

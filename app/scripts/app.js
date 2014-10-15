@@ -15,11 +15,11 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch', 
+    'ngTouch',
     'firebase'
   ])
   
-  .constant('FIREBASE_URL', 'https://redidit.firebaseio.com/')
+  .constant('FIREBASE_URL', 'https://redidit.firebaseio.com')
 
   .config(function ($routeProvider) {
     $routeProvider

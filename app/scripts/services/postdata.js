@@ -8,7 +8,7 @@
  * Factory in the rediditApp.
  */
 angular.module('rediditApp')
-  .factory('Postdata', function ($firebase, FIREBASE_URL) {
+  .factory('Postdata', ['$firebase', 'FIREBASE_URL', function ($firebase, FIREBASE_URL) {
 
     // var postdata = [
     //   { id: 1, title:'first title', upvotes:0, comments: [{text:'first comment', commentupvotes:10 },{text:'second comment', commentupvotes:2 }] },
@@ -16,41 +16,50 @@ angular.module('rediditApp')
     //   { id: 3, title:'third title', upvotes:0, comments: [{text:'first comment', commentupvotes:10 },{text:'second comment', commentupvotes:2 }]  }
     // ];
 
-
-    var ref = new Firebase(FIREBASE_URL + 'posts');
-    var postdata = $firebase(ref).$asArray();    // all posts as an array
-
-
+    var ref = new Firebase(FIREBASE_URL + '/posts');
+    var postdata = $firebase(ref);    // all posts
 
     // Public API here
     var Post = {
-      all: postdata,
+
+      all: function() {
+        return postdata.$asArray();
+      },
+
       comments: function (postId) {
         return $firebase(new Firebase(FIREBASE_URL + 'comments/' + postId));
       },
+
       find: function (postId) {     // backup
         return $firebase(ref.child(postId)).$asObject();
       },
+
       getPost: function(postId){
         return $firebase(ref.child(postId)).$asObject();
       },
+
       createPost: function(post){
         return postdata.$add(post);
       },
+
       deletePost: function(post){
         return postdata.$remove(post);
       },
+
       updateUpvotes: function(postId,upvote){ 
         var tempPost = $firebase(ref.child(postId));
         return tempPost.$update({ upvotes : upvote });
       },
+
       createComment: function(comment, postId){
         return Post.comments(postId).$push(comment);
       },
+
       deleteComment: function(comment, postId){
         var commentId = comment.$id;
         return Post.comments(postId).$remove(commentId);
       },
+
       updateCommentUpvotes: function(comment,postId,upvote){
         var commentId = comment.$id; 
         var tempComment = $firebase(ref.child(postId).child(commentId));  
@@ -67,6 +76,7 @@ angular.module('rediditApp')
     };
 
     return Post;
+
 
 
 
@@ -105,7 +115,7 @@ angular.module('rediditApp')
 
 
 
-  });
+  }]);
 
 
 

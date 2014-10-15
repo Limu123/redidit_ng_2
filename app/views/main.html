@@ -8,25 +8,29 @@
 <div ng-repeat="post in posts" class="post {{post.type}}">
 
   <div class="post-header" ng-switch="post.type">
-    <div class="post-img" ng-switch-when="video">
-      <!--video--><embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+
+      <div class="post-img" ng-switch-when="video">
+      <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
     </div>
+
     <div class="post-img" ng-switch-when="audio">
-      <!--audio--><embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+      <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
     </div>
-    <div ng-switch-when="link">
-      <!--link-->
+
+    <div class="post-link" ng-switch-when="link">
       <a href="{{ post.link }}">
         {{ post.link }}
         <span class="url small">({{post.link | hostnameFromUrl }})</span>
       </a>
       <!-- TODO -->
     </div>
-    <div class="post-img" ng-switch-when="image">
-      <!--image--><picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
+
+      <div class="post-img" ng-switch-when="image">
+      <picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
     </div>
-    <div ng-switch-when="text">
-      <!--text-->{{post.text}}
+
+      <div ng-switch-when="text">
+      {{post.text}}
     </div>
 
     <div class="post-type {{post.type}}"></div><!--icon-->
