@@ -8,10 +8,13 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('DetailCtrl', function ($scope, $location, $log, $routeParams, Postdata) {
+  .controller('DetailCtrl', function ($scope, $location, $log, $routeParams, Postdata, Auth) {
 
+    $scope.user = Auth.user;
     $scope.post = Postdata.getPost($routeParams.postId);
     $scope.comments = Postdata.comments($routeParams.postId).$asArray();
+
+
 
 
     $scope.showOverview = function(){
@@ -20,8 +23,10 @@ angular.module('rediditApp')
 
     $scope.createComment = function(){
       $scope.comment = {
+        commentauthor: $scope.user.profile.username,
         text: $scope.comment.text,
-        commentupvotes: 0
+        commentupvotes: 0,
+        commentauthorUID: $scope.user.uid
       };
       Postdata.createComment($scope.comment, $routeParams.postId);
     };

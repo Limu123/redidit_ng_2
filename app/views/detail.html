@@ -61,10 +61,11 @@
 <br><br>
 
 <div ng-repeat="comment in comments | orderBy: '-commentupvotes'">
-  {{comment.commentupvotes}} | {{comment.text}} -
+  {{comment.commentupvotes}} | {{comment.text}} | {{comment.commentauthor}}-
   <a ng-click="voteUpComment(comment)">UP</a> - 
   <a ng-click="voteDownComment(comment)">DOWN</a> - 
-  <span ng-click="deleteComment(comment)">remove</span>
+<!--   <span ng-click="deleteComment(comment)" ng-show="user.uid === post.authorUID">remove</span> -->
+  <span ng-click="deleteComment(comment)" ng-show="user.profile.username === comment.commentauthor">remove</span>
 </div>
 
 
