@@ -22,6 +22,7 @@ angular.module('rediditApp')
 
 
 
+
     // Public API here
     var Post = {
       all: postdata,
@@ -36,6 +37,11 @@ angular.module('rediditApp')
       },
       createPost: function(post){
         return postdata.$add(post);
+        // return postdata.$add(post).then(function(){
+        //   $firebase(ref.child('user_posts').child(post.creatorUID))
+        //                 .$push(postRef.name());
+        //   return postRef;
+        // });
       },
       deletePost: function(post){
         return postdata.$remove(post);

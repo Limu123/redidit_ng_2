@@ -8,12 +8,12 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', function ($scope, $log, $location, Postdata) {
+  .controller('MainCtrl', function ($scope, $log, $location, Postdata, Auth) {
 
 
     $scope.posts = Postdata.all;
+    $scope.user = Auth.user;
     $scope.postType = 'video';     // initial postType
-
 
 
     $scope.deletePost = function(post){

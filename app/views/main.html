@@ -58,7 +58,7 @@
       </ul>
     </div>
     <div class="post-more">
-      <a class="plus btn" ng-click="deletePost(post)"></a>
+      <a class="plus btn" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a>
     </div> 
   </div>
 
