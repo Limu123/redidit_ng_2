@@ -10,6 +10,8 @@
 angular.module('rediditApp')
   .controller('NavCtrl', function ($scope, $location, Auth) {
 
+    $scope.user = Auth.user;
+
     $scope.signedIn = Auth.signedIn;
     $scope.logout = Auth.logout;
     
