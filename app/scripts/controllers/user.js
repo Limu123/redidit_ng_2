@@ -8,10 +8,15 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('UserCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('UserCtrl', function ($scope, $routeParams, Userprofile)  {
+    var uid = $routeParams.userId;
+
+    $scope.profile = Userprofile.get(uid);
+    Userprofile.getPosts(uid).then(function(posts) {
+      $scope.posts = posts;
+    });
+
+    // TODO show all userposts on profile-page
+
+
   });

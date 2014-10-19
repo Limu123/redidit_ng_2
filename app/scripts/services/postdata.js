@@ -36,12 +36,12 @@ angular.module('rediditApp')
         return $firebase(ref.child(postId)).$asObject();
       },
       createPost: function(post){
-        return postdata.$add(post);
-        // return postdata.$add(post).then(function(){
-        //   $firebase(ref.child('user_posts').child(post.creatorUID))
-        //                 .$push(postRef.name());
-        //   return postRef;
-        // });
+        //return postdata.$add(post);
+        return postdata.$add(post).then(function(postRef){
+          $firebase(ref.child('user_posts').child(post.authorUID))
+                        .$push(postRef.name());
+          return postRef;
+        });
       },
       deletePost: function(post){
         return postdata.$remove(post);
