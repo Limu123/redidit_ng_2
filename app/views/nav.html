@@ -3,6 +3,12 @@
   <li><a ng-click="loadPage('')">Home</a></li>
   <li><a ng-click="loadPage('newpost')">New Post</a></li>
   <li><a ng-click="loadPage('settings')">Settings</a></li>
-  <li><a ng-click="loadPage('user')">User</a></li>
+<!--   <li><a ng-click="loadPage('user')">User</a></li> -->
+  <li ng-show="signedIn()"><a ng-href="#" ng-click="logout()">Logout</a></li>
+  <li ng-hide="signedIn()"><a ng-click="loadPage('login')">Login</a></li>
+  <li ng-hide="signedIn()"><a ng-click="loadPage('register')">Register</a></li>
 </ul>
 </div>
+
+
+

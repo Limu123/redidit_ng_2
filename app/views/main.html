@@ -9,10 +9,12 @@
 
   <div class="post-header" ng-switch="post.type">
     <div class="post-img" ng-switch-when="video">
-      <!--video--><embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+      <!--video-->
+      <!-- <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/> -->
     </div>
     <div class="post-img" ng-switch-when="audio">
-      <!--audio--><embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+      <!--audio-->
+      <!-- <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/> -->
     </div>
     <div ng-switch-when="link">
       <!--link-->
@@ -23,7 +25,8 @@
       <!-- TODO -->
     </div>
     <div class="post-img" ng-switch-when="image">
-      <!--image--><picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
+      <!--image-->
+      <!-- <picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/> -->
     </div>
     <div ng-switch-when="text">
       <!--text-->{{post.text}}
