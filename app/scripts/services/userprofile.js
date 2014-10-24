@@ -7,21 +7,25 @@
  * # Userprofile
  * Factory in the rediditApp.
  */
+
 angular.module('rediditApp')
   .factory('Userprofile', function ($window, FIREBASE_URL, $firebase, Postdata, $q) {
-    var ref = new $window.Firebase(FIREBASE_URL);
+    //var ref = new $window.Firebase(FIREBASE_URL);
+    var userpost_ref = new Firebase(FIREBASE_URL + 'user_posts');
+    var user_postdata = $firebase(userpost_ref).$asArray();    // all posts as an array
 
 
-    // TODO show all userposts on profile-page
+
     
     var Userprofile = {
       get: function (userId) {
-        return $firebase(ref.child('profile').child(userId)).$asObject();
+        return $firebase(userpost_ref.child(userId)).$asObject();
       },
       getPosts: function(userId) {
+
         var defer = $q.defer();
 
-        $firebase(ref.child('user_posts').child(userId))
+        $firebase(userpost_ref.child(userId))
           .$asArray()
           .$loaded()
           .then(function(data) {
@@ -29,14 +33,19 @@ angular.module('rediditApp')
 
             for(var i = 0; i<data.length; i++) {
               var value = data[i].$value;
-              posts[value] = Postdata.get(value);
+              console.log(value);
+              posts[value] = Postdata.getPost(value);
             }
+
             defer.resolve(posts);
+
           });
 
-        return defer.promise;
+          return defer.promise;
       }
     };
 
     return Userprofile;
   });
+
+

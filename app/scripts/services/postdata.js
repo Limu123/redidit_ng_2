@@ -18,6 +18,7 @@ angular.module('rediditApp')
 
 
     var ref = new Firebase(FIREBASE_URL + 'posts');
+    var userpost_ref = new Firebase(FIREBASE_URL + 'user_posts');
     var postdata = $firebase(ref).$asArray();    // all posts as an array
 
 
@@ -36,13 +37,22 @@ angular.module('rediditApp')
         return $firebase(ref.child(postId)).$asObject();
       },
       createPost: function(post){
-        //return postdata.$add(post);
+
         return postdata.$add(post).then(function(postRef){
-          $firebase(ref.child('user_posts').child(post.authorUID))
+          $firebase(userpost_ref.child(post.authorUID))
                         .$push(postRef.name());
           return postRef;
         });
       },
+
+      // createPost: function(post){
+      //   //return postdata.$add(post);
+      //   return postdata.$add(post).then(function(postRef){
+      //     $firebase(ref.child('user_posts').child(post.authorUID))
+      //                   .$push(postRef.name());
+      //     return postRef;
+      //   });
+      // },
       deletePost: function(post){
         return postdata.$remove(post);
       },
