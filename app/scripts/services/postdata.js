@@ -55,6 +55,7 @@ angular.module('rediditApp')
       // },
       deletePost: function(post){
         return postdata.$remove(post);
+        // TODO: remove post reference from user profile
       },
       updateUpvotes: function(postId,upvote){ 
         var tempPost = $firebase(ref.child(postId));
