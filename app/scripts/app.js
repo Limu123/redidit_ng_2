@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch', 
-    'firebase'
+    'firebase',
+    'iso.directives'
   ])
   
   .constant('FIREBASE_URL', 'https://redidit.firebaseio.com/')

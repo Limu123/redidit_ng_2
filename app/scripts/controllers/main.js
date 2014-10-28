@@ -11,6 +11,7 @@ angular.module('rediditApp')
   .controller('MainCtrl', function ($scope, $log, $location, Postdata, Auth, Userprofile) {
 
 
+
     $scope.posts = Postdata.all;
     $scope.user = Auth.user;
     $scope.postType = 'video';     // initial postType

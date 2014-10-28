@@ -1,15 +1,20 @@
-<div class="header padding" ng-controller="NavCtrl">
-<ul>
-  <li><a ng-click="loadPage('')">Home</a></li>
-  <li ng-show="signedIn()"><a ng-click="loadPage('newpost')">New Post</a></li>
-  <li><a ng-click="loadPage('settings')">Settings</a></li>
-<!--   <li><a ng-click="loadPage('user')">User</a></li> -->
-  <li ng-show="signedIn()"><a ng-href="#" ng-click="logout()">Logout</a></li>
-  <li ng-hide="signedIn()"><a ng-click="loadPage('login')">Login</a></li>
-  <li ng-hide="signedIn()"><a ng-click="loadPage('register')">Register</a></li>
-</ul>
+<header ng-controller="NavCtrl">
+  <a class="logo" ng-click="loadPage('')">Logo</a>
+  <nav>
+    <ul class="mainnav">
+      <li ng-show="signedIn()"><a ng-click="loadPage('newpost')">+</a></li>
+      <li ng-show="signedIn()"><a ng-href="#/user/{{ user.uid }}">U</a></li>
+      <li><a ng-click="loadPage('settings')">S</a></li>
+      <!--<li ng-hide="signedIn()"><a ng-click="loadPage('register')">Register</a></li>-->
+      <li ng-show="signedIn()"><a ng-href="#" ng-click="logout()">Out</a></li>
+      <li ng-hide="signedIn()"><a ng-click="loadPage('login')">In</a></li>
+    </ul>
+  </nav>
 
-<ul class="nav navbar-nav navbar-right" >
+
+
+
+<!-- <ul class="nav navbar-nav navbar-right" >
   <li ng-show="signedIn()">
     <p class="navbar-text"><a ng-href="#/user/{{ user.uid }}">{{ user.profile.username }}</a></p>
   </li>
@@ -20,8 +25,8 @@
     </a>
   </li>
 </ul>
-
-</div>
+ -->
+</header>
 
 
 

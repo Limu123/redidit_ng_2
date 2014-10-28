@@ -3,9 +3,9 @@
 <!--  | orderBy: '-upvotes' -->
 
 
-<div class="masonry">
+<ul class="masonry" isotope-container>
 
-<div ng-repeat="post in posts" class="post {{post.type}}">
+<li ng-repeat="post in posts" class="post {{post.type}}" isotope-item>
 
   <div class="post-header" ng-switch="post.type">
     <div class="post-img" ng-switch-when="video">
@@ -36,10 +36,6 @@
   </div><!--post-header-->
 
   <div class="post-body">
-    <ul class="post-categories">
-      <li><a>Stories</a></li>
-      <li><a>Stories</a></li>
-    </ul>
     <h2><a ng-click="showDetail(post)">{{post.title}}</a></h2>
     <ul class="post-meta">
       <li class="author" ng-bind="post.author">{{post.author}}</li>
@@ -62,8 +58,8 @@
     </div> 
   </div>
 
-</div> <!--ng-repeat end-->
+</li> <!--ng-repeat end-->
 
 
-</div><!--masonry-->
+</ul><!--masonry-->
 
