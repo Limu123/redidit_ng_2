@@ -45,6 +45,10 @@ $btn-size: 2.4rem;
 
 // General
 
+.btn {
+  @include btn-border($dark-grey,$btn-size);
+}
+
 a {
   color: $dark-grey;
   &:hover {
@@ -69,8 +73,12 @@ body {
   background: white;
 }
 
-// Header
 
+
+
+
+
+// Header
 header {
   background: $demo-grey;
   //margin-bottom: 10px;
@@ -103,26 +111,38 @@ header {
 }
 
 
+
+
+
+
 // Masonry
 .masonry {
   background: green;
-  //@include clearfix;
 }
 
 .post {
   background: yellow;
-  max-width: 15rem;
   @include clearfix;
-  ul { @include inline-ul; }
+  //ul { @include inline-ul; }
   margin: 0.1rem 0.5rem;
   padding: 1rem 0;
-  border-bottom: thin solid $light-grey;
+  
+  &.masonry {
+    max-width: 15rem;
+    border-bottom: thin solid $light-grey;
+  }
+  &.detail {
+
+  }
 }
 
 .post-title {
   background: orange;
-  margin: 0.6rem 0;
+  margin-top: 0.5rem;
   font-size: 1.2rem;
+  &.no-margin {
+    margin: 0;
+  }
 }
 
 .post-header {
@@ -147,6 +167,8 @@ header {
   @extend %small;
   margin: 0;
   background: red;
+  @include inline-ul;
+  margin: 0.4rem 0;
   li {
     vertical-align: top;
     padding-right: 0.5rem;
@@ -186,10 +208,12 @@ header {
   }
 }
 
-.post-footer {
+.post-rating {
   background:grey;
   margin-left: 0;
-  margin-top: 0.5rem;
+  //margin-top: 0.5rem;
+  float: left;
+  @include inline-ul;
   li{
     width: $btn-size;
     height: $btn-size;
@@ -216,6 +240,93 @@ header {
   }
 }
 
+
+
+// detail
+.detail {
+  h2 {
+    display: inline;
+    font-size: 1.6rem;
+  }
+}
+
+.post-menu {
+  background: green;
+  @include clearfix;
+  .go-back {
+    display: block;
+    width: $btn-size;
+    height: $btn-size;
+    float: left;
+  }
+  .post-rating {
+    float: right;
+  }
+}
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 35px;
+  height: 0;
+  overflow: hidden;
+  iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.post-comments {
+  background: yellow;
+  .post-rating {
+    li:last-child {
+      float: right;
+    }
+  }
+}
+
+.comment{
+  background: orange;
+  margin: 0.5rem;
+  border-bottom: thin solid $light-grey;
+  padding-bottom: 1rem;
+  .comment-author {
+    @extend %small;
+  }
+  .post-rating {
+    float: none;
+  }
+}
+
+.comment-form {
+  background: green;
+  padding: 0.5rem;
+  @include clearfix;
+  input[type="text"] {
+    @include btn-border($dark-grey,$btn-size);
+    width: 70%;
+    height: $btn-size;
+    display: table-cell;
+    float: left;
+    margin: 0;
+    margin-right: 5%;
+  }
+  button[type="submit"] {
+    width: 25%;
+    padding: 0;
+    margin: 0;
+    height: $btn-size;
+    background: transparent;
+    color: $dark-grey;
+    display: table-cell;
+    float: left;
+    @include btn-border($dark-grey,$btn-size);
+
+  }
+}
 
 
 // // General

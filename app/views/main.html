@@ -5,7 +5,7 @@
 
 <ul class="masonry" isotope-container>
 
-<li ng-repeat="post in posts" class="post" isotope-item>
+<li ng-repeat="post in posts" class="post masonry" isotope-item>
 
   <div class="post-header" ng-switch="post.type">
 
@@ -27,7 +27,7 @@
 
 
     <div ng-switch-when="link">
-      <div class="post-title">
+      <div class="post-title no-margin">
         <span class="post-type link"></span><a ng-click="showDetail(post)">{{post.link}}</a>
       </div>
 <!--       <a href="{{ post.link }}">
@@ -46,7 +46,7 @@
 
 
     <div ng-switch-when="text">
-      <div class="post-title">
+      <div class="post-title no-margin">
         <span class="post-type image"></span><a ng-click="showDetail(post)">{{post.title}} - {{post.text}}</a>
       </div>
     </div>
@@ -67,11 +67,11 @@
     <li class="time">{{post.time}}</li>
   </ul>
 
-  <ul class="post-footer">
+  <ul class="post-rating">
     <li><div class="rating">{{post.upvotes}}</div></li>
     <li><a class="th-up btn" ng-click="voteUp(post)"></a></li>
     <li><a class="th-down btn" ng-click="voteDown(post)"></a></li>
-    <li><a class="plus btn" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
+    <li><a class="cross btn" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
   </ul>
 
 
