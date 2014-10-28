@@ -42,6 +42,10 @@ angular.module('rediditApp')
           });
 
           return defer.promise;
+      },
+      deletePost: function(post){
+        //console.log(post);
+        // TODO: remove post reference from user profile
       }
     };
 

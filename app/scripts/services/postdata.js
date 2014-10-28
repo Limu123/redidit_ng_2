@@ -37,7 +37,6 @@ angular.module('rediditApp')
         return $firebase(ref.child(postId)).$asObject();
       },
       createPost: function(post){
-
         return postdata.$add(post).then(function(postRef){
           $firebase(userpost_ref.child(post.authorUID))
                         .$push(postRef.name());
@@ -45,17 +44,18 @@ angular.module('rediditApp')
         });
       },
 
-      // createPost: function(post){
-      //   //return postdata.$add(post);
-      //   return postdata.$add(post).then(function(postRef){
-      //     $firebase(ref.child('user_posts').child(post.authorUID))
-      //                   .$push(postRef.name());
-      //     return postRef;
-      //   });
-      // },
+
       deletePost: function(post){
+        var postId = post.$id;
         return postdata.$remove(post);
-        // TODO: remove post reference from user profile
+        // return postdata.$remove(post).then(function(postRef){
+        //   // TODO: remove post reference from user profile
+        //   //console.log($firebase(userpost_ref.child(post.authorUID)).$asObject());
+        //   $firebase(userpost_ref.child(post.authorUID))
+        //                 .$remove(postId);
+        //   return postRef;
+        // });
+
       },
       updateUpvotes: function(postId,upvote){ 
         var tempPost = $firebase(ref.child(postId));

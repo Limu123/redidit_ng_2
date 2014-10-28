@@ -16,10 +16,6 @@ angular.module('rediditApp')
       $scope.posts = posts;
     });
 
-    //Userprofile.getPosts(uid);
-
-
-    // TODO show all userposts on profile-page
 
 
   });

@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', function ($scope, $log, $location, Postdata, Auth) {
+  .controller('MainCtrl', function ($scope, $log, $location, Postdata, Auth, Userprofile) {
 
 
     $scope.posts = Postdata.all;
@@ -18,6 +18,7 @@ angular.module('rediditApp')
 
     $scope.deletePost = function(post){
       Postdata.deletePost(post);
+      Userprofile.deletePost(post);
     };
 
     $scope.showDetail = function(post){
