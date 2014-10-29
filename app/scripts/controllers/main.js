@@ -18,8 +18,11 @@ angular.module('rediditApp')
 
 
     $scope.deletePost = function(post){
+      //$scope.$emit('iso-method', {name:null, params:null})
+      //scope.refreshIso();
+      //isotope();
       Postdata.deletePost(post);
-      Userprofile.deletePost(post);
+      Userprofile.deletePost(post); // TODO
     };
 
     $scope.showDetail = function(post){

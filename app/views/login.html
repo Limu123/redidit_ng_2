@@ -3,10 +3,10 @@
   <h2>Log In</h2>
 
   <form ng-submit="login()">
-  	<p ng-show="error" class="text-danger">{{error}}</p>
-    <input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>
-    <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
-    <input type="submit" value="Log in" class="btn btn-primary" />
+  	<p ng-show="error">{{error}}</p>
+    <input type="email" ng-model="user.email" placeholder="Email">
+    <input type="password" ng-model="user.password" placeholder="Password">
+    <input type="submit" value="Login" />
   </form>
 
   <a ng-href="#/register">Register</a>

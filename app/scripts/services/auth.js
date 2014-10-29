@@ -20,8 +20,12 @@ angular.module('rediditApp')
     createProfile: function (user) {
       var profile = {
         username: user.username,
+        gender: user.gender,
+        description: user.description,
         md5_hash: user.md5_hash
       };
+
+      console.log(profile.description);
 
       var profileRef = $firebase(ref.child('profile'));
       return profileRef.$set(user.uid, profile);

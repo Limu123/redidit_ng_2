@@ -5,7 +5,7 @@
 
 <ul class="masonry" isotope-container>
 
-<li ng-repeat="post in posts" class="post masonry" isotope-item>
+<li ng-repeat="post in posts | orderBy: '-upvotes'" class="post masonry" isotope-item>
 
   <div class="post-header" ng-switch="post.type">
 

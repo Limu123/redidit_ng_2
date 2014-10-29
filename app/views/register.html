@@ -3,11 +3,18 @@
   <h2>Register</h2>
 
   <form ng-submit="register()">
-  	<p ng-show="error" class="text-danger">{{error}}</p>
-  	<input type="text" ng-model="user.username" placeholder="Username" class="form-control"><br>
-    <input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>
-    <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
-    <input type="submit" value="Register" class="btn btn-primary" />
+  	<p ng-show="error">{{error}}</p>
+
+  	  <input checked type="radio" name="gender" value="female" id="radio-female" ng-click="setGender($event)">
+	  <label for="radio-female">Female</label>
+	  <input type="radio" name="gender" value="male" id="radio-male" ng-click="setGender($event)">
+	  <label for="radio-male">Male</label>
+
+  	<input type="text" ng-model="user.username" placeholder="Username">
+    <input type="email" ng-model="user.email" placeholder="Email">
+    <input type="password" ng-model="user.password" placeholder="Password">
+    <textarea name="textarea" ng-model="user.description" placeholder="A few words about yourself" rows="6" cols="5" maxlength="40" required="true"></textarea>
+    <input type="submit" value="Register" />
   </form>
 
 </div>
