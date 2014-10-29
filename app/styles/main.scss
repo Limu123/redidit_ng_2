@@ -66,7 +66,7 @@ ul {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: $light-grey;
+  //background: $light-grey;
 }
 
 .container {
@@ -80,12 +80,13 @@ body {
 
 // Header
 header {
-  background: $demo-grey;
+  //background: $demo-grey;
   //margin-bottom: 10px;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   @include clearfix;
   .logo {
-    background: $demo-grey;
+    background: $white;
+    @include btn-border($dark-grey,$btn-size);
     width: 10rem;
     height: $btn-size;
     display: block;
@@ -93,7 +94,7 @@ header {
   }
   .mainnav {
     @include inline-ul;
-    background: $demo-grey;
+    background: $white;
     float: right;
     li {
       width: $btn-size;
@@ -124,12 +125,13 @@ header {
   background: yellow;
   @include clearfix;
   //ul { @include inline-ul; }
-  margin: 0.1rem 0.5rem;
+  //margin: 0.1rem 0.5rem;
   padding: 1rem 0;
   
   &.masonry {
     max-width: 15rem;
     border-bottom: thin solid $light-grey;
+    margin: 0.1rem 0.5rem;
   }
   &.detail {
 
@@ -292,7 +294,7 @@ header {
 
 .comment{
   background: orange;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   border-bottom: thin solid $light-grey;
   padding-bottom: 1rem;
   .comment-author {
@@ -303,9 +305,11 @@ header {
   }
 }
 
+
+// forms
 .comment-form {
   background: green;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   input[type="text"] {
     width: 70%;
     display: inline;
@@ -347,10 +351,42 @@ textarea {
 
 
 
-// new post
+// user profile
 
 
+.profile-head {
+  @include clearfix;
+  img {
+    max-width: 14rem;
+    margin-right: 1rem;
+    //border: 2px solid $light-grey;
+    @include btn-border($light-grey,14rem);
+    float: left;
+  }
+  blockquote {
+    @include clearfix;
+    border-left: 0;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    font-size: 1.2rem;
+  }
+  span {
+    @extend %small;
+  }
+}
 
+
+.profile-posts {
+  margin-top: 1rem;
+}
+
+.profile-post {
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: thin solid $light-grey;
+}
 
 
 

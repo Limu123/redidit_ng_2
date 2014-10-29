@@ -13,7 +13,7 @@ angular.module('rediditApp')
     //var ref = new $window.Firebase(FIREBASE_URL);
     var userpost_ref = new Firebase(FIREBASE_URL + 'user_posts');
     var user_postdata = $firebase(userpost_ref).$asArray();    // all posts as an array
-
+    var user_ref = new Firebase(FIREBASE_URL + 'profile');
 
 
     
@@ -21,6 +21,9 @@ angular.module('rediditApp')
       get: function (userId) {
         return $firebase(userpost_ref.child(userId)).$asObject();
       },
+      getnew: function(userId){
+        return $firebase(user_ref.child(userId)).$asObject();
+      },  
       getPosts: function(userId) {
 
         var defer = $q.defer();

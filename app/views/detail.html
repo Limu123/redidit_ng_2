@@ -16,48 +16,50 @@
   <div class="post-header" ng-switch="post.type">
     <div ng-switch-when="video">
       <div class="embed-container">
-        <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+        <embed code="code" url="{{post.content}}" type="{{post.type}}"/>
       </div>
       <div class="post-title">
-        <span class="post-type video"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type video"></span>{{post.title}}
       </div>
-    </div>
+    </div><!--video-->
 
 
     <div ng-switch-when="audio">
       <div class="embed-container">
-        <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+        <embed code="code" url="{{post.content}}" type="{{post.type}}"/>
       </div>
       <div class="post-title">
-        <span class="post-type audio"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type audio"></span>{{post.title}}
       </div>
-    </div>
+    </div><!--audio-->
 
 
     <div ng-switch-when="link">
       <div class="post-title">
-        <span class="post-type link"></span><a ng-click="showDetail(post)">{{post.link}}</a>
+        <span class="post-type link"></span><a href="http://{{post.content}}" target="_blank">{{post.title}}</a>
       </div>
-    </div>
+    </div><!--link-->
 
 
     <div ng-switch-when="image">
-      <picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
+      <picture pcode="pcode" url="{{post.content}}" type="{{post.type}}"/>
       <div class="post-title">
-        <span class="post-type image"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type image"></span>{{post.title}}
       </div>
-    </div>
+    </div><!--image-->
 
 
     <div ng-switch-when="text">
       <div class="post-title">
-        <span class="post-type image"></span>
-        <h2>{{post.title}}</h2>
+        <span class="post-type text"></span>{{post.title}}
       </div>
-      <p>{{post.text}}</p>
-    </div>
+      <p>{{post.content}}</p>
+    </div><!--text-->
 
   </div><!--post-header-->
+
+
+  <p>{{post.description}}</p>
 
 
   <ul class="post-meta">
@@ -93,12 +95,3 @@
   </li>
 
 </ul>
-
-
-
-
-
-
-
-
-

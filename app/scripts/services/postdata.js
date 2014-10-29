@@ -48,8 +48,8 @@ angular.module('rediditApp')
       deletePost: function(post){
         var postId = post.$id;
         return postdata.$remove(post);
+        // TODO: remove post reference from user profile
         // return postdata.$remove(post).then(function(postRef){
-        //   // TODO: remove post reference from user profile
         //   //console.log($firebase(userpost_ref.child(post.authorUID)).$asObject());
         //   $firebase(userpost_ref.child(post.authorUID))
         //                 .$remove(postId);
@@ -84,42 +84,6 @@ angular.module('rediditApp')
     };
 
     return Post;
-
-
-
-
-
-
-    // STATIC /////////////////
-    // return {
-    //   all: postdata,
-    //   getPost: function(postId){
-    //     return postdata[postId-1];
-    //   },
-    //   createPost: function(post){
-    //     return postdata.push( post );
-    //   },
-    //   deletePost: function(index){
-    //     return postdata.splice(index,1);
-    //   },
-    //   createComment: function(comment, postId){
-    //     return postdata[postId-1].comments.push(comment);
-    //   },
-    //   deleteComment: function(postId, commentindex){
-    //     return postdata[postId-1].comments.splice(commentindex,1);
-    //   },
-    //   updateUpvotes: function(upvotes,index){ 
-    //     postdata[index].upvotes = upvotes;
-    //     return postdata[index].upvotes;
-    //   },
-    //   updateCommentUpvotes: function(postId,commentindex, commentupvotes){ 
-    //     postdata[postId-1].comments[commentindex].commentupvotes = commentupvotes;
-    //     return postdata[postId-1].comments[commentindex].commentupvotes;
-    //   }
-    // }; // end public
-    // STATIC /////////////////
-
-
 
 
   });

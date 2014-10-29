@@ -10,7 +10,7 @@
 angular.module('rediditApp')
   .controller('AuthCtrl', function ($scope, $location, Auth, user) {
 
-    $scope.gender = 'female';
+    //$scope.gender = 'female';
 
     // if user is logged in, redirect to homepage
     if (user) {
@@ -20,9 +20,9 @@ angular.module('rediditApp')
     //   $location.path('/');
     // }
 
-    $scope.setGender = function($event){
-      $scope.gender = $event.target.value;
-    };
+    // $scope.setGender = function($event){
+    //   $scope.gender = $event.target.value;
+    // };
 
     $scope.login = function () {
       Auth.login($scope.user).then(function () {
@@ -36,8 +36,9 @@ angular.module('rediditApp')
       Auth.register($scope.user).then(function(user) {
         return Auth.login($scope.user).then(function() {
           user.username = $scope.user.username;
-          user.gender = $scope.gender;
-          user.description = $scope.user.description
+          //user.gender = $scope.gender;
+          user.description = $scope.user.description;
+          user.email = $scope.user.email;
           return Auth.createProfile(user);
         }).then(function() {
           $location.path('/');

@@ -11,7 +11,8 @@ angular.module('rediditApp')
   .controller('UserCtrl', function ($scope, $routeParams, Userprofile)  {
     var uid = $routeParams.userId;
 
-    $scope.profile = Userprofile.get(uid);
+    $scope.profile = Userprofile.getnew(uid);
+    console.log($scope.profile);
     Userprofile.getPosts(uid).then(function(posts) {
       $scope.posts = posts;
     });
