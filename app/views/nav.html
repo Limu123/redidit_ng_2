@@ -1,13 +1,13 @@
 <header ng-controller="NavCtrl">
-  <a class="logo" ng-click="loadPage('')">Logo</a>
+  <a class="icon logo" ng-click="loadPage('')"></a>
   <nav>
     <ul class="mainnav">
-      <li ng-show="signedIn()"><a ng-click="loadPage('newpost')">+</a></li>
-      <li ng-show="signedIn()"><a ng-href="#/user/{{ user.uid }}">U</a></li>
-      <li><a ng-click="loadPage('settings')">S</a></li>
+      <li ng-show="signedIn()"><a class="icon icon-newpost" ng-click="loadPage('newpost')"></a></li>
+      <li ng-show="signedIn()"><a class="icon icon-userprofile" ng-href="#/user/{{ user.uid }}"></a></li>
+      <li><a class="icon icon-settings" ng-click="loadPage('settings')"></a></li>
       <!--<li ng-hide="signedIn()"><a ng-click="loadPage('register')">Register</a></li>-->
-      <li ng-show="signedIn()"><a ng-href="#" ng-click="logout()">Out</a></li>
-      <li ng-hide="signedIn()"><a ng-click="loadPage('login')">In</a></li>
+      <li ng-show="signedIn()"><a class="icon icon-logout" ng-href="#" ng-click="logout()"></a></li>
+      <li ng-hide="signedIn()"><a class="icon icon-login" ng-click="loadPage('login')"></a></li>
     </ul>
   </nav>
 

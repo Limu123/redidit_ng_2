@@ -1,3 +1,7 @@
+<div class="row">
+  <div class="small-12 medium-10 large-8 small-centered large-centered columns">
+
+
 <div class="user-profile">
 
 <!--       <img ng-src="http://www.gravatar.com/avatar/{{ profile.md5_hash }}" class="prof-img" /> -->
@@ -14,7 +18,7 @@
   <ul class="profile-posts">
     <li ng-repeat="(key,post) in posts" class="profile-post">
 
-      <span class="post-type {{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}">{{post.title}}</a>
+      <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}">{{post.title}}</a>
 
 
       <ul class="post-meta">
@@ -33,3 +37,5 @@
 </div><!--user-profile-->
 
 
+
+</div></div><!--row columns -->

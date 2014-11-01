@@ -1,14 +1,16 @@
+<div class="row">
+  <div class="small-12 medium-10 large-8 small-centered large-centered columns">
 
 
 
 <div class="post detail">
 
   <div class="post-menu">
-    <a ng-click="showOverview()" class="btn go-back">back</a>
+    <a ng-click="showOverview()" class="btn go-back icon icon-goback"></a>
     <ul class="post-rating">
-      <li><div class="rating">{{post.upvotes}}</div></li>
-      <li><a class="th-up btn" ng-click="voteUp(post)"></a></li>
-      <li><a class="th-down btn" ng-click="voteDown(post)"></a></li>
+      <li><div class="count">{{post.upvotes}}</div></li>
+      <li><a class="icon icon-voteup" ng-click="voteUp(post)"></a></li>
+      <li><a class="icon icon-votedown" ng-click="voteDown(post)"></a></li>
     </ul>
   </div>
 
@@ -19,7 +21,7 @@
         <embed code="code" url="{{post.content}}" type="{{post.type}}"/>
       </div>
       <div class="post-title">
-        <span class="post-type video"></span>{{post.title}}
+        <span class="post-type icon icon-video"></span>{{post.title}}
       </div>
     </div><!--video-->
 
@@ -29,14 +31,15 @@
         <embed code="code" url="{{post.content}}" type="{{post.type}}"/>
       </div>
       <div class="post-title">
-        <span class="post-type audio"></span>{{post.title}}
+        <span class="post-type icon icon-audio"></span>{{post.title}}
       </div>
     </div><!--audio-->
 
 
     <div ng-switch-when="link">
       <div class="post-title">
-        <span class="post-type link"></span><a href="http://{{post.content}}" target="_blank">{{post.title}}</a>
+        <span class="post-type icon icon-link"></span>
+        <a href="{{post.content}}" target="_blank">{{post.title}}</a>
       </div>
     </div><!--link-->
 
@@ -44,14 +47,14 @@
     <div ng-switch-when="image">
       <picture pcode="pcode" url="{{post.content}}" type="{{post.type}}"/>
       <div class="post-title">
-        <span class="post-type image"></span>{{post.title}}
+        <span class="post-type icon icon-image"></span>{{post.title}}
       </div>
     </div><!--image-->
 
 
     <div ng-switch-when="text">
       <div class="post-title">
-        <span class="post-type text"></span>{{post.title}}
+        <span class="post-type icon icon-text"></span>{{post.title}}
       </div>
       <p>{{post.content}}</p>
     </div><!--text-->
@@ -65,7 +68,7 @@
   <ul class="post-meta">
     <li class="author" ng-bind="post.author">{{post.author}}</li>
     <li class="views">{{post.views}} Views</li>
-    <li class="comments">{{comments.length}}10 Comments</li>
+    <li class="comments">{{comments.length}} Comments</li>
     <li class="time">{{post.time}}</li>
   </ul>
 
@@ -86,12 +89,16 @@
     <p>{{comment.text}} <span class="comment-author"> {{comment.commentauthor}}</span></p>
 
     <ul class="post-rating">
-      <li><div class="rating">{{comment.commentupvotes}}</div></li>
-      <li><a class="th-up btn" ng-click="voteUpComment(comment)"></a></li>
-      <li><a class="th-down btn" ng-click="voteDownComment(comment)"></a></li>
-      <li><a class="cross btn" ng-click="deleteComment(comment)" ng-show="user.uid === comment.commentauthorUID"></a></li>
+      <li><div class="count">{{comment.commentupvotes}}</div></li>
+      <li><a class="icon icon-voteup" ng-click="voteUpComment(comment)"></a></li>
+      <li><a class="icon icon-votedown" ng-click="voteDownComment(comment)"></a></li>
+      <li><a class="icon icon-delete" ng-click="deleteComment(comment)" ng-show="user.uid === comment.commentauthorUID"></a></li>
     </ul>
 
   </li>
 
 </ul>
+
+
+
+</div></div><!--row columns -->
