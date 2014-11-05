@@ -61,6 +61,10 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
+      //karma: {
+      //    files: ['app/scripts/**/*.js', 'test/**/*.js'],
+      //    tasks: ['karma:unit:run']
+      //}
     },
 
     // The actual grunt server settings
@@ -405,6 +409,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'wiredep',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
