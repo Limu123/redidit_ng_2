@@ -17,17 +17,13 @@ angular.module('rediditApp')
     // ];
 
     var ref = new Firebase(FIREBASE_URL + '/posts');
-    var postdata = $firebase(ref);    // all posts
+    var userpost_ref = new Firebase(FIREBASE_URL + 'user_posts');
+    var postdata = $firebase(ref);
 
-    // Public API here
     var Post = {
 
       all: function() {
         return postdata.$asArray();
-      },
-
-      comments: function (postId) {
-        return $firebase(new Firebase(FIREBASE_URL + 'comments/' + postId));
       },
 
       find: function (postId) {     // backup
@@ -38,83 +34,66 @@ angular.module('rediditApp')
         return $firebase(ref.child(postId)).$asObject();
       },
 
+      /*
       createPost: function(post){
-        return postdata.$add(post);
+        return postdata.$asArray().$add(post).then(function(postRef){
+          $firebase(userpost_ref.child(post.authorUID))
+                        .$push(postRef.name());
+          return postRef;
+        });
+      },
+      */
+
+      createPost: function(post){
+        return postdata.$asArray().$add(post);
       },
 
       deletePost: function(post){
-        return postdata.$remove(post);
+        return postdata.$asArray().$remove(post);
       },
 
-      updateUpvotes: function(postId,upvote){ 
-        var tempPost = $firebase(ref.child(postId));
-        return tempPost.$update({ upvotes : upvote });
+      //updateVotes: function(post){
+      //  var tempPost = $firebase(ref.child(post.$id));
+      //  return tempPost.$update({ votes : post.votes });
+      //},
+
+      updateVotes: function(post, vote){
+        var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
+        var postVotes = $firebase(sync).$asArray();
+        return postVotes.$add(vote);
       },
 
+      updateViews: function(post){
+        var tempPost = $firebase(ref.child(post.$id));
+        return tempPost.$update({ views : post.views });
+      },
+
+      getVotesForPost: function(post){
+        var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
+        var postVotes = $firebase(sync).$asArray();
+        return postVotes;
+      }
+
+      /*
       createComment: function(comment, postId){
         return Post.comments(postId).$push(comment);
       },
-
       deleteComment: function(comment, postId){
         var commentId = comment.$id;
         return Post.comments(postId).$remove(commentId);
       },
-
       updateCommentUpvotes: function(comment,postId,upvote){
-        var commentId = comment.$id; 
-        var tempComment = $firebase(ref.child(postId).child(commentId));  
+        var commentId = comment.$id;
+        var tempComment = $firebase(ref.child(postId).child(commentId));
         //console.log(tempComment.$asObject());
         return tempComment.$update({ commentupvotes: upvote });
         // TODO
-        
-      },
-      updateViews: function(postId,views){
-        var tempPost = $firebase(ref.child(postId));
-        return tempPost.$update({ views : views });
-
       }
+      */
+
     };
 
     return Post;
-
-
-
-
-
-
-
-    // STATIC /////////////////
-    // return {
-    //   all: postdata,
-    //   getPost: function(postId){
-    //     return postdata[postId-1];
-    //   },
-    //   createPost: function(post){
-    //     return postdata.push( post );
-    //   },
-    //   deletePost: function(index){
-    //     return postdata.splice(index,1);
-    //   },
-    //   createComment: function(comment, postId){
-    //     return postdata[postId-1].comments.push(comment);
-    //   },
-    //   deleteComment: function(postId, commentindex){
-    //     return postdata[postId-1].comments.splice(commentindex,1);
-    //   },
-    //   updateUpvotes: function(upvotes,index){ 
-    //     postdata[index].upvotes = upvotes;
-    //     return postdata[index].upvotes;
-    //   },
-    //   updateCommentUpvotes: function(postId,commentindex, commentupvotes){ 
-    //     postdata[postId-1].comments[commentindex].commentupvotes = commentupvotes;
-    //     return postdata[postId-1].comments[commentindex].commentupvotes;
-    //   }
-    // }; // end public
-    // STATIC /////////////////
-
-
-
-
   }]);
 
 

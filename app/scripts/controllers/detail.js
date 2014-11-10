@@ -8,22 +8,42 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('DetailCtrl', ['$scope','$location','$log','$routeParams', 'Postdata', function ($scope, $location, $log, $routeParams, Postdata) {
+  .controller('DetailCtrl', ['$scope','$location','$log','$routeParams', 'Postdata', 'Commentdata', 'Auth', function ($scope, $location, $log, $routeParams, Postdata, Commentdata, Auth) {
 
+    $scope.user = Auth.user;
     $scope.post = Postdata.getPost($routeParams.postId);
-    $scope.comments = Postdata.comments($routeParams.postId).$asArray();
+    //$scope.comments = Postdata.comments($routeParams.postId).$asArray();
 
+    $scope.commentText;
+    $scope.comments = Commentdata.getCommentsForPost($scope.post);
 
     $scope.showOverview = function(){
       $location.path('/');
     };
 
+    $scope.voteUp = function(post){
+      post.votes++;
+      Postdata.updateVotes(post);
+    };
+
+    $scope.voteDown = function(post){
+      post.votes--;
+      Postdata.updateVotes(post);
+    };
+
     $scope.createComment = function(){
-      $scope.comment = {
-        text: $scope.comment.text,
-        commentupvotes: 0
+
+      var commentModel;
+      var pData = {
+        postId: $routeParams.postId,
+        commentText: $scope.commentText,
+	      author: $scope.user.profile.username,
+        authorUID: $scope.user.uid
       };
-      Postdata.createComment($scope.comment, $routeParams.postId);
+
+      commentModel = DataModel.createCommentModel(pData);
+      Commentdata.createComment(commentModel, $scope.post);
+      $scope.commentText = '';
     };
 
     $scope.deleteComment = function(comment){
@@ -31,13 +51,13 @@ angular.module('rediditApp')
     };
 
     $scope.voteUpComment = function(comment){
-      comment.commentupvotes++;
-      Postdata.updateCommentUpvotes(comment, $routeParams.postId, comment.commentupvotes);
+      comment.votes++;
+      Commentdata.updateCommentVotes(comment, $scope.post);
     };
 
     $scope.voteDownComment = function(comment){
-      comment.commentupvotes--;
-      Postdata.updateCommentUpvotes(comment, $routeParams.postId, comment.commentupvotes);
+      comment.votes--;
+      Commentdata.updateCommentVotes(comment, $scope.post);
     };
 
   }]);

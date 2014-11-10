@@ -15,11 +15,13 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'firebase'
+    'ngTouch', 
+    'firebase',
+    'iso.directives'
   ])
-  
-  .constant('FIREBASE_URL', 'https://redidit.firebaseio.com')
+
+  //.constant('FIREBASE_URL', 'https://redidit.firebaseio.com')
+  .constant('FIREBASE_URL', 'https://savvista.firebaseio.com')
 
   .config(function ($routeProvider) {
     $routeProvider
@@ -43,9 +45,27 @@ angular
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
-      .when('/user', {
+      .when('/user/:userId', {
         templateUrl: 'views/user.html',
         controller: 'UserCtrl'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function(Auth) {
+            return Auth.resolveUser();
+          }
+        }
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function(Auth) {
+            return Auth.resolveUser();
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'

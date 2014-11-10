@@ -8,30 +8,90 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', ['$scope', '$log', '$location','Postdata', function ($scope, $log, $location, Postdata) {
+  .controller('MainCtrl', ['$scope', '$log', '$location','Postdata','Commentdata', 'Auth', 'Userprofile', function ($scope, $log, $location, Postdata, Commentdata, Auth, Userprofile) {
 
-        $scope.posts = Postdata.all();
+        _init();
+
+        function _init() {
+          $scope.posts = Postdata.all();
+          $scope.posts.$loaded().then(function (p) {
+            _addCommentCounts(p);
+            _addPostVotes(p);
+          });
+        }
+
+        $scope.user = Auth.user;
         //$scope.postType = 'video';     // initial postType
 
         $scope.deletePost = function(post){
+
+          //$scope.$emit('iso-method', {name:null, params:null})
+          //scope.refreshIso();
+          //isotope();
+
+          Commentdata.deleteAllComments(post);
           Postdata.deletePost(post);
+          //Userprofile.deletePost(post); // TODO
         };
 
         $scope.showDetail = function(post){
-          //$log.debug('/detail/'+post.$id);
-
           post.views++;
-          Postdata.updateViews(post.$id, post.views);
+          Postdata.updateViews(post);
+
           $location.path('/detail/'+post.$id);
         };
 
         $scope.voteUp = function(post){
-          post.upvotes++;
-          Postdata.updateUpvotes(post.$id, post.upvotes);
+          var postVoteModel;
+          var vData = {
+            postId: post.$id,
+            authorUID: $scope.user.uid,
+            vote: 1
+          };
+
+          postVoteModel = DataModel.createPostVoteModel(vData);
+          Postdata.updateVotes(post, postVoteModel);
         };
 
         $scope.voteDown = function(post){
-          post.upvotes--;
-          Postdata.updateUpvotes(post.$id, post.upvotes);
+          var postVoteModel;
+          var vData = {
+            postId: post.$id,
+            authorUID: $scope.user.uid,
+            vote: -1
+          };
+
+          postVoteModel = DataModel.createPostVoteModel(vData);
+          Postdata.updateVotes(post, postVoteModel);
         };
+
+        $scope.getVote = function(post){
+          var vValue = 0;
+          if (post.votesList) {
+            post.votesList.forEach(function(v) {
+              if (v.authorUID === post.authorUID) {
+                vValue = v.vote;
+                return false;
+              };
+            })
+          };
+          return vValue;
+        };
+
+        function _addCommentCounts (elements) {
+          elements.forEach(function(element) {
+            Commentdata.getCommentsForPost(element).$loaded().then(function(c) {
+                element.CommentCount = c.length;
+              });
+          });
+        }
+
+        function _addPostVotes (postElements) {
+          postElements.forEach(function(element) {
+            Postdata.getVotesForPost(element).$loaded().then(function(v) {
+              element.votes = v.length;
+              element.votesList = v || {};
+            })
+          })
+        }
   }]);
