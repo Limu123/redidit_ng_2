@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="small-12 medium-10 large-8 small-centered large-centered columns">
+
+
+<div class="auth-forms">
+
+  <h2>Register</h2>
+
+  <form ng-submit="register()">
+  	<p ng-show="error">{{error}}</p>
+
+<!--   	  <input checked type="radio" name="gender" value="female" id="radio-female" ng-click="setGender($event)">
+	  <label for="radio-female">Female</label>
+	  <input type="radio" name="gender" value="male" id="radio-male" ng-click="setGender($event)">
+	  <label for="radio-male">Male</label>
+ -->
+  	<input type="text" ng-model="user.username" placeholder="Username">
+    <input type="email" ng-model="user.email" placeholder="Email">
+    <input type="password" ng-model="user.password" placeholder="Password">
+    <textarea name="textarea" ng-model="user.description" placeholder="A few words about yourself" rows="6" cols="5" maxlength="200" required="true"></textarea>
+    <input type="submit" value="Register" />
+  </form>
+
+</div>
+
+
+</div></div><!--row columns -->

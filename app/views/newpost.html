@@ -1,29 +1,51 @@
+<div class="row">
+  <div class="small-12 medium-10 large-8 small-centered large-centered columns">
+
+    <form class="post-form" ng-submit="createPost()">
+
+      <input checked type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
+      <label for="radio-link">Link</label>
+
+      <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
+      <label for="radio-image">Image</label>
+
+      <input type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
+      <label for="radio-video">Video</label>
+
+      <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
+      <label for="radio-audio">Audio</label>
+
+      <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
+      <label for="radio-text">Text</label>
 
 
-<form ng-submit="createPost()">
+      <div ng-switch="postType">
+        <input type="text" placeholder="Title" ng-model="title">
 
-  <input type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
-  <label for="radio-link">Link</label>
-  <input checked type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
-  <label for="radio-video">Video</label>
-  <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
-  <label for="radio-audio">Audio</label>
-  <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
-  <label for="radio-text">Text</label>
-  <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
-  <label for="radio-image">Image</label>
+        <input ng-switch-when="link" type="text" placeholder="Link-URL, e.g. www.redidit.com" data-ng-model="$parent.url">
+        <input ng-switch-when="audio" type="text" placeholder="Soundcloud-URL, e.g. 170045438" data-ng-model="$parent.url">
+        <input ng-switch-when="video" type="text" placeholder="Youtube-URL, e.g. wAXJmUqlnUw" data-ng-model="$parent.url">
 
-  <div data-ng-switch="postType">
-    <input data-ng-switch-when="link" type="text" placeholder="Add a link" data-ng-model="field.link"></input>
-    <input data-ng-switch-when="audio" type="text" placeholder="Soundcloud" data-ng-model="field.audiourl"></input>
-    <input data-ng-switch-when="video" type="text" placeholder="Youtube" data-ng-model="field.videourl"></input>
-    <input data-ng-switch-when="text" type="text" placeholder="Type text here" data-ng-model="field.text"></input>
-    <input data-ng-switch-when="image" type="text" placeholder="Image-url" data-ng-model="field.image"></input>
+        <textarea ng-switch-when="text" type="text" placeholder="Teaser-Text, max 200 characters" data-ng-model="$parent.text" rows="4" cols="5" maxlength="200" required="true"></textarea>
+        <input ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" data-ng-model="$parent.url">
+
+        <textarea name="textarea" ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
+        <input type="submit" value="Post">
+      </div>
+
+
+  <!--<div ng-switch="postType">
+    <input ng-switch-when="link" type="text" placeholder="Add a link" ng-model="$parent.url"></input>
+    <input ng-switch-when="audio" type="text" placeholder="Soundcloud" ng-model="$parent.url"></input>
+    <input ng-switch-when="video" type="text" placeholder="Youtube" ng-model="$parent.url"></input>
+    <input ng-switch-when="text" type="text" placeholder="Type text here" ng-model="$parent.linkText"></input>
+    <input ng-switch-when="image" type="text" placeholder="Image-url" ng-model="$parent.url"></input>
     <input type="text" placeholder="Title" ng-model="title"></input>
     <input type="text" placeholder="name" ng-model="author"></input>
     <button type="submit">Post</button>
-  </div><!--ng-switch end-->
-</form>
+  </div>-->
 
+    </form>
 
-
+  </div>
+</div>

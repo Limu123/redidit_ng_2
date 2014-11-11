@@ -1,70 +1,78 @@
 
 
-<!--  | orderBy: '-upvotes' -->
+
+<ul class="masonry" isotope-container>
 
 
-<div class="masonry">
 
-<div ng-repeat="post in posts" class="post {{post.type}}">
+<li ng-repeat="post in posts | orderBy: '-votes'" class="post masonry" isotope-item>
 
-  <div class="post-header" ng-switch="post.type">
+  <div class="post-header" ng-switch="post.urlType">
 
-      <div class="post-img" ng-switch-when="video">
-      <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+
+    <div ng-switch-when="video">
+      <div class="embed-container">
+        <embed code="code" url="{{post.url}}" type="{{post.type}}"/>
+      </div>
+      <div class="post-title">
+        <span class="post-type icon icon-video"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+      </div>
     </div>
 
-    <div class="post-img" ng-switch-when="audio">
-      <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+
+    <div ng-switch-when="audio">
+      <div class="embed-container">
+        <embed code="code" url="{{post.url}}" type="{{post.type}}"/>
+      </div>
+      <div class="post-title">
+        <span class="post-type icon icon-audio"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+      </div>
     </div>
 
-    <div class="post-link" ng-switch-when="link">
-      <a href="{{ post.link }}">
-        {{ post.link }}
-        <span class="url small">({{post.link | hostnameFromUrl }})</span>
-      </a>
-      <!-- TODO -->
+
+    <div ng-switch-when="link">
+      <div class="post-title no-margin">
+        <span class="post-type icon icon-link"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+      </div>
     </div>
 
-      <div class="post-img" ng-switch-when="image">
-      <picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
+
+    <div ng-switch-when="image">
+      <picture pcode="pcode" url="{{post.url}}" type="{{post.type}}"/>
+      <div class="post-title">
+        <span class="post-type icon icon-image"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+      </div>
     </div>
 
-      <div ng-switch-when="text">
-      {{post.text}}
+
+    <div ng-switch-when="text">
+      <div class="post-title no-margin">
+        <span class="post-type icon icon-text"></span><a ng-click="showDetail(post)">{{post.title}} - {{post.text}}</a>
+      </div>
     </div>
 
-    <div class="post-type {{post.type}}"></div><!--icon-->
+
   </div><!--post-header-->
 
-  <div class="post-body">
-    <ul class="post-categories">
-      <li><a>Stories</a></li>
-      <li><a>Stories</a></li>
-    </ul>
-    <h2><a ng-click="showDetail(post)">{{post.title}}</a></h2>
     <ul class="post-meta">
-      <li class="author" ng-bind="post.author">{{post.author}}</li>
-      <li class="views">{{post.views}} Views</li>
-      <li class="comments">{{comments.length}} Comments</li> <!-- TODO -->
-      <li class="time">{{post.time}}</li>
-    </ul>
-  </div>
+    <li class="author" ng-bind="post.author">{{post.author}}</li>
+    <li class="views">{{post.views}} Views</li>
+    <li class="comments">{{post.CommentCount}} Comments</li> <!-- TODO: show comments -->
+    <li class="time">{{post.time}}</li>
+  </ul>
 
-  <div class="post-footer">
-    <div class="post-rating">
-      <ul>
-        <li><div class="rating">{{post.upvotes}}</div></li>
-        <li><a class="th-up btn" ng-click="voteUp(post)"></a></li>
-        <li><a class="th-down btn" ng-click="voteDown(post)"></a></li>
-      </ul>
-    </div>
-    <div class="post-more">
-      <a class="plus btn" ng-click="deletePost(post)"></a>
-    </div> 
-  </div>
+  <ul class="post-rating">
+    <li><div class="count">{{post.votes}}</div></li>
+    <li><a class="icon icon-voteup" ng-click="voteUp(post)"  ng-hide="getVote(post) === 1"></a></li>
+    <li><a class="icon icon-votedown" ng-click="voteDown(post)" ng-hide="getVote(post) === -1"></a></li>
+    <li><a class="icon icon-delete" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
+  </ul>
 
-</div> <!--ng-repeat end-->
+  <div class="post-footer"></div>
 
 
-</div><!--masonry-->
+</li> <!--ng-repeat end-->
+
+
+</ul><!--masonry-->
 
