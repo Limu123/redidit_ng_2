@@ -21,6 +21,7 @@ angular.module('rediditApp')
         }
 
         $scope.user = Auth.user;
+        $scope.signedIn = Auth.signedIn;
         //$scope.postType = 'video';     // initial postType
 
         $scope.deletePost = function(post){
@@ -43,6 +44,12 @@ angular.module('rediditApp')
 
         $scope.voteUp = function(post){
           var postVoteModel;
+
+          var currentVote = $scope.getVote(post);
+          if (currentVote === 1) {
+            return;
+          }
+
           var vData = {
             postId: post.$id,
             authorUID: $scope.user.uid,
@@ -55,6 +62,12 @@ angular.module('rediditApp')
 
         $scope.voteDown = function(post){
           var postVoteModel;
+
+          var currentVote = $scope.getVote(post);
+          if (currentVote === -1) {
+            return;
+          }
+
           var vData = {
             postId: post.$id,
             authorUID: $scope.user.uid,
@@ -69,12 +82,12 @@ angular.module('rediditApp')
           var vValue = 0;
           if (post.votesList) {
             post.votesList.forEach(function(v) {
-              if (v.authorUID === post.authorUID) {
+              if (v.authorUID === $scope.user.uid) {
                 vValue = v.vote;
                 return false;
-              };
+              }
             })
-          };
+          }
           return vValue;
         };
 

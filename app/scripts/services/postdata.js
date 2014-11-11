@@ -57,10 +57,26 @@ angular.module('rediditApp')
       //  return tempPost.$update({ votes : post.votes });
       //},
 
-      updateVotes: function(post, vote){
+      updateVotes: function(post, voteData){
+        var currentVote;
+
         var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
-        var postVotes = $firebase(sync).$asArray();
-        return postVotes.$add(vote);
+        var postVotes = $firebase(sync).$asArray().$loaded().then(function(vList) {
+
+          //Is there another way to get directly the dataset with the users authorUID?
+          currentVote = vList.filter(function(v) {
+            return v.authorUID === voteData.authorUID;
+          });
+
+          if (currentVote && currentVote[0]) {
+            var index = vList.indexOf(currentVote[0]);
+            vList[index].vote = voteData.vote;
+            return vList.$save(index);
+          }
+          else {
+            return vList.$add(voteData);
+          }
+        });
       },
 
       updateViews: function(post){

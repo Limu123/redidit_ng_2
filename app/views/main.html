@@ -63,8 +63,8 @@
 
   <ul class="post-rating">
     <li><div class="count">{{post.votes}}</div></li>
-    <li><a class="icon icon-voteup" ng-click="voteUp(post)"  ng-hide="getVote(post) === 1"></a></li>
-    <li><a class="icon icon-votedown" ng-click="voteDown(post)" ng-hide="getVote(post) === -1"></a></li>
+    <li><a class="icon icon-voteup" ng-click="voteUp(post)" ng-show="signedIn() && getVote(post) <= 0"></a></li>
+    <li><a class="icon icon-votedown" ng-click="voteDown(post)" ng-show="signedIn() && getVote(post) >= 0"></a></li>
     <li><a class="icon icon-delete" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
   </ul>
 
