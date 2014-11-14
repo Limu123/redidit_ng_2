@@ -36,6 +36,7 @@ angular.module('rediditApp')
         description: $scope.description || 'description',
         views: 0,
         upvotes:0,
+        comments:0,
         time: Datefactory.getDate()
       };
 

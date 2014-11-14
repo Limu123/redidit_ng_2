@@ -1,0 +1,81 @@
+
+
+@import "variables";
+@import "mixins";
+
+
+
+
+//----- General Form Styles
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea
+{
+  @include btn-border($dark-grey,$btn-size);
+  height: $btn-size;
+  margin: 0.5rem 0;
+}
+
+input[type="submit"]{
+  @include btn-border($dark-grey,$btn-size);
+  background: transparent;
+  color: $dark-grey;
+  padding: 0;
+  margin: 0;
+  height: $btn-size;
+  min-width: 7rem;
+  font-size: 1rem;
+  cursor: pointer
+}
+
+textarea {
+  resize: none;
+  height: auto;
+}
+
+
+//----- Radio Buttons
+input[type="radio"]{
+  display: none;
+}
+
+input[type="radio"] + label{
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+input[type="radio"]:checked + .radio-label{
+  @include btn-border($primary-color,3rem);
+}
+.radio-label {
+  width: 3rem;
+  height: 3rem;
+  @include btn-border(transparent,3rem);
+}
+
+
+//----- Comment Form
+.comment-form {
+  padding: 0.5rem 0;
+  input[type="text"] {
+    width: 100%;
+    display: inline;
+    margin-right: 0.5rem;
+    @media only screen and (min-width: 36rem) {
+      width: 76%;
+    }
+  }
+  button[type="submit"] {
+    width: 22%;
+    display: inline;
+  }
+}
+
+input.post-btn {
+  border-color: $primary-color;
+  &:hover {
+    border-color: $dark-grey;
+  }
+}
+

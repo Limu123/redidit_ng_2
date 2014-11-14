@@ -79,13 +79,14 @@
 
 <form ng-submit="createComment()" class="comment-form">
   <input type="text" placeholder="Leave a comment" ng-model="comment.text"></input>
-    <input type="submit" value="Post" />
+    <input type="submit" value="Post" class="post-btn" />
 </form>
 
 
 
 <ul class="post-comments">
-  <li ng-repeat="comment in comments | orderBy: '-commentupvotes'" class="comment">
+  <!-- <li ng-repeat="comment in comments | orderBy: '-commentupvotes'" class="comment"> -->
+  <li ng-repeat="comment in comments | reverse" class="comment">
     <p>{{comment.text}} <span class="comment-author"> {{comment.commentauthor}}</span></p>
 
     <ul class="post-rating">

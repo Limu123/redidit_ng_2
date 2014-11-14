@@ -1,11 +1,11 @@
 
 
 
-<ul class="masonry" isotope-container>
+<ul class="masonry-wrap" isotope-container>
 
+<!-- <li ng-repeat="post in posts | orderBy: '-upvotes'" class="post masonry" isotope-item> -->
 
-
-<li ng-repeat="post in posts | orderBy: '-upvotes'" class="post masonry" isotope-item>
+<li ng-repeat="post in posts | reverse" class="post masonry" isotope-item>
 
   <div class="post-header" ng-switch="post.type">
 
@@ -38,6 +38,7 @@
 
 
     <div ng-switch-when="image">
+
       <picture code="code" url="{{post.content}}" type="{{post.type}}"/>
       <div class="post-title">
         <span class="post-type icon icon-image"></span><a ng-click="showDetail(post)">{{post.title}}</a>
@@ -57,9 +58,9 @@
 
 
   <ul class="post-meta">
-    <li class="author" ng-bind="post.author">{{post.author}}</li>
+    <li class="author"><a ng-click="getauthorprofile(post)">{{post.author}}</a></li>
     <li class="views">{{post.views}} Views</li>
-    <li class="comments">{{comments.length}}10 Comments</li> <!-- TODO: show comments -->
+    <li class="comments">{{post.comments}} Comments</li> <!-- TODO: show comments -->
     <li class="time">{{post.time}}</li>
   </ul>
 

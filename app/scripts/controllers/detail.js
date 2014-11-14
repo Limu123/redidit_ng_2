@@ -28,11 +28,15 @@ angular.module('rediditApp')
         commentupvotes: 0,
         commentauthorUID: $scope.user.uid
       };
-      Postdata.createComment($scope.comment, $routeParams.postId);
+      $scope.post.comments++;
+      console.log($scope.post.comments);
+      Postdata.createComment($scope.comment, $routeParams.postId, $scope.post.comments);
+      $scope.comment.text = "";
     };
 
     $scope.deleteComment = function(comment){
-      Postdata.deleteComment(comment, $routeParams.postId);
+      $scope.post.comments--;
+      Postdata.deleteComment(comment, $routeParams.postId, $scope.post.comments);
     };
 
     $scope.voteUpComment = function(comment){

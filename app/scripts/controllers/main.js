@@ -17,6 +17,8 @@ angular.module('rediditApp')
     $scope.postType = 'video';     // initial postType
 
 
+    //console.log($scope.posts);
+
     $scope.deletePost = function(post){
       //$scope.$emit('iso-method', {name:null, params:null})
       //scope.refreshIso();
@@ -41,6 +43,12 @@ angular.module('rediditApp')
       post.upvotes--;
       Postdata.updateUpvotes(post.$id, post.upvotes);
     };
+
+    $scope.getauthorprofile = function(post){
+      //console.log(post.authorUID);
+      $location.path('/user/'+post.authorUID);
+    };
+
 
 
 

@@ -5,27 +5,10 @@
       <li ng-show="signedIn()"><a class="icon icon-newpost" ng-click="loadPage('newpost')"></a></li>
       <li ng-show="signedIn()"><a class="icon icon-userprofile" ng-href="#/user/{{ user.uid }}"></a></li>
       <li><a class="icon icon-settings" ng-click="loadPage('settings')"></a></li>
-      <!--<li ng-hide="signedIn()"><a ng-click="loadPage('register')">Register</a></li>-->
       <li ng-show="signedIn()"><a class="icon icon-logout" ng-href="#" ng-click="logout()"></a></li>
       <li ng-hide="signedIn()"><a class="icon icon-login" ng-click="loadPage('login')"></a></li>
     </ul>
   </nav>
-
-
-
-
-<!-- <ul class="nav navbar-nav navbar-right" >
-  <li ng-show="signedIn()">
-    <p class="navbar-text"><a ng-href="#/user/{{ user.uid }}">{{ user.profile.username }}</a></p>
-  </li>
-  <li ng-show="signedIn()">
-    <a ng-href="#/user/{{ user.uid }}">
-      <img ng-src="http://www.gravatar.com/avatar/{{ user.profile.md5_hash }}" class="nav-pic" />
-      {{ currentUser.username }}
-    </a>
-  </li>
-</ul>
- -->
 </header>
 
 
