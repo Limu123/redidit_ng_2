@@ -27,12 +27,20 @@ angular.module('rediditApp')
 
     $scope.createPost = function() {
 
+      var postContent = $scope.field.content || 'content';
+
+      if($scope.postType=='audio'){
+        postContent = $scope.field.content.split('src="')[1].split('&amp;auto_play')[0];
+      } else if ($scope.postType=='video'){
+        postContent = $scope.field.content.split('watch?v=')[1];
+      }
+
       $scope.post = {
         type: $scope.postType || 'link',
         title: $scope.title || 'demotitle',
         author: $scope.user.profile.username || 'demoauthor',
         authorUID: $scope.user.uid || '0000',
-        content: $scope.field.content || 'content',
+        content: postContent,
         description: $scope.description || 'description',
         views: 0,
         upvotes:0,
