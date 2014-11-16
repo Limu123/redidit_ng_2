@@ -9,8 +9,8 @@
     <a ng-click="showOverview()" class="btn go-back icon icon-goback"></a>
     <ul class="post-rating">
       <li><div class="count">{{post.votes}}</div></li>
-      <li><a class="icon icon-voteup" ng-click="voteUp(post)"></a></li>
-      <li><a class="icon icon-votedown" ng-click="voteDown(post)"></a></li>
+      <li><a class="{{getStyleForVoteUpPost(post)}}" ng-click="voteUpPost(post)" ng-show="signedIn() && !isOwn(post)"></a></li>
+      <li><a class="{{getStyleForVoteDownPost(post)}}" ng-click="voteDownPost(post)" ng-show="signedIn() && !isOwn(post)"></a></li>
     </ul>
   </div>
 
@@ -77,7 +77,7 @@
 
 
 
-<form ng-submit="createComment()" class="comment-form">
+<form ng-submit="createComment()" class="comment-form" ng-show="signedIn()">
   <input type="text" placeholder="Leave a comment" ng-model="commentText">
     <input type="submit" value="Post">
 </form>
@@ -90,9 +90,9 @@
 
     <ul class="post-rating">
         <li><div class="count">{{comment.votes}}</div></li>
-        <li><a class="icon icon-voteup" ng-click="voteUpComment(comment)"></a></li>
-        <li><a class="icon icon-votedown" ng-click="voteDownComment(comment)"></a></li>
-        <li><a class="icon icon-delete" ng-click="deleteComment(comment)" ng-show="user.uid === comment.commentauthorUID"></a></li>
+        <li><a class="{{getStyleForVoteUpComment(comment)}}" ng-click="voteUpComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
+        <li><a class="{{getStyleForVoteDownComment(comment)}}" ng-click="voteDownComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
+        <li><a class="icon icon-delete" ng-click="deleteComment(comment)" ng-show="user.uid === comment.authorUID"></a></li>
       </ul>
 
   </li>

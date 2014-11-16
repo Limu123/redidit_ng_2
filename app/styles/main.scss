@@ -94,7 +94,7 @@ header {
     float: left;
     @media only screen and (min-width: 22rem) {
       width: 8rem;
-    } 
+    }
   }
   .mainnav {
     @include inline-ul;
@@ -136,7 +136,7 @@ ul.masonry {
   // ul { @include inline-ul; }
   // margin: 0.1rem 0.5rem;
   //padding: 1.5rem 0.3rem;
-  
+
   &.masonry {
     //max-width: 15rem;
     //margin-top: -1.5rem;
@@ -148,10 +148,10 @@ ul.masonry {
     //margin: 0rem 0.5rem;
     @media only screen and (min-width: 31rem) {
       width: 50%;
-    } 
+    }
     @media only screen and (min-width: 45.5rem) {
       width: 33.33%;
-    } 
+    }
   }
   &.detail {
 
@@ -261,6 +261,9 @@ ul.masonry {
   }
   .icon-voteup, .icon-votedown{
     border-color: $primary-color;
+  }
+  .icon-voteup-selected, .icon-votedown-selected{
+    border-color: orangered;
   }
 }
 
@@ -456,7 +459,7 @@ textarea {
     &:hover {
       background-position: -1765px -86px;
     }
-  } 
+  }
 }
 
 
@@ -469,6 +472,9 @@ textarea {
 
 .icon-voteup { background-position-x: -542px; }
 .icon-votedown{ background-position-x: -646px; }
+.icon-voteup-selected { background-position-x: -542px; }
+.icon-votedown-selected{ background-position-x: -646px; }
+
 .icon-delete {  background-position-x: -750px; }
 
 .icon-video { background-position-x: -218px; }
@@ -657,9 +663,9 @@ textarea {
 //   height: 100%;
 //   float: right;
 //   .plus {
-//     @include bg-img(url(../images/btn-plus.png),auto,50%);        
+//     @include bg-img(url(../images/btn-plus.png),auto,50%);
 //     border: thin solid rgba($dark-grey,0.2);
-//     border-radius: 2px;     
+//     border-radius: 2px;
 //   }
 // }
 

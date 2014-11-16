@@ -8,112 +8,161 @@
  * Factory in the rediditApp.
  */
 angular.module('rediditApp')
-  .factory('Postdata', ['$firebase', 'FIREBASE_URL', function ($firebase, FIREBASE_URL) {
-
-    // var postdata = [
-    //   { id: 1, title:'first title', upvotes:0, comments: [{text:'first comment', commentupvotes:10 },{text:'second comment', commentupvotes:2 }] },
-    //   { id: 2, title:'second title', upvotes:20, comments: [{text:'first comment', commentupvotes:10 },{text:'second comment', commentupvotes:2 }]  },
-    //   { id: 3, title:'third title', upvotes:0, comments: [{text:'first comment', commentupvotes:10 },{text:'second comment', commentupvotes:2 }]  }
-    // ];
+  .factory('Postdata', ['$firebase', 'FIREBASE_URL', 'Commentdata', function ($firebase, FIREBASE_URL, Commentdata) {
 
     var ref = new Firebase(FIREBASE_URL + '/posts');
-    var userpost_ref = new Firebase(FIREBASE_URL + 'user_posts');
+
     var postdata = $firebase(ref);
 
     var Post = {
 
-      all: function() {
-        return postdata.$asArray();
-      },
+      all: function () {
+        var data = postdata.$asArray();
 
-      find: function (postId) {     // backup
-        return $firebase(ref.child(postId)).$asObject();
-      },
-
-      getPost: function(postId){
-        return $firebase(ref.child(postId)).$asObject();
-      },
-
-      /*
-      createPost: function(post){
-        return postdata.$asArray().$add(post).then(function(postRef){
-          $firebase(userpost_ref.child(post.authorUID))
-                        .$push(postRef.name());
-          return postRef;
+        data.$loaded().then(function(d) {
+          _getRelatedData(d);
         });
-      },
-      */
 
-      createPost: function(post){
+        return data;
+      },
+
+      find: function (postId) {
+        return $firebase(ref.child(postId)).$asObject();
+      },
+
+      getPost: function (postId) {
+        var post = $firebase(ref.child(postId)).$asObject();
+        _getRelatedData([post]);
+        return post;
+      },
+
+      createPost: function (post) {
         return postdata.$asArray().$add(post);
       },
 
-      deletePost: function(post){
-        return postdata.$asArray().$remove(post);
+      deletePost: function (post) {
+        Post.deleteAllVotes(post);
+        Commentdata.deleteAllComments(post);
+        postdata.$asArray().$remove(post);
       },
 
-      //updateVotes: function(post){
-      //  var tempPost = $firebase(ref.child(post.$id));
-      //  return tempPost.$update({ votes : post.votes });
-      //},
+      deleteAllVotes: function(post) {
+        var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
+        sync.remove();
+      },
 
-      updateVotes: function(post, voteData){
+      updateVotes: function (post, voteData) {
         var currentVote;
 
-        var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
-        var postVotes = $firebase(sync).$asArray().$loaded().then(function(vList) {
+        var sync = new Firebase(FIREBASE_URL + '/postvotes/' + voteData.postId + '/');
+        var postVotes = $firebase(sync).$asArray().$loaded().then(function (vList) {
 
           //Is there another way to get directly the dataset with the users authorUID?
-          currentVote = vList.filter(function(v) {
+          currentVote = vList.filter(function (v) {
             return v.authorUID === voteData.authorUID;
           });
 
           if (currentVote && currentVote[0]) {
             var index = vList.indexOf(currentVote[0]);
-            vList[index].vote = voteData.vote;
-            return vList.$save(index);
+
+            if (vList[index].vote === voteData.vote) {
+              vList.$remove(index);
+            }
+            else {
+              vList[index].vote = voteData.vote;
+              vList.$save(index);
+            }
           }
           else {
             return vList.$add(voteData);
           }
         });
+
+        _getPostVotes([post]);
       },
 
-      updateViews: function(post){
+      updateViews: function (post) {
         var tempPost = $firebase(ref.child(post.$id));
-        return tempPost.$update({ views : post.views });
+        return tempPost.$update({views: post.views});
       },
 
-      getVotesForPost: function(post){
+      getVotesForPost: function (post) {
         var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
         var postVotes = $firebase(sync).$asArray();
         return postVotes;
-      }
-
-      /*
-      createComment: function(comment, postId){
-        return Post.comments(postId).$push(comment);
       },
-      deleteComment: function(comment, postId){
-        var commentId = comment.$id;
-        return Post.comments(postId).$remove(commentId);
-      },
-      updateCommentUpvotes: function(comment,postId,upvote){
-        var commentId = comment.$id;
-        var tempComment = $firebase(ref.child(postId).child(commentId));
-        //console.log(tempComment.$asObject());
-        return tempComment.$update({ commentupvotes: upvote });
-        // TODO
-      }
-      */
 
+      getVoteForCurrentUser: function (post, user) {
+        var vValue = 0;
+
+        if (post.votesList) {
+          post.votesList.forEach(function (v) {
+            if (v.authorUID === user.uid) {
+              vValue = v.vote;
+              return false;
+            }
+          })
+        }
+        return vValue;
+      },
+
+      getStyleForVoteUpPost: function (post, user)  {
+        var currentVote = Post.getVoteForCurrentUser(post, user);
+        var style;
+
+        switch (currentVote) {
+          case 1:
+            style = "icon icon-voteup-selected";
+            break;
+
+          default:
+            style = "icon icon-voteup";
+            break;
+        }
+
+        return style;
+      },
+
+      getStyleForVoteDownPost: function(post, user) {
+        var currentVote = Post.getVoteForCurrentUser(post, user);
+        var style;
+
+        switch (currentVote) {
+          case -1:
+            style = "icon icon-votedown-selected";
+            break;
+
+          default:
+            style = "icon icon-votedown";
+            break;
+        }
+
+        return style;
+      }
     };
+
+
+    function _getRelatedData(posts) {
+      _getCommentCounts(posts);
+      _getPostVotes(posts);
+    }
+
+    function _getCommentCounts (posts) {
+      posts.forEach(function(post) {
+        Commentdata.getCommentsForPost(post).$loaded().then(function(c) {
+          post.CommentCount = c.length;
+        });
+      });
+    }
+
+    function _getPostVotes (posts) {
+      posts.forEach(function(post) {
+        Post.getVotesForPost(post).$loaded().then(function(v) {
+          post.votes = v.length;
+          post.votesList = v || {};
+        })
+      })
+    }
 
     return Post;
   }]);
-
-
-
-
-
-

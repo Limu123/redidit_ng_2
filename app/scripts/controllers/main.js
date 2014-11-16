@@ -10,101 +10,62 @@
 angular.module('rediditApp')
   .controller('MainCtrl', ['$scope', '$log', '$location','Postdata','Commentdata', 'Auth', 'Userprofile', function ($scope, $log, $location, Postdata, Commentdata, Auth, Userprofile) {
 
-        _init();
+    $scope.posts = Postdata.all();
 
-        function _init() {
-          $scope.posts = Postdata.all();
-          $scope.posts.$loaded().then(function (p) {
-            _addCommentCounts(p);
-            _addPostVotes(p);
-          });
-        }
+    $scope.user = Auth.user;
+    $scope.signedIn = Auth.signedIn;
 
-        $scope.user = Auth.user;
-        $scope.signedIn = Auth.signedIn;
-        //$scope.postType = 'video';     // initial postType
+    $scope.getStyleForVoteUpPost = function(post)  {
+      return Postdata.getStyleForVoteUpPost(post, $scope.user);
+    };
 
-        $scope.deletePost = function(post){
+    $scope.getStyleForVoteDownPost = function(post) {
+      return Postdata.getStyleForVoteDownPost(post, $scope.user);
+    };
 
-          //$scope.$emit('iso-method', {name:null, params:null})
-          //scope.refreshIso();
-          //isotope();
+    $scope.deletePost = function(post){
 
-          Commentdata.deleteAllComments(post);
-          Postdata.deletePost(post);
-          //Userprofile.deletePost(post); // TODO
-        };
+      //$scope.$emit('iso-method', {name:null, params:null})
+      //scope.refreshIso();
+      //isotope();
 
-        $scope.showDetail = function(post){
-          post.views++;
-          Postdata.updateViews(post);
+      Postdata.deletePost(post);
+    };
 
-          $location.path('/detail/'+post.$id);
-        };
+    $scope.isOwn = function(post) {
+      return post.authorUID === Auth.user.uid;
+    }
 
-        $scope.voteUp = function(post){
-          var postVoteModel;
+    $scope.showDetail = function(post){
+      post.views++;
+      Postdata.updateViews(post);
 
-          var currentVote = $scope.getVote(post);
-          if (currentVote === 1) {
-            return;
-          }
+      $location.path('/detail/'+post.$id);
+    };
 
-          var vData = {
-            postId: post.$id,
-            authorUID: $scope.user.uid,
-            vote: 1
-          };
+    $scope.voteUpPost = function(post){
+      var postVoteModel;
 
-          postVoteModel = DataModel.createPostVoteModel(vData);
-          Postdata.updateVotes(post, postVoteModel);
-        };
+      var vData = {
+        postId: post.$id,
+        authorUID: $scope.user.uid,
+        vote: 1
+      };
 
-        $scope.voteDown = function(post){
-          var postVoteModel;
+      postVoteModel = DataModel.createPostVoteModel(vData);
+      Postdata.updateVotes(post, postVoteModel);
+    };
 
-          var currentVote = $scope.getVote(post);
-          if (currentVote === -1) {
-            return;
-          }
+    $scope.voteDownPost = function(post){
+      var postVoteModel;
 
-          var vData = {
-            postId: post.$id,
-            authorUID: $scope.user.uid,
-            vote: -1
-          };
+      var vData = {
+        postId: post.$id,
+        authorUID: $scope.user.uid,
+        vote: -1
+      };
 
-          postVoteModel = DataModel.createPostVoteModel(vData);
-          Postdata.updateVotes(post, postVoteModel);
-        };
-
-        $scope.getVote = function(post){
-          var vValue = 0;
-          if (post.votesList) {
-            post.votesList.forEach(function(v) {
-              if (v.authorUID === $scope.user.uid) {
-                vValue = v.vote;
-                return false;
-              }
-            })
-          }
-          return vValue;
-        };
-
-        function _addCommentCounts (elements) {
-          elements.forEach(function(element) {
-            Commentdata.getCommentsForPost(element).$loaded().then(function(c) {
-                element.CommentCount = c.length;
-              });
-          });
-        }
-
-        function _addPostVotes (postElements) {
-          postElements.forEach(function(element) {
-            Postdata.getVotesForPost(element).$loaded().then(function(v) {
-              element.votes = v.length;
-              element.votesList = v || {};
-            })
-          })
-        }
+      postVoteModel = DataModel.createPostVoteModel(vData);
+      Postdata.updateVotes(post, postVoteModel);
+    };
   }]);

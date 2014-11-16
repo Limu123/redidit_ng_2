@@ -60,7 +60,7 @@ var DataModel = (function() {
       this.author = data.author || '';
       this.authorUID = data.authorUID || '';
 
-      this.votes = 0;
+      this.votes = data.votes || 0;
     }
   }
 
@@ -76,6 +76,7 @@ var DataModel = (function() {
   function CommentVoteModel(data) {
     if (data) {
       this.commentId = data.commentId || '';
+      this.postId = data.postId || '';
       this.authorUID = data.authorUID || '';
       this.vote = data.vote || 0;
     }
