@@ -61,11 +61,15 @@ angular.module('rediditApp')
         var tempPost = $firebase(ref.child(postId));
         return tempPost.$update({ upvotes : upvote });
       },
-      createComment: function(comment, postId){
+      createComment: function(comment, postId, numberOfComments){
+        var tempPost = $firebase(ref.child(postId));
+        tempPost.$update({ comments : numberOfComments });
         return Post.comments(postId).$push(comment);
       },
-      deleteComment: function(comment, postId){
+      deleteComment: function(comment, postId, numberOfComments){
         var commentId = comment.$id;
+        var tempPost = $firebase(ref.child(postId));
+        tempPost.$update({ comments : numberOfComments });
         return Post.comments(postId).$remove(commentId);
       },
       updateCommentUpvotes: function(comment,postId,upvote){
