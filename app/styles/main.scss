@@ -4,55 +4,30 @@
 @import "compass/css3/transition";
 @import "compass/utilities/general/clearfix";
 @import "compass/css3/border-radius";
+@import "variables";
+@import "mixins";
+@import "icons";
+@import "forms";
 
 
-// Variables & Mixins
 
-$primary-color: #00B290;    // Türkis
-$secondary-color: #fff;   // tbd
-$light-grey: #ECECEC; // Light Grey
-$dark-grey: #3C3C3B;
-$white: #fff;
-$error: #ff0000;
-$demo-grey: rgba(black,0.1);
-//$post-type-size: 3.4rem;
-$btn-size: 2.4rem;
 
-@mixin inline-ul{
-  @include clearfix;
-  li {
-    float: left;
-  }
+//----- General Styles
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 
-@mixin bg-img($img,$img-width, $img-height) {
-  background-image: $img;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: $img-width $img-height;
+.container {
+  background: white;
 }
 
-%small {
-  font-size: 0.7rem;
-}
-
-@mixin btn-border($b-color,$b-size){
-  border: 2px solid $b-color;
-  border-radius: $b-size/2;
-}
-
-
-
-// General
-
-.btn {
-  @include btn-border($dark-grey,$btn-size);
+.content-wrap {
+  margin-top: 4.5rem;
 }
 
 a {
   color: $primary-color;
   &:hover {
-    //color: $primary-color;
     color: black;
   }
 }
@@ -65,13 +40,8 @@ ul {
   }
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  //background: $light-grey;
-}
-
-.container {
-  background: white;
+.btn {
+  @include btn-border($dark-grey,$btn-size);
 }
 
 
@@ -79,87 +49,67 @@ body {
 
 
 
-// Header
+//----- Header
 header {
-  //background: $demo-grey;
-  //margin-bottom: 10px;
-  padding: 0.5rem 0;
-  @include clearfix;
-  margin-bottom: 1rem;
-  //border-bottom: thin solid $light-grey;
-  .logo {
-    width: 2rem;
-    height: $btn-size*1.3;
-    display: block;
-    float: left;
-    @media only screen and (min-width: 22rem) {
-      width: 8rem;
-    }
+  padding: 0.2rem 0.5rem;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.logo {
+  width: 2rem;
+  height: $btn-size*1.3;
+  display: block;
+  float: left;
+  @media only screen and (min-width: 22rem) {
+    width: 8rem;
+  } 
+}
+.mainnav {
+  @include inline-ul;
+  float: right;
+  margin-top: 0.4rem;
+  li {
+    width: $btn-size;
+    height: $btn-size;
+    margin-left: 0.3rem;
   }
-  .mainnav {
-    @include inline-ul;
-    background: $white;
-    float: right;
-    margin-top: 0.4rem;
-    li {
-      width: $btn-size;
-      height: $btn-size;
-      margin-left: 0.3rem;
-    }
-    a {
-      @include btn-border($dark-grey,$btn-size);
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
+  a {
+    @include btn-border($dark-grey,$btn-size);
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
   }
 }
 
 
 
 
-
-
-// Masonry
-ul.masonry {
-  //background: green;
-  // a {
-  //   color: $primary-color;
-  // }
+//----- Masonry
+.masonry-wrap {
   margin-top: -1.5rem;
 }
 
 .post {
-  //background: yellow;
   @include clearfix;
-  // ul { @include inline-ul; }
-  // margin: 0.1rem 0.5rem;
-  //padding: 1.5rem 0.3rem;
-
   &.masonry {
-    //max-width: 15rem;
-    //margin-top: -1.5rem;
     padding: 1.5rem 0.3rem 0rem;
-    //padding-top: 1.5rem;
     min-width: 14.5rem;
     width: 100%;
-    //max-width: 100%;
-    //margin: 0rem 0.5rem;
     @media only screen and (min-width: 31rem) {
       width: 50%;
-    }
+    } 
     @media only screen and (min-width: 45.5rem) {
       width: 33.33%;
-    }
-  }
-  &.detail {
-
+    } 
   }
 }
 
 .post-title {
-  //background: orange;
   margin-top: 0.5rem;
   font-size: 1.2rem;
   &.no-margin {
@@ -179,14 +129,13 @@ ul.masonry {
   height: 2rem;
   margin-right: 0.5rem;
   margin-bottom: -0.4rem;
-  //background: $dark-grey;
   display: inline-block;
 }
+
 
 .post-meta {
   @extend %small;
   margin: 0;
-  //background: red;
   @include inline-ul;
   margin: 0.4rem 0;
   li {
@@ -198,41 +147,16 @@ ul.masonry {
       height: 1rem;
       margin-right: 0.2rem;
       display: inline-block;
-      background-image: url(../images/author-icon-2.png);
-      background-size: 100% auto;
-      background-repeat: no-repeat;
-      background-position: center center;
-      content:"";
     }
-  }
-  .author {
-    //border-right: thin solid $dark-grey;
-    //margin-right: 0.5rem;
-  }
-  .author:before {
-    background-image: url(../images/author-icon-2.png);
-    background-size: 100% auto;
-  }
-  .views:before {
-    background-image: url(../images/views-icon.png);
-    background-size: 100% auto;
-  }
-  .comments:before {
-    background-image: url(../images/discussion-icon.png);
-    background-size: 100% auto;
-  }
-  .time:before {
-    background-image: url(../images/time-icon.png);
-    background-size: 100% auto;
-    width: 12px;
+    a {
+      vertical-align: top;
+    }
   }
 }
 
+
 .post-rating {
-  //background:grey;
   margin-left: 0;
-  //margin-top: 0.5rem;
-  //float: left;
   display: block;
   @include inline-ul;
   li{
@@ -261,7 +185,9 @@ ul.masonry {
   }
   .icon-voteup, .icon-votedown{
     border-color: $primary-color;
-  }
+    &:hover {
+      border-color: $dark-grey;
+    }
   .icon-voteup-selected, .icon-votedown-selected{
     border-color: orangered;
   }
@@ -276,7 +202,7 @@ ul.masonry {
 
 
 
-// detail
+//----- Detail View
 .detail {
   h2 {
     display: inline;
@@ -288,7 +214,6 @@ ul.masonry {
 }
 
 .post-menu {
-  //background: green;
   @include clearfix;
   .go-back {
     display: block;
@@ -317,7 +242,6 @@ ul.masonry {
 }
 
 .post-comments {
-  //background: yellow;
   .post-rating {
     li:last-child {
       float: right;
@@ -326,7 +250,6 @@ ul.masonry {
 }
 
 .comment{
-  //background: orange;
   margin: 0.5rem 0;
   border-bottom: thin solid $light-grey;
   padding-bottom: 1rem;
@@ -339,65 +262,21 @@ ul.masonry {
 }
 
 
-// forms
-.comment-form {
-  //background: green;
-  padding: 0.5rem 0;
-  input[type="text"] {
-    width: 100%;
-    display: inline;
-    margin-right: 0.5rem;
-    @media only screen and (min-width: 36rem) {
-      width: 76%;
-    }
-  }
-  button[type="submit"] {
-    width: 22%;
-    display: inline;
-  }
-}
-
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea
-{
-  @include btn-border($dark-grey,$btn-size);
-  height: $btn-size;
-  margin: 0.5rem 0;
-}
-
-input[type="submit"]{
-  @include btn-border($dark-grey,$btn-size);
-  background: transparent;
-  color: $dark-grey;
-  padding: 0;
-  margin: 0;
-  height: $btn-size;
-  min-width: 7rem;
-  font-size: 1rem;
-  cursor: pointer
-}
-
-textarea {
-  resize: none;
-  height: auto;
-}
 
 
 
-// user profile
 
-
+//----- User Profile
 .profile-head {
   @include clearfix;
+  text-align: center;
   img {
-    max-width: 14rem;
     margin-right: 1rem;
-    //border: 2px solid $light-grey;
     @include btn-border($light-grey,14rem);
-    float: left;
+    max-width: 14rem;
+    @media only screen and (min-width: 31rem) {
+      float: left;
+    } 
   }
   blockquote {
     @include clearfix;
@@ -405,14 +284,21 @@ textarea {
     margin: 0;
     padding: 0;
     margin-bottom: 0.5rem;
+    margin-top: 1rem;
     font-style: italic;
     font-size: 1.2rem;
+    text-align: center;
+    @media only screen and (min-width: 31rem) {
+      text-align: left;
+    } 
   }
   span {
     @extend %small;
+    @media only screen and (min-width: 31rem) {
+      float: left;
+    } 
   }
 }
-
 
 .profile-posts {
   margin-top: 1rem;
@@ -422,263 +308,7 @@ textarea {
   margin-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: thin solid $light-grey;
-}
-
-
-
-
-// Icons
-.icon {
-  background-image: url(../images/sprite.svg);
-  background-repeat: no-repeat;
-  background-size: 2000px auto;
-  background-position: -20px -29px;
-  &:hover {
-    background-position-y: -109px;
-    border-color: $primary-color;
+  a {
+    font-size: 1.2rem;
   }
 }
-
-.post-type.icon {
-  background-size: 1900px auto;
-  background-position-y: -31px;
-  &:hover {
-    background-position-y: -31px;
-    //border-color: $primary-color;
-  }
-}
-
-.logo {
-  background-size: 1980px auto;
-  background-position: -1765px -22px;
-  &:hover {
-    background-position: -1765px -101px;
-  }
-  @media only screen and (min-width: 22rem) {
-    background-position: -1765px -7px;
-    &:hover {
-      background-position: -1765px -86px;
-    }
-  }
-}
-
-
-
-.icon-newpost {  background-position-x: -854px;  }
-.icon-userprofile {  background-position-x: -1063px;  }
-.icon-settings {  background-position-x: -959px;  }
-.icon-logout {  background-position-x: -1270px;  }
-.icon-login {  background-position-x: -1167px;  }
-
-.icon-voteup { background-position-x: -542px; }
-.icon-votedown{ background-position-x: -646px; }
-.icon-voteup-selected { background-position-x: -542px; }
-.icon-votedown-selected{ background-position-x: -646px; }
-
-.icon-delete {  background-position-x: -750px; }
-
-.icon-video { background-position-x: -218px; }
-.icon-audio { background-position-x: -317px; }
-.icon-link { background-position-x: -118px; }
-.icon-image { background-position-x: -20px; }
-.icon-text { background-position-x: -416px; }
-
-.icon-goback { background-position-x: -1377px; }
-
-
-
-// // General
-// body {
-//   background: $light-grey;
-//   font-family: 'Open Sans', sans-serif;
-// }
-
-// ul {
-//   list-style: none;
-//   margin: 0;
-//   li {
-//     margin: 0;
-//   }
-// }
-
-// .header {
-//   ul {
-//     @include inline-ul;
-//     li {
-//       margin-right: 1rem;
-//     }
-//   }
-// }
-
-// .padding {
-//   padding: 1rem;
-//   background: $white;
-//   margin-bottom: 1rem;
-// }
-
-// %small {
-//   font-size: 0.7rem;
-//   line-height: 1em;
-// }
-
-
-
-
-
-// ////////////////////////////////
-// // Masonry
-// ////////////////////////////////
-
-// .masonry {
-//   @include clearfix;
-// }
-
-// .masonry .post {
-//   margin-bottom: 1rem;
-//   max-width: 250px;
-//   margin-right: 1rem;
-//   float: left;
-// }
-
-// .post {
-//   background: $white;
-//   border: thin solid $light-grey;
-//   ul { @include inline-ul; }
-// }
-
-// .post-header  {
-//   @include clearfix;
-// }
-
-// .post-body    {
-//   padding: 0.5rem 0.8rem;
-//   margin-top: -($post-type-size);
-// }
-
-// .post-footer  {
-//   padding: 0.5rem 0.8rem;
-//   height: 3rem;
-//   @include clearfix;
-// }
-
-// .post-img {
-//   background: $dark-grey;
-//   max-height: 150px;
-//   overflow: hidden;
-// }
-
-// .post-type {
-//   background: white;
-//   height: $post-type-size;
-//   width: $post-type-size;
-//   float: right;
-//   position: relative;
-//   top: -($post-type-size/3);
-//   border-radius: $post-type-size/2;
-//   @include bg-img(url(../images/link-icon.png),auto,45%);
-//   &.link { @include bg-img(url(../images/link-icon.png),auto,45%); }
-//   &.video { @include bg-img(url(../images/video-icon.png),auto,30%); }
-//   &.audio { @include bg-img(url(../images/audio-icon.png),auto,55%); }
-//   &.text { @include bg-img(url(../images/text-icon.png),auto,45%); }
-//   &.image { @include bg-img(url(../images/img-icon.png),auto,38%); }
-// }
-
-// .post-categories {
-//   @extend %small;
-//   li {
-//     padding-right: 0.5rem;
-//     &:not(:last-child):after { content: " /"; }
-//   }
-// }
-
-// .post-meta {
-//   @extend %small;
-//   li {
-//     vertical-align: top;
-//     padding-right: 0.5rem;
-//     line-height: 1.1rem;
-//     &:before{
-//       width: 1rem;
-//       height: 1rem;
-//       margin-right: 0.2rem;
-//       display: inline-block;
-//       background-image: url(../images/author-icon-2.png);
-//       background-size: 100% auto;
-//       background-repeat: no-repeat;
-//       background-position: center center;
-//       content:"";
-//     }
-//   }
-//   .author {
-//     border-right: thin solid $dark-grey;
-//     margin-right: 0.5rem;
-//   }
-//   .author:before {
-//     background-image: url(../images/author-icon-2.png);
-//     background-size: 100% auto;
-//   }
-//   .views:before {
-//     background-image: url(../images/views-icon.png);
-//     background-size: 100% auto;
-//   }
-//   .comments:before {
-//     background-image: url(../images/discussion-icon.png);
-//     background-size: 100% auto;
-//   }
-//   .time:before {
-//     background-image: url(../images/time-icon.png);
-//     background-size: 100% auto;
-//     width: 12px;
-//   }
-// }
-
-// .post-rating {
-//   width: 80%;
-//   max-width: 20rem;
-//   height:100%;
-//   float: left;
-//   ul {
-//     background: $primary-color;
-//     border-radius: 2px;
-//     height: 100%;
-//     li {
-//       text-align: center;
-//       display: block;
-//       width: 33.33%;
-//       height: 100%;
-//       border-right: thin solid rgba(white,0.2);
-//     }
-//   }
-//   .rating {
-//     color: white;
-//     line-height: 2rem;
-//     font-weight: strong;
-//   }
-//   .th-up { @include bg-img(url(../images/th-up.png),auto,70%); }
-//   .th-down { @include bg-img(url(../images/th-down.png),auto,70%); }
-// }
-
-// .post-more {
-//   width: 14%;
-//   height: 100%;
-//   float: right;
-//   .plus {
-//     @include bg-img(url(../images/btn-plus.png),auto,50%);
-//     border: thin solid rgba($dark-grey,0.2);
-//     border-radius: 2px;
-//   }
-// }
-
-
-
-// .btn {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-// }
-
-
-
-
-
-

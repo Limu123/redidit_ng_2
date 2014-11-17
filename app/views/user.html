@@ -16,14 +16,15 @@
 
 
   <ul class="profile-posts">
-    <li ng-repeat="(key,post) in posts" class="profile-post">
+    <!-- TO DO: reverse posts -->
+    <li ng-repeat="post in posts" class="profile-post">
 
       <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}">{{post.title}}</a>
 
 
       <ul class="post-meta">
         <li class="views">{{post.views}} Views</li>
-        <li class="comments">{{comments.length}}10 Comments</li>
+        <li class="comments">{{comments.length}} Comments</li>
         <!-- TODO: show comments -->
         <li class="time">{{post.time}}</li>
       </ul>

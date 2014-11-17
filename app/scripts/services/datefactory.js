@@ -28,7 +28,7 @@ angular.module('rediditApp')
         mm='0'+mm
     } 
 
-    today = dd+'/'+mm+'-'+hh+':'+min;
+    today = dd+'.'+mm+'.'+' | '+hh+':'+min;
 
 
 

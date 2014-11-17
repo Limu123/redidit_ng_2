@@ -1,0 +1,29 @@
+
+
+@import "variables";
+
+
+
+//----- Mixins & Extend Classes
+@mixin inline-ul{
+  @include clearfix;
+  li {
+    float: left;
+  }
+}
+
+@mixin bg-img($img,$img-width, $img-height) {
+  background-image: $img;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: $img-width $img-height;
+}
+
+@mixin btn-border($b-color,$b-size){
+  border: 2px solid $b-color;
+  border-radius: $b-size/2;
+}
+
+%small {
+  font-size: 0.7rem;
+}

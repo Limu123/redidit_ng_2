@@ -68,4 +68,9 @@ angular.module('rediditApp')
       postVoteModel = DataModel.createPostVoteModel(vData);
       Postdata.updateVotes(post, postVoteModel);
     };
+    
+    $scope.getauthorprofile = function(post){
+      //console.log(post.authorUID);
+      $location.path('/user/'+post.authorUID);
+    };
   }]);
