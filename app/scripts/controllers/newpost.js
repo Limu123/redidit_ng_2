@@ -55,26 +55,8 @@ angular.module('rediditApp')
         case 'image':
               postModel = DataModel.createPostModelImage(pData);
               break;
-      };
+      }
 
-      console.log(postModel);
-
-/*
-      $scope.post = {
-        type: $scope.postType || 'link',
-        title: $scope.title || 'demotitle',
-        author: $scope.user.profile.username || 'demoauthor',
-        authorUID: $scope.user.uid || '0000',
-        content: postContent,
-        description: $scope.description || 'description',
-        views: 0,
-        upvotes:0,
-        comments:0,
-        time: Datefactory.getDate()
-      };
-
-      //Postdata.createPost($scope.post);
-*/
       $scope.post = postModel;
       Postdata.createPost($scope.post);
 
