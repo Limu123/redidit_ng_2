@@ -155,7 +155,11 @@ angular.module('rediditApp')
     function _getCommentVotes (comments) {
       comments.forEach(function(comment) {
         Comment.getVotesForComment(comment).$loaded().then(function(v) {
-          comment.votes = v.length;
+          var vSum = 0;
+          v.forEach(function(vote) {
+            vSum += vote.vote;
+          });
+          comment.votes = vSum;
           comment.votesList = v || {};
         })
       })

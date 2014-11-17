@@ -158,7 +158,11 @@ angular.module('rediditApp')
     function _getPostVotes (posts) {
       posts.forEach(function(post) {
         Post.getVotesForPost(post).$loaded().then(function(v) {
-          post.votes = v.length;
+          var vSum = 0;
+          v.forEach(function(vote) {
+            vSum += vote.vote;
+          });
+          post.votes = vSum;
           post.votesList = v || {};
         })
       })
