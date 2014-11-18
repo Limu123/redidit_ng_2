@@ -313,3 +313,9 @@ header {
     font-size: 1.2rem;
   }
 }
+
+.profile-post-meta {
+  margin-left: 0;
+  display: block;
+  @include inline-ul;
+}
