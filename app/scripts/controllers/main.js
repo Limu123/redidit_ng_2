@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', function ($scope, $log, $location, Postdata, Auth, Userprofile) {
+  .controller('MainCtrl', function ($scope, $log, $location, $routeParams, $window,  Postdata, Auth, Userprofile) {
 
 
 
@@ -16,16 +16,35 @@ angular.module('rediditApp')
     $scope.user = Auth.user;
     $scope.postType = 'video';     // initial postType
 
+    //$scope.$emit('iso-method', {name:'destroy', params:null});
+    //$route.reload();
+    
 
-    //console.log($scope.posts);
+
+
 
     $scope.deletePost = function(post){
       //$scope.$emit('iso-method', {name:null, params:null})
       //scope.refreshIso();
       //isotope();
-      Postdata.deletePost(post);
+      Postdata.deletePost(post).then(function(){
+        //$scope.$apply();
+        //$location.path('/detail/-JatGQGv3xw-pMY7sgWm');
+        //$location.path('/');
+        //console.log(post);
+        //$window.location.reload();   
+      });
       Userprofile.deletePost(post); // TODO
+
+      //$scope.$emit('iso-method', {name:'shuffle', params:null})
+      //$scope.$emit('reloadItems'); 
+      //console.log("update isotope");
+      //$scope.$emit('iso-method', {name:'reloadItems'});
     };
+
+    
+
+    
 
     $scope.showDetail = function(post){
       //$log.debug('/detail/'+post.$id);
@@ -49,6 +68,11 @@ angular.module('rediditApp')
       $location.path('/user/'+post.authorUID);
     };
 
+
+    // $scope.$watch($scope.posts, function() {
+    //    console.log('hey, myVar has changed!');
+    //    $scope.$emit('iso-method', {name:'reloadItems', params:null}); 
+    // });
 
 
 

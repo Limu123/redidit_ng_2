@@ -8,7 +8,7 @@
  * Factory in the rediditApp.
  */
 angular.module('rediditApp')
-  .factory('Postdata', function ($firebase, FIREBASE_URL) {
+  .factory('Postdata', function ($firebase, FIREBASE_URL, $location, $routeParams, $route) {
 
     // var postdata = [
     //   { id: 1, title:'first title', upvotes:0, comments: [{text:'first comment', commentupvotes:10 },{text:'second comment', commentupvotes:2 }] },
@@ -37,17 +37,26 @@ angular.module('rediditApp')
         return $firebase(ref.child(postId)).$asObject();
       },
       createPost: function(post){
-        return postdata.$add(post).then(function(postRef){
+        return postdata.$add(post)
+        .then(function(postRef){
           $firebase(userpost_ref.child(post.authorUID))
                         .$push(postRef.name());
           return postRef;
+        })
+        .then(function(){  
+          $route.reload(); 
+          // update manually for isotope
         });
       },
 
 
       deletePost: function(post){
         var postId = post.$id;
-        return postdata.$remove(post);
+        return postdata.$remove(post)
+        .then(function(){
+          $route.reload();
+          // update manually for isotope
+        });
         // TODO: remove post reference from user profile
         // return postdata.$remove(post).then(function(postRef){
         //   //console.log($firebase(userpost_ref.child(post.authorUID)).$asObject());
