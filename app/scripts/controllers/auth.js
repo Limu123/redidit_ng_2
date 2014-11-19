@@ -22,16 +22,10 @@ angular.module('rediditApp')
 
 
     $scope.login = function () {
-      Auth.login($scope.user).then(function () {
-        $location.path('/',function(){
-          console.log("test");
-        });
-
-
-        //TODO SHOW NOTIFICATION
-        $rootScope.showNotification("primary");
-
-
+      Auth.login($scope.user).then(function() {
+        $location.path('/');
+        // Notification
+        $rootScope.$broadcast('notification', {type: "primary", msg:'Welcome back'});
       }, function(error){
         $scope.error = error.toString();
       });
@@ -47,12 +41,8 @@ angular.module('rediditApp')
           return Auth.createProfile(user);
         }).then(function() {
           $location.path('/');
-
-
-          //TODO SHOW NOTIFICATION
-          $rootScope.showNotification("primary");
-
-
+          // Notification
+          $rootScope.$broadcast('notification', {type: "primary", msg:'Welcome '+user.username});
         });
       }, function(error) {
         $scope.error = error.toString();
@@ -62,12 +52,4 @@ angular.module('rediditApp')
 
 
   });
-
-
-
-
-
-
-
-
 

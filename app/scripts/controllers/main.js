@@ -18,35 +18,16 @@ angular.module('rediditApp')
 
 
 
-    $rootScope.showNotification = function(type) {
-        console.log("SHOW NOTIFICATION");
-        $scope.$broadcast('notification', {type: type, msg:'A notification'});
-    }
-
+    // $scope.$on('notification', function(event,data){
+    //   console.log(data);
+    // });
 
 
     $scope.deletePost = function(post){
-      //$scope.$emit('iso-method', {name:null, params:null})
-      //scope.refreshIso();
-      //isotope();
-      Postdata.deletePost(post).then(function(){
-        //$scope.$apply();
-        //$location.path('/detail/-JatGQGv3xw-pMY7sgWm');
-        //$location.path('/');
-        //console.log(post);
-        //$window.location.reload();   
-      });
+      Postdata.deletePost(post);
       Userprofile.deletePost(post); // TODO
-
-      //$scope.$emit('iso-method', {name:'shuffle', params:null})
-      //$scope.$emit('reloadItems'); 
-      //console.log("update isotope");
-      //$scope.$emit('iso-method', {name:'reloadItems'});
     };
 
-    
-
-    
 
     $scope.showDetail = function(post){
       //$log.debug('/detail/'+post.$id);
@@ -66,15 +47,9 @@ angular.module('rediditApp')
     };
 
     $rootScope.getauthorprofile = function(post){
-      //console.log(post.authorUID);
       $location.path('/user/'+post.authorUID);
     };
 
-
-    // $scope.$watch($scope.posts, function() {
-    //    console.log('hey, myVar has changed!');
-    //    $scope.$emit('iso-method', {name:'reloadItems', params:null}); 
-    // });
 
 
 

@@ -29,7 +29,6 @@ angular.module('rediditApp')
         commentauthorUID: $scope.user.uid
       };
       $scope.post.comments++;
-      console.log($scope.post.comments);
       Postdata.createComment($scope.comment, $routeParams.postId, $scope.post.comments);
       $scope.comment.text = "";
     };
