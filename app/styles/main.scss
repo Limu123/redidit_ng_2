@@ -8,6 +8,7 @@
 @import "mixins";
 @import "icons";
 @import "forms";
+@import "notification";
 
 
 
@@ -311,3 +312,18 @@ header {
     font-size: 1.2rem;
   }
 }
+
+
+
+//----- Notification
+#message {
+  padding: 2rem;
+  width: 100%;
+  background: $primary-color;
+  color: $white;
+  z-index: 10000;
+}
+
+
+
+

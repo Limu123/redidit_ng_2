@@ -8,9 +8,9 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('AuthCtrl', function ($scope, $location, Auth, user) {
+  .controller('AuthCtrl', function ($scope, $rootScope, $location, Auth, user) {
 
-    //$scope.gender = 'female';
+
 
     // if user is logged in, redirect to homepage
     if (user) {
@@ -20,13 +20,18 @@ angular.module('rediditApp')
     //   $location.path('/');
     // }
 
-    // $scope.setGender = function($event){
-    //   $scope.gender = $event.target.value;
-    // };
 
     $scope.login = function () {
       Auth.login($scope.user).then(function () {
-        $location.path('/');
+        $location.path('/',function(){
+          console.log("test");
+        });
+
+
+        //TODO SHOW NOTIFICATION
+        $rootScope.showNotification("primary");
+
+
       }, function(error){
         $scope.error = error.toString();
       });
@@ -42,21 +47,19 @@ angular.module('rediditApp')
           return Auth.createProfile(user);
         }).then(function() {
           $location.path('/');
+
+
+          //TODO SHOW NOTIFICATION
+          $rootScope.showNotification("primary");
+
+
         });
       }, function(error) {
         $scope.error = error.toString();
       });
     };
 
-    // $scope.register = function () {
-    //   Auth.register($scope.user).then(function() {
-    //     return Auth.login($scope.user).then(function() {
-    //       $location.path('/');
-    //     }, function(error){
-    //       $scope.error = error.toString();
-    //     });
-    //   });
-    // };
+
 
   });
 

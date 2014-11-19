@@ -18,7 +18,8 @@ angular
     'ngTouch', 
     'firebase',
     'iso.directives', 
-    'hljs'
+    'hljs', 
+    'ngNotification'
   ])
   
   .constant('FIREBASE_URL', 'https://redidit.firebaseio.com/')

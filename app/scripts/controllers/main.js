@@ -16,10 +16,12 @@ angular.module('rediditApp')
     $scope.user = Auth.user;
     $scope.postType = 'video';     // initial postType
 
-    //$scope.$emit('iso-method', {name:'destroy', params:null});
-    //$route.reload();
-    
 
+
+    $rootScope.showNotification = function(type) {
+        console.log("SHOW NOTIFICATION");
+        $scope.$broadcast('notification', {type: type, msg:'A notification'});
+    }
 
 
 
