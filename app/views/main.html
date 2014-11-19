@@ -1,5 +1,6 @@
 
 
+<p ng-show="posts.length == 0">Nothing here</p>
 
 <ul class="masonry-wrap" isotope-container class="isotope">
 
@@ -15,7 +16,7 @@
         <embed code="code" url="{{post.content}}" type="{{post.type}}"/>
       </div>
       <div class="post-title">
-        <span class="post-type icon icon-video"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type icon icon-video"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>
     </div>
 
@@ -25,14 +26,14 @@
         <embed code="code" url="{{post.content}}" type="{{post.type}}"/>
       </div>
       <div class="post-title">
-        <span class="post-type icon icon-audio"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type icon icon-audio"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>
     </div>
 
 
     <div ng-switch-when="link">
       <div class="post-title no-margin">
-        <span class="post-type icon icon-link"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type icon icon-link"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>
     </div>
 
@@ -41,14 +42,14 @@
 
       <picture code="code" url="{{post.content}}" type="{{post.type}}"/>
       <div class="post-title">
-        <span class="post-type icon icon-image"></span><a ng-click="showDetail(post)">{{post.title}}</a>
+        <span class="post-type icon icon-image"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>
     </div>
 
 
     <div ng-switch-when="text">
       <div class="post-title no-margin">
-        <span class="post-type icon icon-text"></span><a ng-click="showDetail(post)">{{post.title}} - {{post.content}}</a>
+        <span class="post-type icon icon-text"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}} - {{post.content}}</a>
       </div>
     </div>
 
@@ -58,7 +59,7 @@
 
 
   <ul class="post-meta">
-    <li class="author"><a ng-click="getauthorprofile(post)">{{post.author}}</a></li>
+    <li class="author"><a title="Show profile" ng-click="getauthorprofile(post)">{{post.author}}</a></li>
     <li class="views">{{post.views}} Views</li>
     <li class="comments">{{post.comments}} Comments</li> <!-- TODO: show comments -->
     <li class="time">{{post.time}}</li>
@@ -66,9 +67,9 @@
 
   <ul class="post-rating">
     <li><div class="count">{{post.upvotes}}</div></li>
-    <li><a class="icon icon-voteup" ng-click="voteUp(post)"></a></li>
-    <li><a class="icon icon-votedown" ng-click="voteDown(post)"></a></li>
-    <li><a class="icon icon-delete" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
+    <li><a class="icon icon-voteup" title="Vote up" ng-click="voteUp(post)"></a></li>
+    <li><a class="icon icon-votedown" title="Vote down" ng-click="voteDown(post)"></a></li>
+    <li><a class="icon icon-delete" title="Delete" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
   </ul>
 
   <div class="post-footer"></div>

@@ -9,15 +9,15 @@
 
   <!-- radio group -->
   <input checked type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-link" for="radio-link"></label>
+  <label class="radio-label icon icon-link" for="radio-link" title="Link"></label>
   <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-image" for="radio-image"></label>
+  <label class="radio-label icon icon-image" for="radio-image" title="Image"></label>
   <input type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-video" for="radio-video"></label>
+  <label class="radio-label icon icon-video" for="radio-video" title="Video"></label>
   <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-audio" for="radio-audio"></label>
+  <label class="radio-label icon icon-audio" for="radio-audio" title="Audio"></label>
   <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-text" for="radio-text"></label>
+  <label class="radio-label icon icon-text" for="radio-text" title="Text"></label>
   
 
   <!-- text-inputs -->
@@ -33,7 +33,7 @@
 
     <textarea name="textarea" data-ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
 
-    <input type="submit" value="Post">
+    <input type="submit" value="Post" title="Post">
 
   </div><!--ng-switch end-->
 

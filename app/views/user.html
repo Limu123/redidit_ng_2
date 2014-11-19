@@ -19,7 +19,7 @@
     <!-- TO DO: reverse posts -->
     <li ng-repeat="post in posts" class="profile-post">
 
-      <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}">{{post.title}}</a>
+      <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}" title="Show post '{{post.title}}'">{{post.title}}</a>
 
 
       <ul class="post-meta">

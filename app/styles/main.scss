@@ -253,6 +253,7 @@ header {
   padding-bottom: 1rem;
   .comment-author {
     @extend %small;
+    margin-left: 0.5rem;
   }
   .post-rating {
     float: none;

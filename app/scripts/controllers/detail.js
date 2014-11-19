@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('DetailCtrl', function ($scope, $location, $log, $routeParams, Postdata, Auth) {
+  .controller('DetailCtrl', function ($scope, $rootScope, $location, $log, $routeParams, Postdata, Auth) {
 
     $scope.user = Auth.user;
     $scope.post = Postdata.getPost($routeParams.postId);
@@ -49,6 +49,9 @@ angular.module('rediditApp')
       Postdata.updateCommentUpvotes(comment, $routeParams.postId, comment.commentupvotes);
     };
 
+    $scope.getcommentauthorprofile = function(comment){
+      $location.path('/user/'+comment.commentauthorUID);
+    };
 
 
     

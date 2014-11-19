@@ -6,11 +6,11 @@
 <div class="post detail">
 
   <div class="post-menu">
-    <a ng-click="showOverview()" class="btn go-back icon icon-goback"></a>
+    <a ng-click="showOverview()" title="Back to overview" class="btn go-back icon icon-goback"></a>
     <ul class="post-rating">
       <li><div class="count">{{post.upvotes}}</div></li>
-      <li><a class="icon icon-voteup" ng-click="voteUp(post)"></a></li>
-      <li><a class="icon icon-votedown" ng-click="voteDown(post)"></a></li>
+      <li><a class="icon icon-voteup" title="Vote up" ng-click="voteUp(post)"></a></li>
+      <li><a class="icon icon-votedown" title="Vote down" ng-click="voteDown(post)"></a></li>
     </ul>
   </div>
 
@@ -66,7 +66,7 @@
 
 
   <ul class="post-meta">
-    <li class="author" ng-bind="post.author">{{post.author}}</li>
+    <li class="author"><a title="Show profile" ng-click="getauthorprofile(post)">{{post.author}}</a></li>
     <li class="views">{{post.views}} Views</li>
     <li class="comments">{{comments.length}} Comments</li>
     <li class="time">{{post.time}}</li>
@@ -79,21 +79,23 @@
 
 <form ng-submit="createComment()" class="comment-form">
   <input type="text" placeholder="Leave a comment" ng-model="comment.text"></input>
-    <input type="submit" value="Post" class="post-btn" />
+    <input type="submit" value="Post" title="Post comment" class="post-btn" />
 </form>
 
 
 
 <ul class="post-comments">
   <!-- <li ng-repeat="comment in comments | orderBy: '-commentupvotes'" class="comment"> -->
+  <p ng-show="comments.length == 0">No comments</p>
+
   <li ng-repeat="comment in comments | reverse" class="comment">
-    <p>{{comment.text}} <span class="comment-author"> {{comment.commentauthor}}</span></p>
+    <p>{{comment.text}}<a title="Show profile" class="comment-author" ng-click="getcommentauthorprofile(comment)">{{comment.commentauthor}}</a></p>
 
     <ul class="post-rating">
       <li><div class="count">{{comment.commentupvotes}}</div></li>
-      <li><a class="icon icon-voteup" ng-click="voteUpComment(comment)"></a></li>
-      <li><a class="icon icon-votedown" ng-click="voteDownComment(comment)"></a></li>
-      <li><a class="icon icon-delete" ng-click="deleteComment(comment)" ng-show="user.uid === comment.commentauthorUID"></a></li>
+      <li><a class="icon icon-voteup" title="Vote up" ng-click="voteUpComment(comment)"></a></li>
+      <li><a class="icon icon-votedown" title="Vote down" ng-click="voteDownComment(comment)"></a></li>
+      <li><a class="icon icon-delete" title="Delete" ng-click="deleteComment(comment)" ng-show="user.uid === comment.commentauthorUID"></a></li>
     </ul>
 
   </li>
