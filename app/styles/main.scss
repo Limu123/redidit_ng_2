@@ -8,6 +8,7 @@
 @import "mixins";
 @import "icons";
 @import "forms";
+@import "notification";
 
 
 
@@ -256,6 +257,7 @@ header {
   padding-bottom: 1rem;
   .comment-author {
     @extend %small;
+    margin-left: 0.5rem;
   }
   .post-rating {
     float: none;
@@ -313,3 +315,18 @@ header {
     font-size: 1.2rem;
   }
 }
+
+
+
+//----- Notification
+#message {
+  padding: 2rem;
+  width: 100%;
+  background: $primary-color;
+  color: $white;
+  z-index: 10000;
+}
+
+
+
+

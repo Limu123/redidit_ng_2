@@ -1,12 +1,13 @@
 <header ng-controller="NavCtrl">
-  <a class="icon logo" ng-click="loadPage('')"></a>
+   <notification></notification>
+  <a class="icon logo" title="Redidit" ng-click="loadPage('')"></a>
   <nav>
     <ul class="mainnav">
-      <li ng-show="signedIn()"><a class="icon icon-newpost" ng-click="loadPage('newpost')"></a></li>
-      <li ng-show="signedIn()"><a class="icon icon-userprofile" ng-href="#/user/{{ user.uid }}"></a></li>
-      <li><a class="icon icon-settings" ng-click="loadPage('settings')"></a></li>
-      <li ng-show="signedIn()"><a class="icon icon-logout" ng-href="#" ng-click="logout()"></a></li>
-      <li ng-hide="signedIn()"><a class="icon icon-login" ng-click="loadPage('login')"></a></li>
+      <li ng-show="signedIn()"><a class="icon icon-newpost" title="New Post" ng-click="loadPage('newpost')"></a></li>
+      <li ng-show="signedIn()"><a class="icon icon-userprofile" title="Profile" ng-href="#/user/{{ user.uid }}"></a></li>
+      <li><a class="icon icon-settings" title="Settings" ng-click="loadPage('settings')"></a></li>
+      <li ng-show="signedIn()"><a class="icon icon-logout" title="Logout" ng-href="#" ng-click="logout()"></a></li>
+      <li ng-hide="signedIn()"><a class="icon icon-login" title="Login" ng-click="loadPage('login')"></a></li>
     </ul>
   </nav>
 </header>

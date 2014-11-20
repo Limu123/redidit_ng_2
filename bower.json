@@ -14,11 +14,17 @@
     "foundation": "~5.4.5",
     "firebase": "~1.0.24",
     "angularfire": "~0.8.2",
-    "angular-isotope": "~0.1.14"
+    "angular-isotope": "~0.1.14",
+    "angular-highlightjs": "~0.3.2",
+    "isotope": "~2.0.1",
+    "ng-notification": "~0.0.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",
     "angular-scenario": "~1.2.0"
   },
-  "appPath": "app"
+  "appPath": "app",
+  "resolutions": {
+    "isotope": "2.0.0"
+  }
 }

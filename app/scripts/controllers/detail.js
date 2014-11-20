@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('DetailCtrl', ['$scope','$location','$log','$routeParams', 'Postdata', 'Commentdata', 'Auth', function ($scope, $location, $log, $routeParams, Postdata, Commentdata, Auth) {
+  .controller('DetailCtrl', ['$scope', '$rootScope', '$location','$log','$routeParams', 'Postdata', 'Commentdata', 'Auth', function ($scope, $rootScope, $location, $log, $routeParams, Postdata, Commentdata, Auth) {
 
     $scope.user = Auth.user;
     $scope.signedIn = Auth.signedIn;
@@ -115,6 +115,10 @@ angular.module('rediditApp')
 
       commentVoteModel = DataModel.createCommentVoteModel(vData);
       Commentdata.updateCommentVotes(comment, commentVoteModel);
+    };
+    
+    $scope.getcommentauthorprofile = function(comment){
+      $location.path('/user/'+comment.commentauthorUID);
     };
 
   }]);

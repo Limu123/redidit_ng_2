@@ -61,5 +61,9 @@ angular.module('rediditApp')
       Postdata.createPost($scope.post);
 
       $location.path('/');
+
+      //$scope.$emit('iso-method', {name:'reloadItems', params:null}); 
+
+
     };
   }]);

@@ -37,14 +37,21 @@ angular.module('rediditApp')
       },
 
       createPost: function (post) {
-        return postdata.$asArray().$add(post);
+        return postdata.$add(post).then(function(postRef){
+        .then(function(postRef){
+        })
+        .then(function(){  
+          $route.reload(); 
+          // update manually for isotope
       },
 
       deletePost: function (post) {
         Post.deleteAllVotes(post);
         Commentdata.deleteAllComments(post);
-        postdata.$asArray().$remove(post);
-      },
+        return postdata.$remove(post);
+        .then(function(){
+          $route.reload();
+          // update manually for isotope
 
       deleteAllVotes: function(post) {
         var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');

@@ -4,19 +4,19 @@
     <form class="post-form" ng-submit="createPost()">
 
       <input checked type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
-      <label for="radio-link">Link</label>
+  <label class="radio-label icon icon-link" for="radio-link" title="Link"></label>
 
       <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
-      <label for="radio-image">Image</label>
+  <label class="radio-label icon icon-image" for="radio-image" title="Image></label>
 
       <input type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
-      <label for="radio-video">Video</label>
+  <label class="radio-label icon icon-video" for="radio-video" title="Video></label>
 
       <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
-      <label for="radio-audio">Audio</label>
+  <label class="radio-label icon icon-audio" for="radio-audio" title="Audio"></label>
 
       <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
-      <label for="radio-text">Text</label>
+  <label class="radio-label icon icon-text" for="radio-text" title="Text></label>
 
 
       <div ng-switch="postType">
@@ -30,7 +30,7 @@
         <input ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" data-ng-model="$parent.url">
 
         <textarea name="textarea" ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
-        <input type="submit" value="Post">
+    <input type="submit" value="Post" title="Post" title="Post>
       </div>
 
 
