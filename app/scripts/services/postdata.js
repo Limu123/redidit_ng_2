@@ -36,6 +36,14 @@ angular.module('rediditApp')
         return post;
       },
 
+      getPostsForUser: function(userId) {
+        var posts = Post.all().filter(function (p) {
+          return p.authorUID === userId;
+        });
+
+        return posts;
+      },
+
       createPost: function (post) {
         return postdata.$add(post).then(function(postRef){
         .then(function(postRef){
@@ -158,6 +166,7 @@ angular.module('rediditApp')
       posts.forEach(function(post) {
         Commentdata.getCommentsForPost(post).$loaded().then(function(c) {
           post.CommentCount = c.length;
+          post.comments = c;
         });
       });
     }

@@ -8,7 +8,7 @@
 @import "mixins";
 @import "icons";
 @import "forms";
-@import "notification";
+//@import "notification";
 
 
 
@@ -316,6 +316,11 @@ header {
   }
 }
 
+.profile-post-meta {
+  margin-left: 0;
+  display: block;
+  @include inline-ul;
+}
 
 
 //----- Notification
