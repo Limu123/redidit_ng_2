@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', ['$scope', '$log', '$location','Postdata','Commentdata', 'Auth', 'Userprofile', function ($scope, $log, $location, Postdata, Commentdata, Auth, Userprofile) {
+  .controller('MainCtrl', ['$scope', '$log', '$location', '$route','Postdata','Commentdata', 'Auth', 'Userprofile', function ($scope, $log, $location, $route, Postdata, Commentdata, Auth, Userprofile) {
 
     $scope.posts = Postdata.all();
 
@@ -29,7 +29,9 @@ angular.module('rediditApp')
       //scope.refreshIso();
       //isotope();
 
-      Postdata.deletePost(post);
+      Postdata.deletePost(post).then(function () {
+        $route.reload();
+      });
     };
 
     $scope.isOwn = function(post) {
@@ -68,7 +70,7 @@ angular.module('rediditApp')
       postVoteModel = DataModel.createPostVoteModel(vData);
       Postdata.updateVotes(post, postVoteModel);
     };
-    
+
     $scope.getauthorprofile = function(post){
       //console.log(post.authorUID);
       $location.path('/user/'+post.authorUID);

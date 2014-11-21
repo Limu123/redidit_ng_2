@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('NewpostCtrl', ['$scope','$log','$location','Postdata','Datefactory', 'Auth', function ($scope, $log, $location, Postdata, Datefactory, Auth) {
+  .controller('NewpostCtrl', ['$scope','$log','$location', '$route', 'Postdata','Datefactory', 'Auth', function ($scope, $log, $location, $route, Postdata, Datefactory, Auth) {
 
     $scope.posts = Postdata.all;
     $scope.user = Auth.user;      // get post author
@@ -58,11 +58,14 @@ angular.module('rediditApp')
       }
 
       $scope.post = postModel;
-      Postdata.createPost($scope.post);
+      Postdata.createPost($scope.post).then(function() {
+        $route.reload();
+        // update manually for isotope
+      });
 
       $location.path('/');
 
-      //$scope.$emit('iso-method', {name:'reloadItems', params:null}); 
+      //$scope.$emit('iso-method', {name:'reloadItems', params:null});
 
 
     };

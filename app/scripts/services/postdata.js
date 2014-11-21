@@ -10,7 +10,7 @@
 angular.module('rediditApp')
   .factory('Postdata', ['$firebase', 'FIREBASE_URL', 'Commentdata', function ($firebase, FIREBASE_URL, Commentdata) {
 
-    var ref = new Firebase(FIREBASE_URL + '/posts');
+    var ref = new Firebase(FIREBASE_URL + '/posts/');
 
     var postdata = $firebase(ref);
 
@@ -45,21 +45,18 @@ angular.module('rediditApp')
       },
 
       createPost: function (post) {
-        return postdata.$add(post).then(function(postRef){
-        .then(function(postRef){
-        })
-        .then(function(){  
-          $route.reload(); 
-          // update manually for isotope
+        //return postdata.$add(post).then(function(postRef){
+        //    $route.reload();
+        //  });
+        return postdata.$asArray().$add(post);
       },
 
       deletePost: function (post) {
         Post.deleteAllVotes(post);
         Commentdata.deleteAllComments(post);
-        return postdata.$remove(post);
-        .then(function(){
-          $route.reload();
-          // update manually for isotope
+        return postdata.$asArray().$remove(post);
+      },
+
 
       deleteAllVotes: function(post) {
         var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');

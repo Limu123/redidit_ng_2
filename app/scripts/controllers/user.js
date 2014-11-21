@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('UserCtrl', ['$scope', '$routeParams', 'Userprofile', 'Postdata', 'Commentdata', function ($scope, $routeParams, Userprofile, Postdata, Commentdata)  {
+  .controller('UserCtrl', ['$scope', '$route', '$routeParams', 'Userprofile', 'Postdata', 'Commentdata', function ($scope, $route, $routeParams, Userprofile, Postdata, Commentdata)  {
 
     var uid = $routeParams.userId;
 
@@ -20,6 +20,8 @@ angular.module('rediditApp')
     };
 
     $scope.deletePost = function(post) {
-      Postdata.deletePost(post);
+      Postdata.deletePost(post).then(function () {
+        $route.reload();
+      });
     }
   }]);

@@ -14,7 +14,7 @@
 
     <div ng-switch-when="video">
       <div class="embed-container">
-        <embed code="code" url="{{post.url}}" type="{{post.type}}"/>
+        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"/>
       </div>
       <div class="post-title">
         <span class="post-type icon icon-video"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
@@ -24,7 +24,7 @@
 
     <div ng-switch-when="audio">
       <div class="embed-container">
-        <embed code="code" url="{{post.url}}" type="{{post.type}}"/>
+        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"/>
       </div>
       <div class="post-title">
         <span class="post-type icon icon-audio"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
@@ -41,7 +41,7 @@
 
     <div ng-switch-when="image">
 
-      <picture pcode="pcode" url="{{post.url}}" type="{{post.type}}"/>
+      <picture code="code" url="{{post.url}}" type="{{post.urlType}}"/>
       <div class="post-title">
         <span class="post-type icon icon-image"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>
@@ -62,7 +62,7 @@
   <ul class="post-meta">
     <li class="author"><a title="Show profile" ng-click="getauthorprofile(post)">{{post.author}}</a></li>
     <li class="views">{{post.views}} Views</li>
-    <li class="comments">{{post.commentCount}} Comments</li> <!-- TODO: show comments -->
+    <li class="comments">{{post.comments.length}} Comments</li> <!-- TODO: show comments -->
     <li class="time">{{post.time}}</li>
   </ul>
 
