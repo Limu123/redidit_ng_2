@@ -2,41 +2,50 @@
   <div class="small-12 medium-10 large-8 small-centered large-centered columns">
 
 
-<div class="user-profile">
+    <div class="user-profile">
 
-<!--       <img ng-src="http://www.gravatar.com/avatar/{{ profile.md5_hash }}" class="prof-img" /> -->
+    <!--       <img ng-src="http://www.gravatar.com/avatar/{{ profile.md5_hash }}" class="prof-img" /> -->
 
-  <div class="profile-head">
-    <img src ="http://robohash.org/{{ profile.username }}?bgset=bg2" />
-    <!-- ?set=set2  -->
-    <blockquote>&laquo;{{ profile.description }}&raquo;</blockquote>
-    <span>{{ profile.username }}, {{ profile.email }}</span>
-  </div><!--profile-head-->
+      <div class="profile-head">
+        <img src ="http://robohash.org/{{ profile.username }}?bgset=bg2" />
+        <!-- ?set=set2  -->
+        <blockquote>&laquo;{{ profile.description }}&raquo;</blockquote>
+        <span>{{ profile.username }}, {{ profile.email }}</span>
+      </div>
 
+        <ul class="profile-posts">
+          <li ng-repeat="post in posts | reverse" class="profile-post">
 
+            <ul class="profile-post-meta">
+              <li><span class="post-type icon icon-{{post.urlType}}"></span></li>
+              <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}" title="Show post'{{post.title}}'">{{post.title}}</a>
+              <li><a class="icon icon-delete" ng-click="deletePost(post)"></a></li>
+            </ul>
 
-  <ul class="profile-posts">
-    <!-- TO DO: reverse posts -->
-    <li ng-repeat="post in posts" class="profile-post">
+            <ul class="post-meta">
+              <li class="views">{{post.views}} Views</li>
+              <li class="comments">{{post.CommentCount}} Comments</li>
+              <li class="time">{{post.time}}</li>
+            </ul>
 
-      <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}" title="Show post '{{post.title}}'">{{post.title}}</a>
+            <!--
+            <ul class="post-comments">
+              <li ng-repeat="comment in post.comments | reverse" class="comment">
+                <p>{{comment.commentText}} <span class="comment-author"> {{comment.author}}</span></p>
+                <ul class="post-rating">
+                  <li><div class="count">{{comment.votes}}</div></li>
+                  <li><a class="{{getStyleForVoteUpComment(comment)}}" ng-click="voteUpComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
+                  <li><a class="{{getStyleForVoteDownComment(comment)}}" ng-click="voteDownComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
+                  <li><a class="icon icon-delete" ng-click="deleteComment(comment)" ng-show="profile.$id === comment.authorUID"></a></li>
+                </ul>
+              </li>
+            </ul>
+            -->
 
+          </li>
+          <div ng-show="postCount === 0">You never posted a link. To add a post click on +</div>
+        </ul>
 
-      <ul class="post-meta">
-        <li class="views">{{post.views}} Views</li>
-        <li class="comments">{{post.comments}} Comments</li>
-        <!-- TODO: show comments -->
-        <li class="time">{{post.time}}</li>
-      </ul>
-
-    </li>
-  </ul>
-
-  <!-- TODO: show message if no posts -->
-
-
-</div><!--user-profile-->
-
-
-
-</div></div><!--row columns -->
+    </div>
+  </div>
+</div>

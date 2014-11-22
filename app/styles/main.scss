@@ -8,7 +8,7 @@
 @import "mixins";
 @import "icons";
 @import "forms";
-@import "notification";
+//@import "notification";
 
 
 
@@ -67,7 +67,7 @@ header {
   float: left;
   @media only screen and (min-width: 22rem) {
     width: 8rem;
-  } 
+  }
 }
 .mainnav {
   @include inline-ul;
@@ -103,10 +103,10 @@ header {
     width: 100%;
     @media only screen and (min-width: 31rem) {
       width: 50%;
-    } 
+    }
     @media only screen and (min-width: 45.5rem) {
       width: 33.33%;
-    } 
+    }
   }
 }
 
@@ -184,11 +184,14 @@ header {
     display: block;
     @include btn-border($dark-grey,$btn-size);
   }
-  .icon-voteup, .icon-votedown{
+  .icon-voteup, .icon-votedown {
     border-color: $primary-color;
     &:hover {
       border-color: $dark-grey;
     }
+  }
+  .icon-voteup-selected, .icon-votedown-selected{
+    border-color: orangered;
   }
 }
 
@@ -276,7 +279,7 @@ header {
     max-width: 14rem;
     @media only screen and (min-width: 31rem) {
       float: left;
-    } 
+    }
   }
   blockquote {
     @include clearfix;
@@ -290,13 +293,13 @@ header {
     text-align: center;
     @media only screen and (min-width: 31rem) {
       text-align: left;
-    } 
+    }
   }
   span {
     @extend %small;
     @media only screen and (min-width: 31rem) {
       float: left;
-    } 
+    }
   }
 }
 
@@ -313,6 +316,11 @@ header {
   }
 }
 
+.profile-post-meta {
+  margin-left: 0;
+  display: block;
+  @include inline-ul;
+}
 
 
 //----- Notification

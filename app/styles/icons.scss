@@ -64,6 +64,9 @@
 
 .icon-voteup { background-position-x: -542px; }
 .icon-votedown{ background-position-x: -646px; }
+.icon-voteup-selected{ background-position-x: -542px; }
+.icon-votedown-selected{ background-position-x: -646px; }
+
 .icon-delete {
   background-position-x: -750px;
   background-position-y: -28px;
@@ -122,7 +125,7 @@
     &:hover {
       background-position: -1765px -86px;
     }
-  } 
+  }
 }
 
 

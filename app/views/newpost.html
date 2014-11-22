@@ -1,45 +1,39 @@
 <div class="row">
   <div class="small-12 medium-10 large-8 small-centered large-centered columns">
 
+    <form class="post-form" ng-submit="createPost()">
+
+      <input checked type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
+      <label class="radio-label icon icon-link" for="radio-link" title="Link"></label>
+
+      <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
+      <label class="radio-label icon icon-image" for="radio-image" title="Image"></label>
+
+      <input type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
+      <label class="radio-label icon icon-video" for="radio-video" title="Video"></label>
+
+      <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
+      <label class="radio-label icon icon-audio" for="radio-audio" title="Audio"></label>
+
+      <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
+      <label class="radio-label icon icon-text" for="radio-text" title="Text"></label>
 
 
+      <div ng-switch="postType">
+        <input type="text" placeholder="Title" ng-model="title">
 
+        <input ng-switch-when="link" type="text" placeholder="Link-URL, e.g. www.redidit.com" data-ng-model="$parent.url">
+        <input ng-switch-when="audio" type="text" placeholder="Soundcloud-URL, e.g. 170045438" data-ng-model="$parent.url">
+        <input ng-switch-when="video" type="text" placeholder="Youtube-URL, e.g. wAXJmUqlnUw" data-ng-model="$parent.url">
 
-<form class="post-form" ng-submit="createPost()">
+        <textarea ng-switch-when="text" type="text" placeholder="Teaser-Text, max 200 characters" data-ng-model="$parent.text" rows="4" cols="5" maxlength="200" required="true"></textarea>
+        <input ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" data-ng-model="$parent.url">
 
-  <!-- radio group -->
-  <input checked type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-link" for="radio-link" title="Link"></label>
-  <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-image" for="radio-image" title="Image"></label>
-  <input type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-video" for="radio-video" title="Video"></label>
-  <input type="radio" name="posttype" value="audio" id="radio-audio" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-audio" for="radio-audio" title="Audio"></label>
-  <input type="radio" name="posttype" value="text" id="radio-text" ng-click="setPosttype($event)">
-  <label class="radio-label icon icon-text" for="radio-text" title="Text"></label>
-  
+        <textarea name="textarea" ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
+        <input type="submit" value="Post" title="Post">
+      </div>
 
-  <!-- text-inputs -->
-  <div data-ng-switch="postType">
+      </form>
 
-    <input type="text" placeholder="Title" ng-model="title">
-
-    <input data-ng-switch-when="link" type="text" placeholder="Link-URL, e.g. www.google.com" data-ng-model="field.content">
-    <input data-ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" data-ng-model="field.content">
-    <input data-ng-switch-when="audio" type="text" placeholder="Soundcloud-URL, e.g. 170045438" data-ng-model="field.content">
-    <input data-ng-switch-when="video" type="text" placeholder="Youtube-URL, e.g. wAXJmUqlnUw" data-ng-model="field.content">
-    <textarea data-ng-switch-when="text" type="text" placeholder="Teaser-Text, max 200 characters" data-ng-model="field.content" rows="4" cols="5" maxlength="200" required="true"></textarea>
-
-    <textarea name="textarea" data-ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
-
-    <input type="submit" value="Post" title="Post">
-
-  </div><!--ng-switch end-->
-
-
-</form>
-
-
-
-</div></div><!--row columns -->
+  </div>
+</div>

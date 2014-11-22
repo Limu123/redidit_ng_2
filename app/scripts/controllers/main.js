@@ -8,49 +8,71 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $log, $location, $routeParams, $window,  Postdata, Auth, Userprofile) {
+  .controller('MainCtrl', ['$scope', '$log', '$location', '$route','Postdata','Commentdata', 'Auth', 'Userprofile', function ($scope, $log, $location, $route, Postdata, Commentdata, Auth, Userprofile) {
 
+    $scope.posts = Postdata.all();
 
-
-    $scope.posts = Postdata.all;
     $scope.user = Auth.user;
-    $scope.postType = 'video';     // initial postType
+    $scope.signedIn = Auth.signedIn;
 
-
-
-    // $scope.$on('notification', function(event,data){
-    //   console.log(data);
-    // });
-
-
-    $scope.deletePost = function(post){
-      Postdata.deletePost(post);
-      Userprofile.deletePost(post); // TODO
+    $scope.getStyleForVoteUpPost = function(post)  {
+      return Postdata.getStyleForVoteUpPost(post, $scope.user);
     };
 
+    $scope.getStyleForVoteDownPost = function(post) {
+      return Postdata.getStyleForVoteDownPost(post, $scope.user);
+    };
+
+    $scope.deletePost = function(post){
+
+      //$scope.$emit('iso-method', {name:null, params:null})
+      //scope.refreshIso();
+      //isotope();
+
+      Postdata.deletePost(post).then(function () {
+        $route.reload();
+      });
+    };
+
+    $scope.isOwn = function(post) {
+      return post.authorUID === Auth.user.uid;
+    }
 
     $scope.showDetail = function(post){
-      //$log.debug('/detail/'+post.$id);
       post.views++;
-      Postdata.updateViews(post.$id, post.views);
+      Postdata.updateViews(post);
+
       $location.path('/detail/'+post.$id);
     };
 
-    $scope.voteUp = function(post){
-      post.upvotes++;
-      Postdata.updateUpvotes(post.$id, post.upvotes);
+    $scope.voteUpPost = function(post){
+      var postVoteModel;
+
+      var vData = {
+        postId: post.$id,
+        authorUID: $scope.user.uid,
+        vote: 1
+      };
+
+      postVoteModel = DataModel.createPostVoteModel(vData);
+      Postdata.updateVotes(post, postVoteModel);
     };
 
-    $scope.voteDown = function(post){
-      post.upvotes--;
-      Postdata.updateUpvotes(post.$id, post.upvotes);
+    $scope.voteDownPost = function(post){
+      var postVoteModel;
+
+      var vData = {
+        postId: post.$id,
+        authorUID: $scope.user.uid,
+        vote: -1
+      };
+
+      postVoteModel = DataModel.createPostVoteModel(vData);
+      Postdata.updateVotes(post, postVoteModel);
     };
 
-    $rootScope.getauthorprofile = function(post){
+    $scope.getauthorprofile = function(post){
+      //console.log(post.authorUID);
       $location.path('/user/'+post.authorUID);
     };
-
-
-
-
-  });
+  }]);
