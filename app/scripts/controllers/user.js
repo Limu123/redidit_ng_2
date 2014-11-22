@@ -8,13 +8,21 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('UserCtrl', ['$scope', '$route', '$routeParams', 'Userprofile', 'Postdata', 'Commentdata', function ($scope, $route, $routeParams, Userprofile, Postdata, Commentdata)  {
+  .controller('UserCtrl', ['$scope', '$route', '$routeParams', 'Userprofile', 'Postdata', 'Commentdata', 'Auth', function ($scope, $route, $routeParams, Userprofile, Postdata, Commentdata, Auth)  {
 
     var uid = $routeParams.userId;
 
+
     $scope.profile = Userprofile.getUser(uid);
     $scope.posts = Postdata.all();
+
+    Auth.resolveUser().then(function(){
+      $scope.currentUser = Auth.user.uid;
+    });
+
     $scope.postCount = 0;
+
+
 
     $scope.posts.$loaded().then(function(pList) {
       var filteredData = pList.filter(function (p) {

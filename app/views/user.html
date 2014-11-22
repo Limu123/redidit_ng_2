@@ -16,12 +16,28 @@
         <ul class="profile-posts">
           <li ng-repeat="post in posts | reverse" class="profile-post">
 
-            <ul class="profile-post-meta">
+            <span class="post-type icon icon-{{post.urlType}}"></span>
+            <a ng-href="#/detail/{{ post.$id }}" title="Show post'{{post.title}}'">{{post.title}}</a>
+            <a class="icon icon-delete" ng-click="deletePost(post)" ng-show="currentUser === post.authorUID"></a>
+<!--             1{{currentUser}}
+            2{{profile.$id}}
+            3{{post.authorUID}} -->
+<!-- 
+  $scope.currentUser
+           ng-show="profile.$id === post.authorUID"
+           ng-show="user.uid === post.authorUID"
+           ng-show="user.uid === profile.$id"
+
+ -->
+
+
+
+<!--             <ul class="profile-post-meta">
               <li><span class="post-type icon icon-{{post.urlType}}"></span></li>
               <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}" title="Show post'{{post.title}}'">{{post.title}}</a>
               <li><a class="icon icon-delete" ng-click="deletePost(post)"></a></li>
             </ul>
-
+ -->
             <ul class="post-meta">
               <li class="views">{{post.views}} Views</li>
               <li class="comments">{{post.CommentCount}} Comments</li>

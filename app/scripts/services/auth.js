@@ -20,7 +20,6 @@ angular.module('rediditApp')
     createProfile: function (user) {
       var profile = {
         username: user.username,
-        //gender: user.gender,
         description: user.description,
         email: user.email,
         md5_hash: user.md5_hash
@@ -45,10 +44,9 @@ angular.module('rediditApp')
   };
 
   $rootScope.$on('$firebaseSimpleLogin:login', function(e, user) {
-    console.log('logged in');
+    console.log(user.uid+' logged in');
     angular.copy(user, Auth.user);
     Auth.user.profile = $firebase(ref.child('profile').child(Auth.user.uid)).$asObject();
-    //console.log(Auth.user);
   });
   $rootScope.$on('$firebaseSimpleLogin:logout', function() {
     console.log('logged out');
