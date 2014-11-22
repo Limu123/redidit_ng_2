@@ -10,14 +10,12 @@
  */
 angular
   .module('rediditApp', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
     'ngTouch',
     'firebase',
-    'iso.directives', 
+    'iso.directives',
     'ngNotification'
   ])
 
