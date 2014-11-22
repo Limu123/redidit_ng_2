@@ -32,7 +32,7 @@ angular.module('rediditApp')
       createComment: function(comment, post){
         var sync = new Firebase(FIREBASE_URL + '/comments/' + post.$id + '/');
         var comments = $firebase(sync).$asArray();
-        comments.$add(comment);
+        return comments.$add(comment);
       },
 
       deleteComment: function(comment, post){

@@ -81,12 +81,15 @@ angular.module('rediditApp')
       };
 
       commentModel = DataModel.createCommentModel(cData);
-      Commentdata.createComment(commentModel, $scope.post);
+      Commentdata.createComment(commentModel, $scope.post).then(function(c) {
+        Postdata.updateComments($scope.post);
+      });
       $scope.commentText = '';
     };
 
     $scope.deleteComment = function(comment){
       Commentdata.deleteComment(comment, $scope.post);
+      Postdata.updateComments($scope.post);
     };
 
     $scope.voteUpComment = function(comment){
@@ -116,7 +119,7 @@ angular.module('rediditApp')
       commentVoteModel = DataModel.createCommentVoteModel(vData);
       Commentdata.updateCommentVotes(comment, commentVoteModel);
     };
-    
+
     $scope.getcommentauthorprofile = function(comment){
       $location.path('/user/'+comment.commentauthorUID);
     };

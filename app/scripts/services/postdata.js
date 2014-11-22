@@ -66,6 +66,9 @@ angular.module('rediditApp')
         return postdata.$asArray().$remove(post);
       },
 
+      updateComments: function(post) {
+        _getRelatedData([post]);
+      },
 
       deleteAllVotes: function(post) {
         var sync = new Firebase(FIREBASE_URL + '/postvotes/' + post.$id + '/');
