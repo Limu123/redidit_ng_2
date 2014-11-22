@@ -41,9 +41,6 @@ angular.module('rediditApp')
         });
 
         var template = 
-        // '<div id="point" ng-class="boot_class"></span></div>'  +
-        // '<div id="circle1" ng-class="boot_class"></div>' +
-        // '<div id="circle2" ng-class="boot_class"></div>' +
         '<div id="message" class="notification" class="animation">{{msg}}</div>';
         
       
