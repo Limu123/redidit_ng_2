@@ -3,73 +3,75 @@
 @import "variables";
 @import "mixins";
 
+
+
+
 //----- General Icon Styles
 .icon {
-  background-image: url(../images/sprite.svg);
+  background-image: url(../images/spritesheet.png);
   background-repeat: no-repeat;
   background-size: 2000px auto;
-  background-position: -20px -29px;
   &:hover {
     border-color: $primary-color;
   }
 }
 
 
-//----- Post Type Icons
-.post-type.icon {
-  background-size: 1900px auto;
-  background-position-y: -31px;
-  &:hover {
-    background-position-y: -31px;
-  }
-}
-
 
 //----- Radio Button Icons
 .post-form .icon {
   background-size: 1900px auto;
-  background-position-y: -25px;
-  &:hover {
-    background-position-y: -25px;
+  &.icon-link {
+    background-position: -113px -10px;
   }
-  &.icon-link { background-position-x: -112px; }
-  &.icon-image { background-position-x: -14px; }
-  &.icon-video { background-position-x: -212px; }
-  &.icon-audio { background-position-x: -311px; }
-  &.icon-text { background-position-x: -411px; }
+  &.icon-image {
+    background-position: -14px -10px;
+  }
+  &.icon-video {
+    background-position: -212px -10px;
+  }
+  &.icon-audio {
+    background-position: -311px -10px;
+  }
+  &.icon-text {
+    background-position: -411px -10px;
+  }
 }
 
 
 //----- Sprite Positions
 .icon-newpost {
-  background-position-x: -855px;
-  background-position-y: -30px;
+  background-position: -853px -14px;
 }
 .icon-userprofile {
-  background-position-x: -1063px;
-  background-position-y: -27px;
+  background-position: -1061px -16px;
 }
 .icon-settings {
-  background-position-x: -959px;
-  background-position-y: -28px;
+  background-position: -957px -15px;
 }
 .icon-logout {
-  background-position-x: -1271px;
-  background-position-y: -30px;
+  background-position: -1268px -15px;
 }
 .icon-login {
-  background-position-x: -1168px;
-  background-position-y: -30px;
+  background-position: -1166px -15px;
 }
-
-.icon-voteup { background-position-x: -542px; }
-.icon-votedown{ background-position-x: -646px; }
-.icon-voteup-selected{ background-position-x: -542px; }
-.icon-votedown-selected{ background-position-x: -646px; }
-
+.icon-voteup {
+  background-position: -542px -16px;
+}
+.icon-votedown{
+  background-position: -646px -15px;
+}
+.icon-voteup-selected{
+  @extend .icon-voteup;
+}
+.icon-votedown-selected{
+  @extend .icon-votedown;
+}
+.icon-goback {
+  background-position: -1377px -15px;
+}
 .icon-delete {
-  background-position-x: -750px;
-  background-position-y: -28px;
+  background-position: -750px -16px;
     width: $btn-size;
     height: $btn-size;
     display: block;
@@ -77,13 +79,27 @@
     @include btn-border($dark-grey,$btn-size);
 }
 
-.icon-video { background-position-x: -218px; }
-.icon-audio { background-position-x: -317px; }
-.icon-link { background-position-x: -118px; }
-.icon-image { background-position-x: -20px; }
-.icon-text { background-position-x: -416px; }
 
-.icon-goback { background-position-x: -1377px; }
+
+//----- Post Type Icons
+.post-type.icon {
+  background-size: 1900px auto;
+}
+.icon-video {
+  background-position: -218px -15px;
+}
+.icon-audio {
+  background-position: -317px -15px;
+}
+.icon-link {
+  background-position: -118px -15px;
+}
+.icon-image {
+  background-position: -20px -15px;
+}
+.icon-text {
+  background-position: -416px -15px;
+}
 
 
 
@@ -98,38 +114,27 @@
   }
   .author:before {
     background-image: url(../images/author-icon-2.png);
-    background-size: 100% auto;
   }
   .views:before {
     background-image: url(../images/views-icon.png);
-    background-size: 100% auto;
   }
   .comments:before {
     background-image: url(../images/discussion-icon.png);
-    background-size: 100% auto;
   }
   .time:before {
     background-image: url(../images/time-icon.png);
-    background-size: 100% auto;
     width: 12px;
   }
 }
 
 
 
-
 //----- Logo
 .logo {
   background-size: 1980px auto;
-  background-position: -1765px -22px;
+  background-position: -1760px -7px;
   &:hover {
-    background-position: -1765px -100px;
-  }
-  @media only screen and (min-width: 22rem) {
-    background-position: -1765px -7px;
-    &:hover {
-      background-position: -1765px -86px;
-    }
+    background-position: -1760px -85px;
   }
 }
 
