@@ -12,11 +12,23 @@ angular.module('rediditApp')
 
     var uid = $routeParams.userId;
 
-    $scope.posts = Postdata.getPostsForUser(uid);
     $scope.profile = Userprofile.getUser(uid);
+    $scope.posts = Postdata.all();
+    $scope.postCount = 0;
+
+    $scope.posts.$loaded().then(function(pList) {
+      var filteredData = pList.filter(function (p) {
+        return p.authorUID === uid;
+      });
+
+      $scope.posts = jQuery.grep($scope.posts, function(a) {
+        return filteredData.indexOf(a) !== -1;
+      });
+      $scope.postCount = $scope.posts.length;
+    });
 
     $scope.hasNoPosts = function() {
-      return $scope.posts.length === 0;
+      return $scope.postCount === 0;
     };
 
     $scope.deletePost = function(post) {

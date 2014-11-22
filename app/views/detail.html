@@ -15,10 +15,10 @@
   </div>
 
 
-  <div class="post-header" ng-switch="post.type">
+  <div class="post-header" ng-switch="post.urlType">
     <div ng-switch-when="video">
       <div class="embed-container">
-        <embed code="code" url="{{post.videourl}}" type="{{post.type}}"/>
+        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"/>
       </div>
       <div class="post-title">
         <span class="post-type icon icon-video"></span>{{post.title}}
@@ -28,7 +28,7 @@
 
     <div ng-switch-when="audio">
       <div class="embed-container">
-        <embed code="code" url="{{post.audiourl}}" type="{{post.type}}"/>
+        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"/>
       </div>
       <div class="post-title">
         <span class="post-type icon icon-audio"></span>{{post.title}}
@@ -39,13 +39,13 @@
     <div ng-switch-when="link">
       <div class="post-title">
         <span class="post-type icon icon-link"></span>
-        <a href="{{post.link}}" target="_blank">{{post.title}}</a>
+        <a href="{{post.url}}" target="_blank">{{post.title}}</a>
       </div>
     </div><!--link-->
 
 
     <div ng-switch-when="image">
-      <picture pcode="pcode" url="{{post.image}}" type="{{post.type}}"/>
+      <picture code="code" url="{{post.url}}" type="{{post.urlType}}"/>
       <div class="post-title">
         <span class="post-type icon icon-image"></span>{{post.title}}
       </div>
@@ -56,7 +56,7 @@
       <div class="post-title">
         <span class="post-type icon icon-text"></span>{{post.title}}
       </div>
-      <p>{{post.text}}</p>
+      <p>{{post.description}}</p>
     </div><!--text-->
 
   </div><!--post-header-->
@@ -87,13 +87,13 @@
 <ul class="post-comments">
 	<p ng-show="comments.length == 0">No comments</p>
   <li ng-repeat="comment in comments | reverse" class="comment">
-    <p>{{comment.text}}<a title="Show profile" class="comment-author" ng-click="getcommentauthorprofile(comment)">{{comment.commentauthor}}</a></p>
+    <p>{{comment.commentText}}<a title="Show profile" class="comment-author" ng-click="getcommentauthorprofile(comment)">{{comment.author}}</a></p>
 
     <ul class="post-rating">
         <li><div class="count">{{comment.votes}}</div></li>
-      <li><a class="icon icon-voteup" title="Vote up" ng-click="voteUpComment(comment)"></a></li>
-      <li><a class="icon icon-votedown" title="Vote down" ng-click="voteDownComment(comment)"></a></li>
-      <li><a class="icon icon-delete" title="Delete" ng-click="deleteComment(comment)" ng-show="user.uid === comment.commentauthorUID"></a></li>
+      <li><a class="icon icon-voteup" title="Vote up" ng-click="voteUpComment(comment)" ng-hide="isOwn(comment)"></a></li>
+      <li><a class="icon icon-votedown" title="Vote down" ng-click="voteDownComment(comment)" ng-hide="isOwn(comment)"></a></li>
+      <li><a class="icon icon-delete" title="Delete" ng-click="deleteComment(comment)" ng-show="isOwn(comment)"></a></li>
       </ul>
 
   </li>

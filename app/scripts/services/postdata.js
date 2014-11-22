@@ -36,13 +36,22 @@ angular.module('rediditApp')
         return post;
       },
 
-      getPostsForUser: function(userId) {
-        var posts = Post.all().filter(function (p) {
-          return p.authorUID === userId;
-        });
-
-        return posts;
-      },
+      //getPostsForUser: function(userId) {
+      //  var data = postdata.$asArray();
+      //
+      //  data.$loaded().then(function(d) {
+      //    var filteredData = d.filter(function (p) {
+      //      return p.authorUID === userId;
+      //    });
+      //    _getRelatedData(filteredData);
+      //
+      //    data = jQuery.grep(data, function(a) {
+      //      return filteredData.indexOf(a) !== -1;
+      //    });
+      //  });
+      //
+      //  return data;
+      //},
 
       createPost: function (post) {
         //return postdata.$add(post).then(function(postRef){
