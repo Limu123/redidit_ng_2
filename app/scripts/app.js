@@ -18,7 +18,6 @@ angular
     'ngTouch',
     'firebase',
     'iso.directives', 
-    'hljs', 
     'ngNotification'
   ])
 
