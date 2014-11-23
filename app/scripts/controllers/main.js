@@ -8,7 +8,7 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', ['$scope', '$log', '$location', '$route','Postdata','Commentdata', 'Auth', 'Userprofile', function ($scope, $log, $location, $route, Postdata, Commentdata, Auth, Userprofile) {
+  .controller('MainCtrl', ['$scope', '$location', '$route','Postdata','Commentdata', 'Auth', function ($scope, $location, $route, Postdata, Commentdata, Auth) {
 
     $scope.posts = Postdata.all();
 
@@ -36,7 +36,7 @@ angular.module('rediditApp')
 
     $scope.isOwn = function(post) {
       return post.authorUID === Auth.user.uid;
-    }
+    };
 
     $scope.showDetail = function(post){
       post.views++;
