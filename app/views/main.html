@@ -14,7 +14,7 @@
 
     <div ng-switch-when="video">
       <div class="embed-container">
-        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"/>
+        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"></embed>
       </div>
       <div class="post-title">
         <span class="post-type icon icon-video"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
@@ -24,7 +24,7 @@
 
     <div ng-switch-when="audio">
       <div class="embed-container">
-        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"/>
+        <embed code="code" url="{{post.url}}" type="{{post.urlType}}"></embed>
       </div>
       <div class="post-title">
         <span class="post-type icon icon-audio"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
@@ -40,8 +40,8 @@
 
 
     <div ng-switch-when="image">
-
-      <picture code="code" url="{{post.url}}" type="{{post.urlType}}"/>
+<!-- <picture code="code" url="{{post.url}}" type="{{post.urlType}}"></picture> Do we really need a directive here? -->
+      <img ng-src="{{post.url}}">
       <div class="post-title">
         <span class="post-type icon icon-image"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>
@@ -50,7 +50,7 @@
 
     <div ng-switch-when="text">
       <div class="post-title no-margin">
-        <span class="post-type icon icon-text"></span><a ng-click="showDetail(post)">{{post.title}} - {{post.content}}</a>
+        <span class="post-type icon icon-text"></span><a ng-click="showDetail(post)">{{post.title}} - {{post.text}}</a>
       </div>
     </div>
 

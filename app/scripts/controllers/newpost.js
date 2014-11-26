@@ -27,7 +27,6 @@ angular.module('rediditApp')
       var postModel;
       var pData = {
         title: $scope.title,
-        url: $scope.url,
         description: $scope.description,
         author: $scope.user.profile.username,
         authorUID: $scope.user.uid,
@@ -36,23 +35,28 @@ angular.module('rediditApp')
 
       switch ($scope.postType) {
         case 'text':
+              //pData.url = $scope.url;
               pData.text = $scope.text;
               postModel = DataModel.createPostModelText(pData);
               break;
 
         case 'link':
+              pData.url = $scope.url;
               postModel = DataModel.createPostModelLink(pData);
               break;
 
         case 'video':
+              pData.url = $scope.url.split('watch?v=')[1];
               postModel = DataModel.createPostModelVideo(pData);
               break;
 
         case 'audio':
+              pData.url = $scope.url.split('src="')[1].split('&amp;auto_play')[0];
               postModel = DataModel.createPostModelAudio(pData);
               break;
 
         case 'image':
+              pData.url = $scope.url;
               postModel = DataModel.createPostModelImage(pData);
               break;
       }
