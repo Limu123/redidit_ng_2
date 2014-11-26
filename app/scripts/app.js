@@ -10,8 +10,6 @@
  */
 angular
   .module('rediditApp', [
-    'ngCookies',
-    'ngResource',
     'ngRoute',
     'ngTouch',
     'firebase',
