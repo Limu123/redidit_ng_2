@@ -18,7 +18,7 @@ angular
   ])
 
   //.constant('FIREBASE_URL', 'https://redidit.firebaseio.com')
-  .constant('FIREBASE_URL', 'https://redidit-test.firebaseio.com')
+  .constant('FIREBASE_URL', 'https://redidit.firebaseio.com')
 
   .config(function ($routeProvider) {
     $routeProvider

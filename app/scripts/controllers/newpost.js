@@ -56,7 +56,8 @@ angular.module('rediditApp')
               break;
 
         case 'image':
-              pData.url = $scope.url;
+              //pData.url = $scope.url;
+              pData.url = $scope.url.split('://')[1];
               postModel = DataModel.createPostModelImage(pData);
               break;
       }

@@ -13,7 +13,7 @@ angular.module('rediditApp')
     $scope.user = Auth.user;
     $scope.signedIn = Auth.signedIn;
     
-    $scope.loadPage = function(path){
+    $rootScope.loadPage = function(path){
       $location.path(path);
     };
 

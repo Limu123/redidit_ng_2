@@ -39,8 +39,8 @@
 
 
     <div ng-switch-when="image">
-<!-- <picture code="code" url="{{post.url}}" type="{{post.urlType}}"></picture> Do we really need a directive here? -->
-      <img ng-src="{{post.url}}">
+    <picture code="code" url="{{post.url}}" type="{{post.urlType}}"></picture>
+      <!-- <img ng-src="{{post.url}}">-->
       <div class="post-title">
         <span class="post-type icon icon-image"></span><a title="Show post '{{post.title}}'" ng-click="showDetail(post)">{{post.title}}</a>
       </div>

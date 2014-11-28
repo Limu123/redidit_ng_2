@@ -20,15 +20,18 @@
 
 
       <div ng-switch="postType">
-        <input type="text" placeholder="Title" ng-model="title">
+        <h2>{{postType | capitalize }}</h2>
+        <input type="text" placeholder="Title" ng-model="title" required="true">
 
-        <input ng-switch-when="link" type="text" placeholder="Link-URL, e.g. www.redidit.com" data-ng-model="$parent.url">
-        <input ng-switch-when="audio" type="text" placeholder="Soundcloud-URL, e.g. 170045438" data-ng-model="$parent.url">
-        <input ng-switch-when="video" type="text" placeholder="Youtube-URL, e.g. wAXJmUqlnUw" data-ng-model="$parent.url">
+        <input ng-switch-when="link" type="text" placeholder="Link-URL, e.g. http://www.redidit.com" data-ng-model="$parent.url" required="true">
+        <input ng-switch-when="audio" type="text" placeholder="Soundcloud-Embed-URL, e.g. <iframe width='100%...></iframe> *" data-ng-model="$parent.url" required="true">
+        <input ng-switch-when="video" type="text" placeholder="Youtube-URL, e.g. https://www.youtube.com/watch?v=hUuHdtJ0akM" data-ng-model="$parent.url" required="true">
 
         <textarea ng-switch-when="text" type="text" placeholder="Teaser-Text, max 200 characters" data-ng-model="$parent.text" rows="4" cols="5" maxlength="200" required="true"></textarea>
         
-        <input ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" data-ng-model="$parent.url">
+        <input ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg *" data-ng-model="$parent.url" required="true">
+        <p class="explanation" ng-switch-when="image" >* Right click on the image, then click 'copy image-url' and paste it here</p>
+        <p class="explanation" ng-switch-when="audio" >* Click 'Share' on the playlist or track you want people to hear. Then select tab 'embed' and copy-paste the embed-code. </p>
 
         <textarea name="textarea" ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
         <input type="submit" value="Post" title="Post">

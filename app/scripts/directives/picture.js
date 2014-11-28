@@ -15,7 +15,7 @@ angular.module('rediditApp')
     template: '<img ng-src="{{url}}">',
     //template: '<img src="http://www.joomlaworks.net/images/demos/galleries/abstract/7.jpg">',
     link: function (scope,elem,attr) {
-      scope.url = $sce.trustAsResourceUrl(attr.url);
+      scope.url = $sce.trustAsResourceUrl("http://"+attr.url); // https?
     }
   };
 });
