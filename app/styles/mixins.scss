@@ -24,6 +24,10 @@
   border-radius: $b-size/2;
 }
 
+%border-bottom {
+  border-bottom: 1px dashed $middle-grey;
+}
+
 %small {
   font-size: 0.7rem;
 }

@@ -4,6 +4,7 @@
 @import "compass/css3/transition";
 @import "compass/utilities/general/clearfix";
 @import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
 @import "variables";
 @import "mixins";
 @import "icons";
@@ -15,7 +16,10 @@
 
 //----- General Styles
 body {
-  font-family: 'Open Sans', sans-serif;
+  //font-family: 'Open Sans', sans-serif;
+  //font-family: 'Source Sans Pro', sans-serif;
+  font-family: Helvetica, sans-serif;
+  //font-family: 'Lato', sans-serif;
 }
 
 .container {
@@ -42,7 +46,7 @@ ul {
 }
 
 .btn {
-  @include btn-border($dark-grey,$btn-size);
+  @include btn-border($primary-color,$btn-size);
 }
 
 
@@ -74,12 +78,12 @@ header {
   float: right;
   margin-top: 0.4rem;
   li {
-    width: $btn-size*1.1;
-    height: $btn-size*1.1;
+    width: $btn-size;
+    height: $btn-size;
     margin-left: 0.3rem;
   }
   a {
-    @include btn-border($dark-grey,$btn-size*1.1);
+    @include btn-border($primary-color,$btn-size);
     display: block;
     width: 100%;
     height: 100%;
@@ -98,10 +102,11 @@ header {
 .post {
   @include clearfix;
   &.masonry {
-    padding: 1.5rem 0.3rem 0rem;
+    padding: 1.5rem 0rem 0rem;
     min-width: 14.5rem;
     width: 100%;
     @media only screen and (min-width: 31rem) {
+      padding: 1.5rem 0.6rem 0rem;
       width: 50%;
     }
     @media only screen and (min-width: 45.5rem) {
@@ -112,7 +117,8 @@ header {
 
 .post-title {
   margin-top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
   &.no-margin {
     margin: 0;
   }
@@ -175,19 +181,20 @@ header {
     @include btn-border($dark-grey,$btn-size);
     height: 100%;
     text-align: center;
-    line-height: 2rem;
+    line-height: 2.4rem;
     font-size: 1.2rem;
   }
   a {
     width: 100%;
     height: 100%;
     display: block;
-    @include btn-border($dark-grey,$btn-size);
+    @include btn-border($primary-color,$btn-size);
   }
   .icon-voteup, .icon-votedown {
     border-color: $primary-color;
     &:hover {
-      border-color: $dark-grey;
+      //border-color: $dark-grey;
+      border-color: $secondary-color;
     }
   }
   .icon-voteup-selected, .icon-votedown-selected{
@@ -197,7 +204,8 @@ header {
 
 .post-footer {
   @include clearfix;
-  border-bottom: thin solid $light-grey;
+  //border-bottom: thin solid $light-grey;
+  @extend %border-bottom;
   height: 1.5rem;
 }
 
@@ -206,12 +214,32 @@ header {
 
 //----- Detail View
 .detail {
-  h2 {
-    display: inline;
+  // h2 {
+  //   display: inline;
+  //   font-size: 1.6rem;
+  //   margin-bottom: 1rem;
+  // }
+  .post-title {
+    //margin: 1rem 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.6rem;
   }
   .post-header {
+    margin-top: 1.5rem;
+    //margin-bottom: 1rem;
+  }
+  .teaser-text {
     margin-top: 1rem;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+  .description {
+
+  }
+  img {
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -229,6 +257,7 @@ header {
 }
 
 .embed-container {
+  @include clearfix;
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 35px;
@@ -252,8 +281,8 @@ header {
 }
 
 .comment{
+  @extend %border-bottom;
   margin: 0.5rem 0;
-  border-bottom: thin solid $light-grey;
   padding-bottom: 1rem;
   .comment-author {
     @extend %small;
@@ -264,6 +293,10 @@ header {
   }
 }
 
+.comment-paragraph {
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+}
 
 
 
@@ -273,9 +306,11 @@ header {
 .profile-head {
   @include clearfix;
   text-align: center;
+  padding: 0.5rem;
   img {
     margin-right: 1rem;
-    @include btn-border($light-grey,14rem);
+    @include btn-border($white,14rem);
+    @include box-shadow(#999 0px 0px 8px);
     max-width: 14rem;
     @media only screen and (min-width: 31rem) {
       float: left;
@@ -289,8 +324,10 @@ header {
     margin-bottom: 0.5rem;
     margin-top: 1rem;
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
     text-align: center;
+    color: $dark-grey;
     @media only screen and (min-width: 31rem) {
       text-align: left;
     }
@@ -310,9 +347,10 @@ header {
 .profile-post {
   margin-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: thin solid $light-grey;
+  @extend %border-bottom;
   a {
-    font-size: 1.2rem;
+    //font-size: 1.2rem;
+    @extend .post-title;
   }
 }
 

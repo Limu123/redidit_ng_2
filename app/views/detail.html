@@ -9,8 +9,8 @@
     <a ng-click="showOverview()" title="Back to overview" class="btn go-back icon icon-goback"></a>
     <ul class="post-rating">
       <li><div class="count">{{post.votes}}</div></li>
-      <li><a class="{{getStyleForVoteUpPost(post)}}" ng-click="voteUpPost(post)" ng-show="signedIn() && !isOwn(post)"></a></li>
-      <li><a class="{{getStyleForVoteDownPost(post)}}" ng-click="voteDownPost(post)" ng-show="signedIn() && !isOwn(post)"></a></li>
+      <li ng-show="signedIn() && !isOwn(post)"><a class="{{getStyleForVoteUpPost(post)}}" ng-click="voteUpPost(post)"></a></li>
+      <li ng-show="signedIn() && !isOwn(post)"><a class="{{getStyleForVoteDownPost(post)}}" ng-click="voteDownPost(post)"></a></li>
     </ul>
   </div>
 
@@ -45,7 +45,8 @@
 
 
     <div ng-switch-when="image">
-      <picture code="code" url="{{post.url}}" type="{{post.urlType}}"/>
+<!-- <picture code="code" url="{{post.url}}" type="{{post.urlType}}"></picture> Do we really need a directive here? -->
+      <img ng-src="{{post.url}}">
       <div class="post-title">
         <span class="post-type icon icon-image"></span>{{post.title}}
       </div>
@@ -56,14 +57,14 @@
       <div class="post-title">
         <span class="post-type icon icon-text"></span>{{post.title}}
       </div>
-      <p>{{post.text}}</p>
+      <p class="teaser-text">{{post.text}}</p>
 <!--       <p>{{post.description}}</p> -->
     </div><!--text-->
 
   </div><!--post-header-->
 
 
-  <p>{{post.description}}</p>
+  <p class="description">{{post.description}}</p>
 
 
   <ul class="post-meta">
@@ -86,15 +87,15 @@
 
 
 <ul class="post-comments">
-	<p ng-show="comments.length == 0">No comments</p>
+	<p class="comment-paragraph" ng-show="comments.length == 0">No comments</p>
   <li ng-repeat="comment in comments | reverse" class="comment">
-    <p>{{comment.commentText}}<a title="Show profile" class="comment-author" ng-click="getcommentauthorprofile(comment)">{{comment.author}}</a></p>
+    <p class="comment-paragraph">{{comment.commentText}}<a title="Show profile" class="comment-author" ng-click="getcommentauthorprofile(comment)">{{comment.author}}</a></p>
 
     <ul class="post-rating">
         <li><div class="count">{{comment.votes}}</div></li>
-      <li><a class="{{getStyleForVoteUpComment(comment)}}" title="Vote up" ng-click="voteUpComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
-      <li><a class="{{getStyleForVoteDownComment(comment)}}" title="Vote down" ng-click="voteDownComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
-      <li><a class="icon icon-delete" title="Delete" ng-click="deleteComment(comment)" ng-show="isOwn(comment)"></a></li>
+      <li ng-show="signedIn() && !isOwn(comment)"><a class="{{getStyleForVoteUpComment(comment)}}" title="Vote up" ng-click="voteUpComment(comment)"></a></li>
+      <li ng-show="signedIn() && !isOwn(comment)"><a class="{{getStyleForVoteDownComment(comment)}}" title="Vote down" ng-click="voteDownComment(comment)"></a></li>
+      <li ng-show="isOwn(comment)"><a class="icon icon-delete" title="Delete" ng-click="deleteComment(comment)"></a></li>
       </ul>
 
   </li>

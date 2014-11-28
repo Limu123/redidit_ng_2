@@ -12,7 +12,7 @@
   background-repeat: no-repeat;
   background-size: 2000px auto;
   &:hover {
-    border-color: $primary-color;
+    border-color: $secondary-color;
   }
 }
 
@@ -44,7 +44,7 @@
   background-position: -853px -14px;
 }
 .icon-userprofile {
-  background-position: -1061px -16px;
+  background-position: -1062px -15px;
 }
 .icon-settings {
   background-position: -957px -15px;
@@ -56,10 +56,10 @@
   background-position: -1166px -15px;
 }
 .icon-voteup {
-  background-position: -542px -16px;
+  background-position: -541px -15px;
 }
 .icon-votedown{
-  background-position: -646px -15px;
+  background-position: -645px -14px;
 }
 .icon-voteup-selected{
   @extend .icon-voteup;
@@ -68,10 +68,10 @@
   @extend .icon-votedown;
 }
 .icon-goback {
-  background-position: -1377px -15px;
+  background-position: -1375px -14px;
 }
 .icon-delete {
-  background-position: -750px -16px;
+  background-position: -749px -14px;
     width: $btn-size;
     height: $btn-size;
     display: block;

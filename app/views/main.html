@@ -1,5 +1,4 @@
 
-<notification></notification>
 
 <p ng-show="posts.length == 0">Nothing here</p>
 
@@ -68,9 +67,9 @@
 
   <ul class="post-rating">
     <li><div class="count">{{post.votes}}</div></li>
-    <li><a class="{{getStyleForVoteUpPost(post)}}" title="Vote up" ng-click="voteUpPost(post)" ng-show="signedIn() && !isOwn(post)"></a></li>
-    <li><a class="{{getStyleForVoteDownPost(post)}}" title="Vote down" ng-click="voteDownPost(post)" ng-show="signedIn() && !isOwn(post)"></a></li>
-    <li><a class="icon icon-delete" title="Delete" ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"></a></li>
+    <li ng-show="signedIn() && !isOwn(post)"><a class="{{getStyleForVoteUpPost(post)}}" title="Vote up" ng-click="voteUpPost(post)"></a></li>
+    <li ng-show="signedIn() && !isOwn(post)"><a class="{{getStyleForVoteDownPost(post)}}" title="Vote down" ng-click="voteDownPost(post)"></a></li>
+    <li ng-show="user.uid === post.authorUID" ng-click="deletePost(post)"><a class="icon icon-delete" title="Delete"></a></li>
   </ul>
 
   <div class="post-footer"></div>
@@ -80,5 +79,8 @@
 
 </ul><!--masonry-->
 
+
+
+<notification></notification>
 
 
