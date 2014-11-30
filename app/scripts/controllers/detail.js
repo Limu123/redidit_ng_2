@@ -23,13 +23,13 @@ angular.module('rediditApp')
       $location.path('/');
     };
 
-    $scope.getStyleForVoteUpPost = function(post)  {
-      return Postdata.getStyleForVoteUpPost(post, $scope.user);
-    };
+    // $scope.getStyleForVoteUpPost = function(post)  {
+    //   return Postdata.getStyleForVoteUpPost(post, $scope.user);
+    // };
 
-    $scope.getStyleForVoteDownPost = function(post) {
-      return Postdata.getStyleForVoteDownPost(post, $scope.user);
-    };
+    // $scope.getStyleForVoteDownPost = function(post) {
+    //   return Postdata.getStyleForVoteDownPost(post, $scope.user);
+    // };
 
     $scope.getStyleForVoteUpComment = function(comment) {
       return Commentdata.getStyleForVoteUpComment(comment, $scope.user);
@@ -39,35 +39,35 @@ angular.module('rediditApp')
       return Commentdata.getStyleForVoteDownComment(comment, $scope.user);
     };
 
-    $scope.voteUpPost = function(post){
-      var postVoteModel;
+    // $scope.voteUpPost = function(post){
+    //   var postVoteModel;
 
-      var vData = {
-        postId: post.$id,
-        authorUID: $scope.user.uid,
-        vote: 1
-      };
+    //   var vData = {
+    //     postId: post.$id,
+    //     authorUID: $scope.user.uid,
+    //     vote: 1
+    //   };
 
-      postVoteModel = DataModel.createPostVoteModel(vData);
-      Postdata.updateVotes(post, postVoteModel);
-    };
+    //   postVoteModel = DataModel.createPostVoteModel(vData);
+    //   Postdata.updateVotes(post, postVoteModel);
+    // };
 
-    $scope.voteDownPost = function(post){
-      var postVoteModel;
+    // $scope.voteDownPost = function(post){
+    //   var postVoteModel;
 
-      var vData = {
-        postId: post.$id,
-        authorUID: $scope.user.uid,
-        vote: -1
-      };
+    //   var vData = {
+    //     postId: post.$id,
+    //     authorUID: $scope.user.uid,
+    //     vote: -1
+    //   };
 
-      postVoteModel = DataModel.createPostVoteModel(vData);
-      Postdata.updateVotes(post, postVoteModel);
-    };
+    //   postVoteModel = DataModel.createPostVoteModel(vData);
+    //   Postdata.updateVotes(post, postVoteModel);
+    // };
 
-    $scope.isOwn = function(data) {
-      return data.authorUID === Auth.user.uid;
-    };
+    // $scope.isOwn = function(data) {
+    //   return data.authorUID === Auth.user.uid;
+    // };
 
 
     $scope.createComment = function(){

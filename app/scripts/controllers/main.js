@@ -15,11 +15,11 @@ angular.module('rediditApp')
     $scope.user = Auth.user;
     $scope.signedIn = Auth.signedIn;
 
-    $scope.getStyleForVoteUpPost = function(post)  {
+    $rootScope.getStyleForVoteUpPost = function(post)  {
       return Postdata.getStyleForVoteUpPost(post, $scope.user);
     };
 
-    $scope.getStyleForVoteDownPost = function(post) {
+    $rootScope.getStyleForVoteDownPost = function(post) {
       return Postdata.getStyleForVoteDownPost(post, $scope.user);
     };
 
@@ -34,7 +34,7 @@ angular.module('rediditApp')
       });
     };
 
-    $scope.isOwn = function(post) {
+    $rootScope.isOwn = function(post) {
       return post.authorUID === Auth.user.uid;
     };
 
@@ -45,7 +45,7 @@ angular.module('rediditApp')
       $location.path('/detail/'+post.$id);
     };
 
-    $scope.voteUpPost = function(post){
+    $rootScope.voteUpPost = function(post){
       var postVoteModel;
 
       var vData = {
@@ -58,7 +58,7 @@ angular.module('rediditApp')
       Postdata.updateVotes(post, postVoteModel);
     };
 
-    $scope.voteDownPost = function(post){
+    $rootScope.voteDownPost = function(post){
       var postVoteModel;
 
       var vData = {
