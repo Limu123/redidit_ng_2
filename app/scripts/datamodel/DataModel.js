@@ -18,38 +18,46 @@ var DataModel = (function() {
     }
   }
 
+  //extension of base class with common methods goes here (if needed)
+  //....
+
   function PostModelLink(data) {
     PostModelBase.call(this, data);
     this.urlType = 'link';
   }
-  PostModelLink.prototype = new PostModelBase();
+  PostModelLink.prototype = Object.create(PostModelBase.prototype);
+  PostModelLink.prototype.constructor = PostModelLink;
 
   function PostModelVideo(data) {
     PostModelBase.call(this, data);
     this.urlType = 'video';
   }
-  PostModelVideo.prototype = new PostModelBase();
+  PostModelVideo.prototype = Object.create(PostModelBase.prototype);
+  PostModelVideo.prototype.constructor = PostModelVideo;
 
   function PostModelAudio(data) {
     PostModelBase.call(this, data);
     this.urlType = 'audio';
   }
-  PostModelAudio.prototype = new PostModelBase();
+  PostModelAudio.prototype = Object.create(PostModelBase.prototype);
+  PostModelAudio.prototype.constructor = PostModelAudio;
 
   function PostModelText(data) {
     PostModelBase.call(this, data);
     if (data) {
       this.text = data.text || '';
-    };
+    }
     this.urlType = 'text';
   }
-  PostModelText.prototype = new PostModelBase();
+  PostModelText.prototype = Object.create(PostModelBase.prototype);
+  PostModelText.prototype.constructor = PostModelText;
 
   function PostModelImage(data) {
     PostModelBase.call(this, data);
     this.urlType = 'image';
   }
-  PostModelImage.prototype = new PostModelBase();
+  PostModelImage.prototype = Object.create(PostModelBase.prototype);
+  PostModelImage.prototype.constructor = PostModelImage;
 
   //Comment
   function CommentModel(data) {
