@@ -13,3 +13,9 @@ $ karma test
 
 ### Build
 $ grunt build
+
+### Database
+https://redidit.firebaseio.com/
+
+### Live Preview
+https://redidit.firebaseapp.com/#/
