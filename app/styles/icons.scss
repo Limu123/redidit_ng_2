@@ -76,7 +76,7 @@
     height: $btn-size;
     display: block;
     float: right;
-    @include btn-border($dark-grey,$btn-size);
+    @include btn-border($primary-color,$btn-size);
 }
 
 

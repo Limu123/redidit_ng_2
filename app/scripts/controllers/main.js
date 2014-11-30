@@ -8,12 +8,22 @@
  * Controller of the rediditApp
  */
 angular.module('rediditApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$route','Postdata','Commentdata', 'Auth', function ($scope, $rootScope, $location, $route, Postdata, Commentdata, Auth) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$route', '$timeout', 'Postdata','Commentdata', 'Auth', function ($scope, $rootScope, $location, $route, $timeout, Postdata, Commentdata, Auth) {
 
     $scope.posts = Postdata.all();
 
     $scope.user = Auth.user;
     $scope.signedIn = Auth.signedIn;
+
+    $timeout(function(){
+      $scope.posts.$watch(function(){
+        console.log("reload");
+        $scope.$apply();
+        $route.reload();
+        //$scope.$digest();
+      });
+    },10000);
+
 
     $rootScope.getStyleForVoteUpPost = function(post)  {
       return Postdata.getStyleForVoteUpPost(post, $scope.user);
@@ -30,7 +40,8 @@ angular.module('rediditApp')
       //isotope();
 
       Postdata.deletePost(post).then(function () {
-        $route.reload();
+        //$route.reload();
+        console.log("delete");
       });
     };
 
