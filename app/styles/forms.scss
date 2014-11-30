@@ -10,6 +10,7 @@
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="url"],
 textarea
 {
   @include btn-border($dark-grey,$btn-size);
@@ -18,7 +19,7 @@ textarea
 }
 
 input[type="submit"]{
-  @include btn-border($dark-grey,$btn-size);
+  @include btn-border($primary-color,$btn-size);
   background: transparent;
   color: $dark-grey;
   padding: 0;
@@ -26,7 +27,10 @@ input[type="submit"]{
   height: $btn-size;
   min-width: 7rem;
   font-size: 1rem;
-  cursor: pointer
+  cursor: pointer;
+  &:hover {
+    border-color: $secondary-color;
+  }
 }
 
 textarea {
@@ -78,4 +82,17 @@ input.post-btn {
     border-color: $dark-grey;
   }
 }
+
+
+
+//----- Newpost Form
+.post-form{
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+
+
 

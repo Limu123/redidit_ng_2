@@ -1,12 +1,16 @@
 <div class="row">
   <div class="small-12 medium-10 large-8 small-centered large-centered columns">
+    <h3>Create a new {{postType | capitalize }}-post!</h3>
 
-    <form class="post-form" ng-submit="createPost()">
+    <form class="post-form" ng-submit="createPost()" lang="en">
+<!-- 
+      <p>Type: {{postType | capitalize }}</p>
 
-      <input checked type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
+ -->
+      <input type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
       <label class="radio-label icon icon-link" for="radio-link" title="Link"></label>
 
-      <input type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
+      <input checked type="radio" name="posttype" value="image" id="radio-image" ng-click="setPosttype($event)">
       <label class="radio-label icon icon-image" for="radio-image" title="Image"></label>
 
       <input type="radio" name="posttype" value="video" id="radio-video" ng-click="setPosttype($event)">
@@ -20,20 +24,25 @@
 
 
       <div ng-switch="postType">
-        <h2>{{postType | capitalize }}</h2>
+<!-- 
+        <h3>{{postType | capitalize }}</h3>
+         -->
         <input type="text" placeholder="Title" ng-model="title" required="true">
 
-        <input ng-switch-when="link" type="text" placeholder="Link-URL, e.g. http://www.redidit.com" data-ng-model="$parent.url" required="true">
+        <input ng-switch-when="link" type="url" placeholder="Link-URL, e.g. http://www.redidit.com" data-ng-model="$parent.url" required="true">
+
         <input ng-switch-when="audio" type="text" placeholder="Soundcloud-Embed-URL, e.g. <iframe width='100%...></iframe> *" data-ng-model="$parent.url" required="true">
-        <input ng-switch-when="video" type="text" placeholder="Youtube-URL, e.g. https://www.youtube.com/watch?v=hUuHdtJ0akM" data-ng-model="$parent.url" required="true">
+        <input ng-switch-when="video" type="url" placeholder="Youtube-URL, e.g. https://www.youtube.com/watch?v=hUuHdtJ0akM" data-ng-model="$parent.url" required="true">
 
         <textarea ng-switch-when="text" type="text" placeholder="Teaser-Text, max 200 characters" data-ng-model="$parent.text" rows="4" cols="5" maxlength="200" required="true"></textarea>
         
-        <input ng-switch-when="image" type="text" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg *" data-ng-model="$parent.url" required="true">
+        <input ng-switch-when="image" type="url" placeholder="Image-URL, e.g. http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg *" data-ng-model="$parent.url" required="true">
+
         <p class="explanation" ng-switch-when="image" >* Right click on the image, then click 'copy image-url' and paste it here</p>
+
         <p class="explanation" ng-switch-when="audio" >* Click 'Share' on the playlist or track you want people to hear. Then select tab 'embed' and copy-paste the embed-code. </p>
 
-        <textarea name="textarea" ng-model="description" placeholder="Add a desciption here" rows="7" cols="5" required="true"></textarea>
+        <textarea name="textarea" ng-model="description" placeholder="Add a desciption here" rows="7" cols="5"></textarea>
         <input type="submit" value="Post" title="Post">
       </div>
 

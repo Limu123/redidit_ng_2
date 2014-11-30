@@ -12,7 +12,7 @@ angular.module('rediditApp')
 
     $scope.posts = Postdata.all;
     $scope.user = Auth.user;      // get post author
-    $scope.postType = 'link';     // initial postType
+    $scope.postType = 'image';     // initial postType
     //$scope.field = {audiourl: '170045438', videourl: 'wAXJmUqlnUw', image: 'http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg' };
     $scope.field = {};
     $scope.url = '';
