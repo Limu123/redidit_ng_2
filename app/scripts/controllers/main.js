@@ -17,7 +17,7 @@ angular.module('rediditApp')
 
     $timeout(function(){
       $scope.posts.$watch(function(){
-        console.log("reload");
+        //console.log("reload");
         $scope.$apply();
         $route.reload();
         //$scope.$digest();
@@ -39,10 +39,10 @@ angular.module('rediditApp')
       //scope.refreshIso();
       //isotope();
 
-      Postdata.deletePost(post).then(function () {
-        //$route.reload();
-        console.log("delete");
-      });
+      // Postdata.deletePost(post).then(function () {
+      //   $route.reload();
+      // });
+      Postdata.deletePost(post)
     };
 
     $rootScope.isOwn = function(post) {
