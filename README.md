@@ -5,11 +5,13 @@
 $ git clone https://github.com/Limu123/redidit_ng_2.git <br>
 $ cd redidit_ng_2/ <br>
 $ (sudo) npm install <br>
-$ grunt serve <br>
---> do not 'bower install'
+$ bower install
+
+### Run
+$ grunt serve
 
 ### Test
-$ karma test
+$ grunt test
 
 ### Build
 $ grunt build
