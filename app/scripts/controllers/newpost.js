@@ -10,13 +10,18 @@
 angular.module('rediditApp')
   .controller('NewpostCtrl', ['$scope','$log','$location', '$route', 'Postdata','Datefactory', 'Auth', function ($scope, $log, $location, $route, Postdata, Datefactory, Auth) {
 
-    $scope.posts = Postdata.all;
     $scope.user = Auth.user;      // get post author
     $scope.postType = 'image';     // initial postType
     //$scope.field = {audiourl: '170045438', videourl: 'wAXJmUqlnUw', image: 'http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg' };
     $scope.field = {};
     $scope.url = '';
     $scope.text = '';
+
+    if (!$scope.user.profile) {
+      $location.path('/login');
+    }
+
+    $scope.posts = Postdata.all;
 
     $scope.setPosttype = function($event){
       $scope.postType = $event.target.value;
