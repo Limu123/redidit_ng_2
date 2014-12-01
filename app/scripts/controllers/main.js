@@ -15,15 +15,33 @@ angular.module('rediditApp')
     $scope.user = Auth.user;
     $scope.signedIn = Auth.signedIn;
 
+    //refreshIsotope();
+
+
+    // $timeout(function(){
+    //   $scope.$watchCollection('posts',function(){
+    //     console.log("reload");
+    //     //$scope.$apply();
+    //     $route.reload();
+    //     //$scope.$digest();
+    //   });
+    // },10000);
+
+
     $timeout(function(){
       $scope.posts.$watch(function(){
-        //console.log("reload");
-        $scope.$apply();
-        $route.reload();
-        //$scope.$digest();
+        refreshIsotope();
       });
-    },10000);
+    },5000);
 
+    function refreshIsotope(){
+      $timeout(function(){
+        //console.log("refresh");
+        $scope.refreshIso();
+        //$scope.$emit('iso-method', {name:'reloadItems', params:null});
+        $scope.$emit('iso-method', {name:'insert', params:null});
+      },1000);
+    }
 
     $rootScope.getStyleForVoteUpPost = function(post)  {
       return Postdata.getStyleForVoteUpPost(post, $scope.user);
@@ -34,15 +52,11 @@ angular.module('rediditApp')
     };
 
     $scope.deletePost = function(post){
-
-      //$scope.$emit('iso-method', {name:null, params:null})
-      //scope.refreshIso();
-      //isotope();
-
       // Postdata.deletePost(post).then(function () {
       //   $route.reload();
       // });
-      Postdata.deletePost(post)
+      Postdata.deletePost(post);
+      refreshIsotope();
     };
 
     $rootScope.isOwn = function(post) {

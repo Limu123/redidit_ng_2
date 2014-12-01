@@ -140,3 +140,25 @@
 
 
 
+
+
+//----- Spinner
+.spinner {
+  background-image: url(../images/spinner.GIF);
+  background-size: 100% auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -$spinner-width/2; 
+  margin-top: -$spinner-width/2; 
+  text-align:center;
+  z-index:1234;
+  overflow: auto;
+  width: $spinner-width;
+  height: $spinner-width; 
+}
+
+
+
+
+

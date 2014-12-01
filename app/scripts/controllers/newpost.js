@@ -70,8 +70,6 @@ angular.module('rediditApp')
 
       $location.path('/');
 
-      //$scope.$emit('iso-method', {name:'reloadItems', params:null});
-
 
     };
   }]);
