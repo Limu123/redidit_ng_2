@@ -144,8 +144,10 @@
 
 //----- Spinner
 .spinner {
-  background-image: url(../images/spinner.GIF);
-  background-size: 100% auto;
+  background-image: url(../images/spinner.gif);
+  background-size: 90% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
   position: fixed;
   top: 50%;
   left: 50%;
