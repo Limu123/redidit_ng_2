@@ -27,7 +27,8 @@ angular.module('rediditApp')
         // Notification
         $rootScope.$broadcast('notification', {type: "primary", msg:'Welcome back'});
       }, function(error){
-        $scope.error = error.toString();
+        //$scope.error = error.toString();
+        $scope.error = 'Wrong username or password.';
       });
     };
 
