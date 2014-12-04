@@ -15,19 +15,6 @@ angular.module('rediditApp')
     $scope.user = Auth.user;
     $scope.signedIn = Auth.signedIn;
 
-    //refreshIsotope();
-
-
-    // $timeout(function(){
-    //   $scope.$watchCollection('posts',function(){
-    //     console.log("reload");
-    //     //$scope.$apply();
-    //     $route.reload();
-    //     //$scope.$digest();
-    //   });
-    // },10000);
-
-
     $timeout(function(){
       $scope.posts.$watch(function(){
         refreshIsotope();
@@ -36,9 +23,7 @@ angular.module('rediditApp')
 
     function refreshIsotope(){
       $timeout(function(){
-        //console.log("refresh");
         $scope.refreshIso();
-        //$scope.$emit('iso-method', {name:'reloadItems', params:null});
         $scope.$emit('iso-method', {name:'insert', params:null});
       },1000);
     }

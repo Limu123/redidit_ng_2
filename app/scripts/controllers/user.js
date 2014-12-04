@@ -22,16 +22,16 @@ angular.module('rediditApp')
 
     $scope.postCount = 0;
 
-
-
     $scope.posts.$loaded().then(function(pList) {
       var filteredData = pList.filter(function (p) {
         return p.authorUID === uid;
       });
 
-      $scope.posts = jQuery.grep($scope.posts, function(a) {
-        return filteredData.indexOf(a) !== -1;
-      });
+      //$scope.posts = jQuery.grep($scope.posts, function(a) {
+      //  return filteredData.indexOf(a) !== -1;
+      //});
+
+      $scope.posts = filteredData;
       $scope.postCount = $scope.posts.length;
     });
 
