@@ -4,11 +4,10 @@
 
     <div class="user-profile">
 
-    <!--       <img ng-src="http://www.gravatar.com/avatar/{{ profile.md5_hash }}" class="prof-img" /> -->
+
 
       <div class="profile-head">
         <img src ="http://robohash.org/{{ profile.username }}?bgset=bg2" />
-        <!-- ?set=set2  -->
         <blockquote>&laquo;{{ profile.description }}&raquo;</blockquote>
         <span>{{ profile.username }}, {{ profile.email }}</span>
       </div>
@@ -19,46 +18,14 @@
             <span class="post-type icon icon-{{post.urlType}}"></span>
             <a ng-href="#/detail/{{ post.$id }}" title="Show post'{{post.title}}'">{{post.title}}</a>
             <a class="icon icon-delete" ng-click="deletePost(post)" ng-show="currentUser === post.authorUID"></a>
-<!--             1{{currentUser}}
-            2{{profile.$id}}
-            3{{post.authorUID}} -->
-<!-- 
-  $scope.currentUser
-           ng-show="profile.$id === post.authorUID"
-           ng-show="user.uid === post.authorUID"
-           ng-show="user.uid === profile.$id"
 
- -->
-
-
-
-<!--             <ul class="profile-post-meta">
-              <li><span class="post-type icon icon-{{post.urlType}}"></span></li>
-              <span class="post-type icon icon-{{post.type}}"></span><a ng-href="#/detail/{{ post.$id }}" title="Show post'{{post.title}}'">{{post.title}}</a>
-              <li><a class="icon icon-delete" ng-click="deletePost(post)"></a></li>
-            </ul>
- -->
             <ul class="post-meta">
               <li class="views">{{post.views}} Views</li>
               <li class="comments">{{post.CommentCount}} Comments</li>
               <li class="time">{{post.time}}</li>
             </ul>
-
-            <!--
-            <ul class="post-comments">
-              <li ng-repeat="comment in post.comments | reverse" class="comment">
-                <p>{{comment.commentText}} <span class="comment-author"> {{comment.author}}</span></p>
-                <ul class="post-rating">
-                  <li><div class="count">{{comment.votes}}</div></li>
-                  <li><a class="{{getStyleForVoteUpComment(comment)}}" ng-click="voteUpComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
-                  <li><a class="{{getStyleForVoteDownComment(comment)}}" ng-click="voteDownComment(comment)" ng-show="signedIn() && !isOwn(comment)"></a></li>
-                  <li><a class="icon icon-delete" ng-click="deleteComment(comment)" ng-show="profile.$id === comment.authorUID"></a></li>
-                </ul>
-              </li>
-            </ul>
-            -->
-
           </li>
+
           <div ng-show="postCount === 0 && currentUser === profile.$id">Fill the void with a <a title="New Post" ng-click="loadPage('newpost')">post</a></div>
         </ul>
 

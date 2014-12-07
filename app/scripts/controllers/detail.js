@@ -82,7 +82,6 @@ angular.module('rediditApp')
     };
 
     $scope.getcommentauthorprofile = function(comment){
-      //console.log(comment.authorUID);
       $location.path('/user/'+comment.authorUID);
     };
 

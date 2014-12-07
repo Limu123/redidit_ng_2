@@ -13,7 +13,7 @@ angular.module('rediditApp')
     var ref = new Firebase(FIREBASE_URL);
     var commentdata = $firebase(ref.child('comments'));    // all comments
 
-    // Public API here
+
     var Comment = {
 
       all: function() {
@@ -105,7 +105,7 @@ angular.module('rediditApp')
               vValue = v.vote;
               return false;
             }
-          })
+          });
         }
         return vValue;
       },
@@ -116,11 +116,11 @@ angular.module('rediditApp')
 
         switch (currentVote) {
           case 1:
-            style = "icon icon-voteup-selected";
+            style = 'icon icon-voteup-selected';
             break;
 
           default:
-            style = "icon icon-voteup";
+            style = 'icon icon-voteup';
             break;
         }
 
@@ -133,11 +133,11 @@ angular.module('rediditApp')
 
         switch (currentVote) {
           case -1:
-            style = "icon icon-votedown-selected";
+            style = 'icon icon-votedown-selected';
             break;
 
           default:
-            style = "icon icon-votedown";
+            style = 'icon icon-votedown';
             break;
         }
 
@@ -161,8 +161,8 @@ angular.module('rediditApp')
           });
           comment.votes = vSum;
           comment.votesList = v || {};
-        })
-      })
+        });
+      });
     }
 
     return Comment;

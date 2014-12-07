@@ -28,6 +28,18 @@ angular.module('rediditApp')
       },1000);
     }
 
+    $scope.deletePost = function(post){
+      Postdata.deletePost(post);
+      refreshIsotope();
+    };
+
+    $scope.showDetail = function(post){
+      post.views++;
+      Postdata.updateViews(post);
+
+      $location.path('/detail/'+post.$id);
+    };
+
     $rootScope.getStyleForVoteUpPost = function(post)  {
       return Postdata.getStyleForVoteUpPost(post, $scope.user);
     };
@@ -36,23 +48,8 @@ angular.module('rediditApp')
       return Postdata.getStyleForVoteDownPost(post, $scope.user);
     };
 
-    $scope.deletePost = function(post){
-      // Postdata.deletePost(post).then(function () {
-      //   $route.reload();
-      // });
-      Postdata.deletePost(post);
-      refreshIsotope();
-    };
-
     $rootScope.isOwn = function(post) {
       return post.authorUID === Auth.user.uid;
-    };
-
-    $scope.showDetail = function(post){
-      post.views++;
-      Postdata.updateViews(post);
-
-      $location.path('/detail/'+post.$id);
     };
 
     $rootScope.voteUpPost = function(post){
@@ -82,7 +79,6 @@ angular.module('rediditApp')
     };
 
     $rootScope.getauthorprofile = function(post){
-      //console.log(post.authorUID);
       $location.path('/user/'+post.authorUID);
     };
   }]);

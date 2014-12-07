@@ -16,9 +16,6 @@ angular.module('rediditApp')
     if (user) {
       $location.path('/');
     }
-    // if (Auth.signedIn()) {
-    //   $location.path('/');
-    // }
 
 
     $scope.login = function () {
@@ -27,7 +24,6 @@ angular.module('rediditApp')
         // Notification
         $rootScope.$broadcast('notification', {type: "primary", msg:'Welcome back'});
       }, function(error){
-        //$scope.error = error.toString();
         $scope.error = 'Wrong username or password.';
       });
     };
@@ -36,7 +32,6 @@ angular.module('rediditApp')
       Auth.register($scope.user).then(function(user) {
         return Auth.login($scope.user).then(function() {
           user.username = $scope.user.username;
-          //user.gender = $scope.gender;
           user.description = $scope.user.description;
           user.email = $scope.user.email;
           return Auth.createProfile(user);

@@ -31,8 +31,6 @@ angular.module('rediditApp')
     today = dd+'.'+mm+'.'+' | '+hh+':'+min;
 
 
-
-    // Public API here
     return {
       getDate: function () {
         return today;

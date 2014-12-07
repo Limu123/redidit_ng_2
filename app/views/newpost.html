@@ -3,10 +3,7 @@
     <h3>Create a new {{postType | capitalize }}-post!</h3>
 
     <form class="post-form" ng-submit="createPost()" lang="en">
-<!-- 
-      <p>Type: {{postType | capitalize }}</p>
 
- -->
       <input type="radio" name="posttype" value="link" id="radio-link" ng-click="setPosttype($event)">
       <label class="radio-label icon icon-link" for="radio-link" title="Link"></label>
 
@@ -24,9 +21,7 @@
 
 
       <div ng-switch="postType">
-<!-- 
-        <h3>{{postType | capitalize }}</h3>
-         -->
+
         <input type="text" placeholder="Title" ng-model="title" required="true">
 
         <input ng-switch-when="link" type="url" placeholder="Link-URL, e.g. http://www.redidit.com" data-ng-model="$parent.url" required="true">

@@ -36,27 +36,8 @@ angular.module('rediditApp')
         return post;
       },
 
-      //getPostsForUser: function(userId) {
-      //  var data = postdata.$asArray();
-      //
-      //  data.$loaded().then(function(d) {
-      //    var filteredData = d.filter(function (p) {
-      //      return p.authorUID === userId;
-      //    });
-      //    _getRelatedData(filteredData);
-      //
-      //    data = jQuery.grep(data, function(a) {
-      //      return filteredData.indexOf(a) !== -1;
-      //    });
-      //  });
-      //
-      //  return data;
-      //},
 
       createPost: function (post) {
-        //return postdata.$add(post).then(function(postRef){
-        //    $route.reload();
-        //  });
         return postdata.$asArray().$add(post);
       },
 
@@ -125,7 +106,7 @@ angular.module('rediditApp')
               vValue = v.vote;
               return false;
             }
-          })
+          });
         }
         return vValue;
       },
@@ -136,11 +117,11 @@ angular.module('rediditApp')
 
         switch (currentVote) {
           case 1:
-            style = "icon icon-voteup-selected";
+            style = 'icon icon-voteup-selected';
             break;
 
           default:
-            style = "icon icon-voteup";
+            style = 'icon icon-voteup';
             break;
         }
 
@@ -153,11 +134,11 @@ angular.module('rediditApp')
 
         switch (currentVote) {
           case -1:
-            style = "icon icon-votedown-selected";
+            style = 'icon icon-votedown-selected';
             break;
 
           default:
-            style = "icon icon-votedown";
+            style = 'icon icon-votedown';
             break;
         }
 
@@ -189,8 +170,8 @@ angular.module('rediditApp')
           });
           post.votes = vSum;
           post.votesList = v || {};
-        })
-      })
+        });
+      });
     }
 
     return Post;
