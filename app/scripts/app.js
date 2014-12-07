@@ -18,6 +18,7 @@ angular
   ])
 
   .constant('FIREBASE_URL', 'https://redidit.firebaseio.com')
+  //.constant('FIREBASE_URL', 'https://redidit-test.firebaseio.com')    // test database
 
   .config(function ($routeProvider) {
     $routeProvider
