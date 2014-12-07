@@ -2,22 +2,32 @@
 ## Redidit
 
 ### Installation
+```bash
 $ git clone https://github.com/Limu123/redidit_ng_2.git <br>
 $ cd redidit_ng_2/ <br>
 $ (sudo) npm install <br>
 $ bower install
+```
 
 ### Build
+```bash
 $ grunt build
+```
 
 ### Run
+```bash
 $ grunt serve
+```
 
 ### Test
+```bash
 $ grunt test
+```
 
 ### Deploy
+```bash
 $ firebase deploy
+```
 
 ### Live Preview
 https://redidit.firebaseapp.com/#/
