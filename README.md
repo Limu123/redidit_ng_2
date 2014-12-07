@@ -17,6 +17,9 @@ $ grunt serve
 ### Test
 $ grunt test
 
+### Deploy
+$ firebase deploy
+
 ### Live Preview
 https://redidit.firebaseapp.com/#/
 
