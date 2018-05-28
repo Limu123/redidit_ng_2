@@ -3,7 +3,7 @@
 
 ### Installation
 ```bash
-$ git clone https://github.com/Limu123/redidit_ng_2.git
+$ git clone this repo
 $ cd redidit_ng_2/
 $ (sudo) npm install
 $ bower install
