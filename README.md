@@ -58,3 +58,4 @@ a testing database is available (redidit-test.firebaseapp.com) for integration t
 - add offline support
 - edit user data
 - edit post data (only if no votes/comments are available)
+
